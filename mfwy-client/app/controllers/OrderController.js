@@ -585,7 +585,7 @@ define(['app'], function (app) {
 
         //添加订单
         $scope.tijiao = function () {
-            console.log($scope.address.place);
+            /*//表单验证
             if(dingdan.userInfo.name==""){
                 $scope.form.name=true;
                 return false;
@@ -615,7 +615,11 @@ define(['app'], function (app) {
             dingdan.openid=ipCookie("openid");
             orderService.order(dingdan).then(function (data) {
                 $location.path("/order/zfdd");
-            });
+            });*/
+
+
+
+            $location.path("/order/zfdd");
         };
         //添加货到付款订单
         $scope.COD = function () {

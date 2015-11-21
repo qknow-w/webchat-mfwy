@@ -14,7 +14,6 @@ define(['app'], function (app) {
        //所有订单
         $scope.all=function(){
            $('.all').addClass('border_bottom').siblings().removeClass('border_bottom');
-            console.log(ipCookie("openid"));
            myorderService.list(ipCookie("openid")).then(function(result){
                 console.log("all",result);
                 $scope.myorder=result;
@@ -32,6 +31,15 @@ define(['app'], function (app) {
             });
         };
 
+        //等待发货
+        $scope.waitDelivery=function(){
+            $('.shipped').addClass('border_bottom').siblings().removeClass('border_bottom');
+        };
+        //等待收货
+        $scope.received=function(){
+            $('.received').addClass('border_bottom').siblings().removeClass('border_bottom');
+        };
+
 
         //取消订单 dialog
         $scope.cancelOrder=function(){
@@ -44,12 +52,7 @@ define(['app'], function (app) {
             $scope.dialog.message="";
             $scope.dialog.selfOrder=false;
         };
-/*        $scope.sipped=function(){
-            $('.shipped').addClass('border_bottom').siblings().removeClass('border_bottom');
-        };
-        $scope.received=function(){
-            $('.received').addClass('border_bottom').siblings().removeClass('border_bottom');
-        };*/
+
         //΢微信支付
         $scope.wechatPay=function(id){
 
@@ -59,7 +62,6 @@ define(['app'], function (app) {
                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
                         $scope.all();
-                        // ���������ת���������ҳ�����û�չʾ
                     } else {
                         $scope.dialog.message="支付失败，请重新支付";
                         $scope.dialog.selfOrder=true;
