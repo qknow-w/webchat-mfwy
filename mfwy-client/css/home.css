@@ -65,7 +65,7 @@ textarea{padding:0.5em;}
 .ddxq-ad .ad-foot ul .on{opacity: 1}
 .ddxq-cell:before{border:none;}
 .ddxq-cell:after{border: none;}
-.good-info .weui_label{width:5em;text-align: right;}
+.good-info .weui_label{width:5em;text-align: center;}
 .good-info .weui_cell_hd{padding-right: 0;}
 .good-info .weui_input{border:1px solid #ccc;height:1.4em;}
 .good-info .weui_select{border:1px solid #ccc;height:1.4em;}

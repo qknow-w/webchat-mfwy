@@ -538,7 +538,7 @@ define(['app'], function (app) {
 
         //下一步
         $scope.next = function () {
-            if(dingdan.images.length==0){
+            /*if(dingdan.images.length==0){
                 $scope.toast.message="请选择上传照片";
                 $scope.toast.warn=true;
                 $timeout(function(){
@@ -547,7 +547,10 @@ define(['app'], function (app) {
             }
             else{
                 $location.path("/" + $scope.path + "/ddxq/");
-            }
+            }*/
+
+
+            $location.path("/" + $scope.path + "/ddxq/"); //测试
 
 
 
@@ -569,12 +572,47 @@ define(['app'], function (app) {
             });
 
         };
+
+        //表单验证
+        $scope.form={
+            name:false,
+            company:false,
+            place:false,
+            phone:false,
+            QQ:false,
+            note:false
+        };
+
         //添加订单
         $scope.tijiao = function () {
+            console.log($scope.address.place);
+            if(dingdan.userInfo.name==""){
+                $scope.form.name=true;
+                return false;
+            }else{
+                $scope.form.name=false;
+            }
+            if(dingdan.userInfo.company==""){
+                $scope.form.company=true;
+                return false;
+            }else{
+                $scope.form.company=false;
+            }
+            if($scope.address.place==undefined){
+                $scope.form.place=true;
+                return false;
+            }else{
+                $scope.form.place=false;
+            }
+            if(dingdan.userInfo.phone==""){
+                $scope.form.phone=true;
+                return false;
+            }else{
+                $scope.form.phone=false;
+            }
 
             dingdan.no = Date.parse(new Date());
             dingdan.openid=ipCookie("openid");
-            /*dingdan.payInfo.payType = "微信支付";*/
             orderService.order(dingdan).then(function (data) {
                 $location.path("/order/zfdd");
             });

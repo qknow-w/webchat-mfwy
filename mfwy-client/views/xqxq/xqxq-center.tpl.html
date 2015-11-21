@@ -14,7 +14,7 @@
 <div class="weui_cells">
     <div class="weui_cell weui_cell_select">
         <div class="weui_cell_bd">
-            <label class="weui_label">纸张</label>
+            <label class="weui_label" style="text-align: center">纸张:</label>
         </div>
         <div class="weui_cell_hd weui_cell_primary">
             <select name="" class="weui_select type" id="" ng-change="jia()" ng-model="selectCard.card.c_type"
@@ -31,8 +31,8 @@
 
     <div class="clear"></div>
     <div class="weui_cell weui_cell_select">
-        <div class="weui_cell_bd">
-            <label class="weui_label">工艺</label></div>
+        <div class="weui_cell_bd" style="text-align: center">
+            <label class="weui_label">工艺:</label></div>
         <div class="weui_cell_hd weui_cell_primary ">
             <select name="" class="weui_select type" ng-change="jia()" ng-model="selectCard.card.gongyi"
                     ng-options="a.id as a.name for a in gongyiType">
@@ -46,8 +46,8 @@
     <div class="clear">
     </div>
     <div class="weui_cell weui_cell_select">
-        <div class="weui_cell_bd">
-            <label class="weui_label">数量</label>
+        <div class="weui_cell_bd" style="text-align: center">
+            <label class="weui_label">数量:</label>
         </div>
         <div class="weui_cell_hd weui_cell_primary">
             <select name="" class="weui_select type" ng-change="jia()" ng-model="order.num"
@@ -58,10 +58,10 @@
     </div>
     <div class="clear">
         <div class="weui_cells">
-            <div class="weui_cell_bd" style="vertical-align: top;">
-                <label class="weui_label">备注</label></div>
+            <div class="weui_cell_bd" style="vertical-align: top;text-align: center">
+                <label class="weui_label">备注:</label></div>
             <div class="weui_cell_hd weui_cell_primary " style="border-bottom: none;">
-                <textarea style="width:100%;height:100%;margin-top:0.5em;" rows="3" ng-model="order.note"></textarea>
+                <textarea style="width: 99%;padding: 0;margin-top:0.5em;" rows="3" ng-model="order.note"></textarea>
             </div>
         </div>
 
