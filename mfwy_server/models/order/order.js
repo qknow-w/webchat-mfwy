@@ -18,7 +18,7 @@ var order={
     boolShared:{type:Boolean,default:false},  //状态
     createInfo:{createTime: {type: Date, default: Date.now},people:String},
     updateInfo:{createTime: {type: Date, default: Date.now},people:String},
-    states:Number //状态 0 未付款 1 微信支付  2 货到付款
+    states:Number //状态 0 待付款 1 微信支付  2 货到付款 3 已完成 4 待收货 5待发货 6删除订单
 
 };
 
