@@ -1,0 +1,201 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li><a href="/gallery">活动</a></li>
+        <li class="active" ng-hide="entity.id">新增</li>
+        <li class="active" ng-show="entity.id">编辑(<span>{{ ::entity.name }}</span>)</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <tabset>
+        <tab heading="填写信息">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">名称</label>
+
+                    <div class="col-lg-11">
+                        <input type="text" class="form-control" ng-model="entity.name" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">地点</label>
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.address" required/>
+                    </div>
+                    <label class="col-lg-1 control-label">序号</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.num" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">时间</label>
+
+                    <div class="col-lg-5">
+
+
+                                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                    <div class="input-append"><input type="text" class="" style="width: 100%" date-format ng-model="entity.time[0]"><span class="add-on"><i
+                                            class="icon-calendar"></i></span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <datetimepicker data-ng-model="entity.time[0]"
+                                                    data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                                </ul>
+
+                            <!--<input type="text" class="form-control" ng-model="entity.time[0]"
+                                   id="startTime" data-date-format="yyyy/mm/dd hh:ii" readonly>
+									<span class="input-group-addon">
+										<i class="fa fa-clock-o bigger-110"></i>
+									</span>-->
+
+
+
+                    </div>
+                    <label class="col-lg-1 control-label"></label>
+
+                    <div class="col-lg-5">
+
+                        <a class="dropdown-toggle my-toggle-select" id="dLabell" role="button" data-toggle="dropdown" data-target="#" href="">
+                            <div class="input-append"><input type="text" class=""  style="width: 100%" date-format data-ng-model="entity.time[1]"><span class="add-on"><i
+                                    class="icon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabell">
+                            <datetimepicker data-ng-model="entity.time[1]"
+                                            data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                        </ul>
+                        <!--<div class="input-group">
+                            <input type="text" ng-model="entity.time[1]" class="form-control" value="2012-05-15 21:05"
+                                   data-date-format="yyyy/mm/dd hh:ii">
+									<span class="input-group-addon">
+										<i class="fa fa-clock-o bigger-110"></i>
+									</span>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">主题</label>
+
+                    <div class="col-lg-11">
+                        <input type="text" ng-model="entity.info.theme" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">主办方</label>
+
+                    <div class="col-lg-11">
+                        <input type="text" ng-model="entity.info.sponsor" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">广告</label>
+
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.images.ad[0]" name="ad" placeholder="广告链接"/>
+
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" name="ad" accept="image/*" class="form-control" nv-file-select="" uploader="uploaderAd"/>
+
+                    </div>
+                    <div class="col-lg-1" ng-repeat="item in uploaderAd.queue">
+                        <button ng-click="item.upload()" class="btn btn-sm btn-primary"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">海报</label>
+
+
+                    <div class="col-lg-5">
+                        <input type="text" name="poster" ng-model="entity.images.poster[0]" class="form-control"
+                               placeholder="海报链接"/>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" name="poster" accept="image/*" nv-file-select="" class="form-control"
+                               uploader="uploaderPoster"/>
+                    </div>
+                    <div class="col-lg-1" ng-repeat="item in uploaderPoster.queue">
+                        <button ng-click="item.upload()" class="btn btn-sm btn-primary"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">大海报</label>
+
+
+                    <div class="col-lg-5">
+                        <input type="text" name="posterr" ng-model="entity.images.posterr[0]" class="form-control"
+                               placeholder="海报链接"/>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="file" name="posterr" accept="image/*" nv-file-select="" class="form-control"
+                               uploader="uploaderPosterr"/>
+                    </div>
+                    <div class="col-lg-1" ng-repeat="item in uploaderPosterr.queue">
+                        <button ng-click="item.upload()" class="btn btn-sm btn-primary"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传
+                        </button>
+                    </div>
+
+
+                </div>
+
+
+                <div ng-show="entity.id" class="form-group" >
+                    <label class="col-lg-1 control-label">图片</label>
+
+                    <div class="col-lg-3">
+                        <img  class="img-thumbnail"  src="http://gobiiig.com:8003{{entity.images.ad[1]}}" alt=""/>
+                    </div>
+                    <div class="col-lg-3 ">
+                        <img   class="img-thumbnail" src="http://gobiiig.com:8003{{entity.images.poster[1]}}" alt=""/>
+                    </div>
+                    <div class="col-lg-3">
+                        <img   class="img-thumbnail" src="http://gobiiig.com:8003{{entity.images.posterr[1]}}" alt=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">简介</label>
+
+                    <div class="col-lg-11">
+                        <textarea type="text" ng-model="entity.info.brief" style="height: 200px"
+                                  class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label"></label>
+
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-primary" ng-click="submit()">
+                            <i class="fa fa-save"></i>
+                            保存
+                        </button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="button" class="btn btn-success">
+                            <i class="fa fa-save"></i>
+                            返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+

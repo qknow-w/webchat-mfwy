@@ -1,0 +1,11 @@
+[{
+  "openid":"qwe",
+  "no":"1202000",
+  "card":{"c_type":"铜板纸","gongyi":"不覆腊-加0"},
+  "images":["1111,jpg"],
+  "totalMoney":"18",
+  "payInfo":{"payType":"在线支付","payState":false},
+  "userInfo":{"name":"wy","company":"ss","address":"ddd","phone":"tttt","QQ":"QQ","note":"ddd"},
+  "note":"note",
+  "state":true
+}]

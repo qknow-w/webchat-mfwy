@@ -1,0 +1,8 @@
+mfwy-admin/node_modules
+mfwy-client/node_modules
+mfwy-server/node_modules
+mfwy-admin/.idea
+mfwy-client/.idea
+mfwy-server/.idea
+.idea/
+mfwy-client/bower_components

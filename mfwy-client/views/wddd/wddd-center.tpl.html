@@ -1,0 +1,70 @@
+
+<div class="weui_dialog_alert"  ng-show="dialog.selfOrder">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提示</strong></div>
+        <div class="weui_dialog_bd" ng-bind="dialog.message"></div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary" ng-click="cancelDialog()">确定</a>
+        </div>
+    </div>
+</div>
+
+<div class="wddd-center bd">
+    <div ng-repeat="a in myorder">
+    <div class="weui_cells weui_cells_checkbox">
+    <label class="weui_cell weui_check_label">
+        <div class="weui_cell_hd">
+            <input type="checkbox" class="weui_check" name="goods"/>
+            <i class="weui_icon_checked"></i>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>订单号：<span >{{a.no}}</span></p>
+        </div>
+        <div class="weui_cell_ft">
+            <!--<span class="color-fe">{{a.states}}</span>-->
+        </div>
+    </label></div>
+    <div class="weui_cell goods-01">
+        <div class="wddd-goods01">
+            <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
+                <ks-swiper-slide ng-repeat="s in a.images">
+                    <a href="" style="display:block;width: 100%;margin:0 auto;"><img ng-src="{{imagesPath}}{{s}}" width="100%" ></a>
+                </ks-swiper-slide>
+            </ks-swiper-container>
+        </div>
+        <div class="weui_cells ddxq-cell" >
+            <p class="weui_cell_bd" style="width:50%;">数量：<span ng-bind="a.num"></span></p>
+            <p class="weui_cell_hd weui_cell_primary">价格：<span class="jine">￥{{a.totalMoney}}</span></p>
+        </div>
+        <div class="weui_cells ddxq-cell "  >
+            <p class="weui_cell_bd" style="width:50%;">纸张：<span>{{a.card.c_type}}</span></p>
+        </div>
+        <div class="weui_cells ddxq-cell " style="padding-bottom:0.5em;border-bottom:1px solid #d7d7d7;" >
+            <p class="weui_cell_hd weui_cell_primary">工艺：<span >{{a.card.gongyi}}</span></p>
+        </div>
+        <a href="javascript:" class="weui_btn_plain_default goods-btn color-fe" ng-click="wechatPay(a.id)" ng-show="a.states==0">微信支付</a>
+        <a href="javascript:" class="weui_btn_plain_default goods-btn color-fe" ng-click="secondCOD(a.no,a.openid)" ng-show="a.states==0">货到付款</a>
+        <a href="javascript:" class="goods-btn color-fe" ng-show="a.states==1">已支付</a>
+        <a href="javascript:" class="goods-btn color-fe" ng-show="a.states==2">货到付款</a>
+        <a href="javascript:" class="weui_btn_plain_default goods-btn" ng-click="cancelOrder()">取消订单</a>
+    </div>
+    </div>
+
+    <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label">
+            <div class="weui_cell_hd">
+                <input type="checkbox" class="weui_check" name="goods"/>
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>全选</p>
+            </div>
+            <div class="weui_cell_ft">
+                <p style="color:#000;">共<span class="goods-num">2</span>件商品 &nbsp;&nbsp;实付：<span class="color-fe">￥{{myorder1.price+myorder2.price}}</span></p>
+            </div>
+        </label></div>
+    <div class="weui_cell">
+        <a ui-sref="order.xqxq" class="weui_btn bg" >继续订购</a>
+    </div>
+</div>

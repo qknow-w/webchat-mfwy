@@ -1,0 +1,27 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li class="active">活动</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <div class="text-right">
+        <a href="/dingzhi/new" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> 新增
+        </a>
+    </div>
+    <div class="hr hr-10 dotted hr-double"></div>
+   <div class="row">
+       <div  class="col-lg-3" ng-repeat="item in data.value">
+       <div><a href="/dingzhi/{{item.id}}" style="text-underline: none">
+           <img style="display: block;margin: 0 auto" src="http://localhost:40002/v1/images?name={{item.images[0]}}" alt="" width="220px" height="200px" />
+           <span style="display: block;margin: 0 auto;text-align: center;font-size: 18px">{{item.name}}</span></a>
+       </div>
+       </div>
+   </div>
+    <div zy-odata-pager="data" class="text-center"></div>
+</div>

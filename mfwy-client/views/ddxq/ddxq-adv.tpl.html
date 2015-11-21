@@ -1,0 +1,8 @@
+<p style="display: inline-block;width:auto;border-bottom:2px solid #fe4100;color:#fe4100;">您订购的名片信息</p>
+<div class="ddxq-ad">
+    <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
+        <ks-swiper-slide ng-repeat="s in order.images">
+            <a href="" style="display:block;width: 80%;margin:0 auto;"><img ng-src="{{imagesPath}}{{s}}" width="100%"></a>
+        </ks-swiper-slide>
+    </ks-swiper-container>
+</div>

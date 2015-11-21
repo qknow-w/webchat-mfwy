@@ -1,0 +1,8 @@
+[{
+  "name":"模板一",
+  "images":["/img/qq.jpg"],
+  "type":0,
+  "card":{"c_type":"铜板纸","gongyi":"不覆腊-加0"},
+  "price":111,
+  "state":true
+}]

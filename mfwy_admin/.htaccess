@@ -1,0 +1,7 @@
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^.*(\.html|\.js|\.css|\.otf|\.eot|\.svg|\.ttf|\.woff|\.jpg|\.bmp|\.gif|\.png|\.txt)$
+   RewriteRule (.*)$ index.html [L]
+</ifModule>

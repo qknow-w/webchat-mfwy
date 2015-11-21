@@ -1,0 +1,33 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li class="active">活动图片</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <div class="hr hr-10 dotted hr-double"></div>
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 40px">id</th>
+            <th>图片</th>
+            <th>审核</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data.value">
+            <td><span ng-show="item.hidden"><i class="fa fa-check"></i>{{item.id}}</span></td>
+            <td><img ng-src="http://gobiiig.com/imgproxy?url={{item.pictureUrl}}"  alt="" width="80px" height="50px" /></td>
+            <td>{{item.states}}</td>
+            <td>
+                <a class="btn btn-success" ng-click="delete(item.id)">删除</a>
+        </tr>
+        </tbody>
+    </table>
+    <div zy-odata-pager="data" class="text-center"></div>
+</div>
