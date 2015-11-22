@@ -191,9 +191,21 @@ define([], function () {
             "myorder.wddd": {
                 url: "/wddd",
                 views: {
-                    "wddd-header": "/views/wddd/wddd-header.tpl.html?v=" + urlArgs,
-                    "wddd-adv": "/views/wddd/wddd-adv.tpl.html?v=" + urlArgs,
+                    "wddd-header":  "/views/wddd/wddd-header.tpl.html?v=" + urlArgs,
+                    "wddd-adv":  "/views/wddd/wddd-adv.tpl.html?v=" + urlArgs,
                     "wddd-center": "/views/wddd/wddd-center.tpl.html?v=" + urlArgs
+
+                },
+                dependencies: [
+                    /*'controllers/HomeController'*/
+                ]
+            },
+            "myorder.detail": {
+                url: "/detail",
+                views: {
+                    "wddd-header": "/views/detial/detial-header.tpl.html?v=" + urlArgs,
+                    "wddd-adv": "/views/detial/detial-adv.tpl.html?v=" + urlArgs,
+                    "wddd-center": "/views/detial/detial-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
                     /*'controllers/HomeController'*/

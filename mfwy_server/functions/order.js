@@ -15,9 +15,9 @@ var request=require('request');
 router.post("/v1/orders/:no/:openid",function(req,res,next){
     console.log(req.params.no);
     resources.orders.findOne({no: req.params.no,openid:req.params.openid}).exec(function(err,result){
-        if(err)  res.send(err);
+        if(err)  res.status(500).send(err);
         console.log("result",result);
-        result.states=2; // 2 货到付款
+        result.states=1; // 2 货到付款
         result.payInfo.payType = "货到付款";
         result.save(function(err){
             console.log(err);
@@ -29,7 +29,7 @@ router.post("/v1/orders/:no/:openid",function(req,res,next){
 //第二次支付 更改订单号
 router.post("/v1/orders/secondPay",function(req,res,next){
     resources.orders.findOne({"_id":req.body.id}).exec(function(err,result){
-        if(err)  res.send(err);
+        if(err)  res.status(500).send(err);
         console.log(result);
         no=Date.parse(new Date());
         result.no=no;
@@ -37,16 +37,39 @@ router.post("/v1/orders/secondPay",function(req,res,next){
         request.post({url:"http://localhost:8000/pay/order",
             form:{"openid":result.openid,"money":result.totalMoney,"no":no}},function(err,httpResponse,body){
             if (err) {
-                res.send(err);
+                res.status(500).send(err);
             }
             res.send(body);
         })
 
+    });
+});
 
-
+//确认收货
+router.post("/v1/orders/sure",function(req,res,next){
+    resources.orders.findOne({"_id":req.body.id}).exec(function(err,result){
+        if(err)  res.status(500).send(err);
+        result.states=3;
+        result.save();
+        res.send("success");
 
     });
 });
+
+
+//删除订单
+router.post("/v1/orders/delete",function(req,res,next){
+    resources.orders.findOne({"_id":req.body.id}).exec(function(err,result){
+        if(err)  res.status(500).send(err);
+        result.states=6;
+        result.save();
+        res.send("success");
+
+    });
+});
+
+
+
 
 
 

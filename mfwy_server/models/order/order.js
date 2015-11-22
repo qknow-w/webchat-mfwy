@@ -10,7 +10,7 @@ var order={
     images:[String],//图片
     num:Number,//数量
     totalMoney:String,//总金额
-    payInfo:{payType:String,payState:Boolean},//支付信息  类型 状态
+    payInfo:{payType:String,payState:Boolean},//支付信息  类型 状态  微信支付  or  货到付款
     temInfo:{id:String,type:Number,price:String},//模板信息 id 模板类型  价格
     expressInfo:{no:String,state:Number},// 快递信息  快递号、状态  0 未收货、已收货
     userInfo:{name:String,company:String,address:String,phone:String,QQ:String,note:String},//用户地址信息  姓名 公司 地址 电话 qq 备注
@@ -18,7 +18,7 @@ var order={
     boolShared:{type:Boolean,default:false},  //状态
     createInfo:{createTime: {type: Date, default: Date.now},people:String},
     updateInfo:{createTime: {type: Date, default: Date.now},people:String},
-    states:Number //状态 0 待付款 1 微信支付  2 货到付款 3 已完成 4 待收货 5待发货 6删除订单
+    states:Number //状态 0 待付款 1 已支付 3 已完成  5已发货 6删除订单
 
 };
 

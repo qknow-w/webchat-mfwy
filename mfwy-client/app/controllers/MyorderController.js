@@ -2,13 +2,51 @@
  * Created by Administrator on 2015/11/3 0003.
  */
 define(['app'], function (app) {
-    app.controller('MyorderController', ['$scope','myorderService','ipCookie', 'orderService',function ($scope,myorderService,ipCookie,orderService) {
+    app.controller('MyorderController', ['$scope','$location','myorderService','ipCookie', 'orderService',function ($scope,$location,myorderService,ipCookie,orderService) {
         $scope.myorder=[];
         //弹出框
         $scope.dialog={
             selfOrder:false,
             message:""
         };
+        //订单详情
+        $scope.orderDedail = {
+            num: "",
+            openid: "",
+            order_type:0,
+            images: [],
+            no: "",
+            payInfo: {
+                payType: ""
+            },
+            temInfo: {
+                id: "",
+                type: "",
+                price: ""
+            },
+            totalMoney: 0,
+            card: {
+                c_type: "",
+                gongyi: ""
+            },
+            userInfo: {
+                name: "",
+                id: "",
+                address: "",
+                phone: "",
+                QQ: "",
+                company: "",
+                note: ""    //地址备注
+            },
+            expressInfo: {
+                no: "",
+                state: ""
+            },
+            states: 0,
+            note: ""
+        };
+
+
         //图片路径
         $scope.imagesPath=config.url.api+"/v1/images?name=";
        //所有订单
@@ -34,10 +72,20 @@ define(['app'], function (app) {
         //等待发货
         $scope.waitDelivery=function(){
             $('.shipped').addClass('border_bottom').siblings().removeClass('border_bottom');
+            myorderService.waitDelivery(ipCookie("openid")).then(function(result){
+                $scope.myorder=result;
+                //$scope.$apply();
+                console.log($scope.myorder);
+            });
         };
         //等待收货
         $scope.received=function(){
             $('.received').addClass('border_bottom').siblings().removeClass('border_bottom');
+            myorderService.takeDelivery(ipCookie("openid")).then(function(result){
+                $scope.myorder=result;
+                //$scope.$apply();
+                console.log($scope.myorder);
+            });
         };
 
 
@@ -82,6 +130,47 @@ define(['app'], function (app) {
                 $scope.dialog.selfOrder=true;
                 $scope.all();
             });
+        };
+
+        //确认收获
+        $scope.confirm=function(id){
+            myorderService.confirm(id).then(function (data) {
+                $scope.dialog.message="确认收货成功";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            },function(err){
+                $scope.dialog.message="确认收获失败,请重新确认";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            });
+
+        };
+
+        //删除订单
+        $scope.deleteOrder=function(id){
+            myorderService.deleteOrder(id).then(function (data) {
+                $scope.dialog.message="删除成功";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            },function(err){
+                $scope.dialog.message="删除成功失败,请重新删除";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            });
+
+        };
+
+        //订单详情
+        $scope.orderDedail=function(id){
+            myorderService.detailedOrder(id).then(function (data) {
+                $location.path("/order/detail");
+                $scope.orderDedail=data;
+                console.log(data);
+                console.log($scope.orderDedail);
+            },function(err){
+
+            });
+
         };
 
 
