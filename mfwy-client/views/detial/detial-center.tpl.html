@@ -19,7 +19,7 @@
     <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">收货姓名:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" required ng-model="orderDedail.userInfo.name" placeholder="请输入收货姓名">
+            <input class="weui_input" type="text" disabled="disabled" required ng-model="orderDedail.userInfo.name">
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -28,7 +28,7 @@
     <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">公司名称:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="orderDedail.userInfo.company" placeholder="请输入公司名称">
+            <input class="weui_input" type="text" disabled="disabled" ng-model="orderDedail.userInfo.company" >
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -39,7 +39,7 @@
     <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="orderDedail.userInfo.address" placeholder="请输入详细地址">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address" >
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -48,7 +48,7 @@
     <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">联系电话:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="orderDedail.userInfo.phone" >
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.phone" >
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -58,7 +58,7 @@
         <div class="weui_cell_hd" style="padding-right: 1em;text-align: right;"><label class="weui_label" style="margin-left: 1em">QQ:</label>
         </div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="orderDedail.userInfo.QQ">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.QQ">
         </div>
     </div>
 
@@ -66,7 +66,7 @@
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">备<span
                 style="display: inline-block;width: 1.9em"></span>注:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <textarea class="weui_textarea"  ng-model="orderDedail.userInfo.note"
+            <textarea class="weui_textarea" disabled="disabled"  ng-model="orderDedail.userInfo.note"
                       style="padding: 0"></textarea>
         </div>
 
