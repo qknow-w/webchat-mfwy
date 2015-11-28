@@ -1,7 +1,7 @@
 angular.module("framework.controllers.main", []).controller('MainCtrl', [
   "$scope", "$rootScope", "$http", "$location", "version", "context", "$localStorage", 'ngDialog', function($scope, $rootScope, $http, $location, version, context, $localStorage, ngDialog) {
     $scope.$on("loginSuccessed", function() {
-      version.get().then(function(data) {
+     /* version.get().then(function(data) {
         var dialog;
         if (!data.length) {
           return;
@@ -17,7 +17,7 @@ angular.module("framework.controllers.main", []).controller('MainCtrl', [
             return $localStorage.ver = $scope.newVersion.ver;
           });
         }
-      });
+      });*/
       $rootScope.account = context.account;
       $rootScope.__login = true;
       $rootScope.__logoff = false;

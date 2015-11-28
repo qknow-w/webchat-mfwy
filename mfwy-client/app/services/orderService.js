@@ -3,11 +3,11 @@
  */
 define(['app'], function (app) {
     app.factory('orderService', ['$q','$http', function ($q,$http) {
-
-        list=function(){
+        //当前地址查询卡片价格
+        list=function(addNo){
             var deferred;
             deferred = $q.defer();
-            $http.get(config.url.api+"/v1/cards", void 0).success(function(data) {
+            $http.get(config.url.api+"/v1/cards?$filter=currentAdd eq '"+addNo+"'", void 0).success(function(data) {
                 return deferred.resolve(data.value);
             }).error(function(error) {
                 console.log(error);

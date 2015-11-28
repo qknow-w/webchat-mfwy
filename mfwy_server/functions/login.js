@@ -32,6 +32,7 @@ router.post('/v1/login', function (req, res, next) {
 
     }).then(function(user){
         res.set("authorization", user.token);
+        res.set("currentAdd", user.currentAdd);
         return  res.json({
             account: user.account,
             password: user.password,
@@ -40,6 +41,7 @@ router.post('/v1/login', function (req, res, next) {
             permission:user.permission,
             router:user.router,
             states:user.states
+
         });
     }).catch(function(err){
         console.log(err);
@@ -65,7 +67,7 @@ router.post('/v1/auto-login', function (req, res, next) {
     });
 });
 
-router.post('/v1/logout', function (req, res, next) {
+router.post('/v1/logoff', function (req, res, next) {
     var token;
     token = req.get("authorization");
 

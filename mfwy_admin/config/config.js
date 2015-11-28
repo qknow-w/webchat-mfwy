@@ -5,8 +5,8 @@ config.host = {
   public: 'localhost:40000',
   admin: 'localhost:50001',
   feed: 'localhost:50001',
-  img: 'localhost:50001',
-  api: 'localhost:8000'
+  img: '17quay.cn',
+  api: '17quay.cn'
 };
 
 config.url = {

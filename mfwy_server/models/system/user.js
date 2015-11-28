@@ -7,6 +7,7 @@ var user={
     account:String,//帐号
     email:String,//eamil
     password:String,//密码
+    currentAdd:String,//当前位置标识
     role:String,//角色
     token:{type: String, default: " "},
     permission:[String],//权限

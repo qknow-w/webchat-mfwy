@@ -3,7 +3,7 @@
  */
 define(['app'], function (app) {
     var dingdan;
-    app.controller('OrderController', ['$scope', 'orderService', '$location', '$stateParams','ipCookie','$timeout', function ($scope, orderService, $location, $stateParams,ipCookie,$timeout) {
+    app.controller('OrderController', ['$rootScope', '$scope', 'orderService', '$location', '$stateParams', 'ipCookie', '$timeout', function ($rootScope, $scope, orderService, $location, $stateParams, ipCookie, $timeout) {
         //监听上传回调
         $scope.$on('imagePath', function (event, data) {
             //父级能得到值
@@ -14,15 +14,15 @@ define(['app'], function (app) {
         //监听分享回调
         $scope.$on('shareSuccess', function (event, data) {
             //父级能得到值
-            if(dingdan.boolShared==false){
-                dingdan.totalMoney = dingdan.totalMoney-2;
-                dingdan.boolShared=true;
+            if (dingdan.boolShared == false) {
+                dingdan.totalMoney = dingdan.totalMoney - 2;
+                dingdan.boolShared = true;
             }
 
 
         });
 
-       //下拉数量数组
+        //下拉数量数组
         $scope.shuling = [
             {
                 value: "2",
@@ -42,10 +42,10 @@ define(['app'], function (app) {
         ];
 
         //纸张类型
-        $scope.cardType={};
+        $scope.cardType = {};
         //工艺类型
-        $scope.gongyiType={};
-        $scope.selectCard={
+        $scope.gongyiType = {};
+        $scope.selectCard = {
             card: {
                 c_type: "",
                 gongyi: ""
@@ -53,7 +53,7 @@ define(['app'], function (app) {
         };
 
         $scope.address = {
-            place:""
+            place: ""
         };
         $scope.division = {
             "北京市": {"北京市": ["东城区", "西城区", "崇文区", "宣武区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云县", "延庆县"]},
@@ -460,20 +460,21 @@ define(['app'], function (app) {
             dingdan.userInfo.address = text;
         };
         //下一步提示toast
-        $scope.toast={
-            warn:false,
-            message:""
+        $scope.toast = {
+            warn: false,
+            message: ""
         };
         //订单模型
         dingdan = $scope.order = {
             num: "2",
             openid: "",
-            order_type:0,
+            order_type: 0,
             images: [],
             no: "",
             payInfo: {
                 payType: ""
             },
+            currentAdd:"",
             temInfo: {
                 id: "",
                 type: "",
@@ -501,6 +502,8 @@ define(['app'], function (app) {
             boolShared: false,
             note: ""
         };
+        console.log($rootScope.addressDefault.selectAdd);
+        $scope.order.currentAdd=$rootScope.addressDefault.selectAdd;//绑定当前选择地址
         $scope.user = {
             id: "",
             province: "",   //省份
@@ -516,20 +519,20 @@ define(['app'], function (app) {
         $scope.danjia = 0;
         //下拉选择
         $scope.jia = function () {
-            var cardTypePrice="";// 纸张价格
-            var cardGondYiPrice="";//纸张工艺价格
+            var cardTypePrice = "";// 纸张价格
+            var cardGondYiPrice = "";//纸张工艺价格
             var num = $scope.order.num;
-            for(var i=0;i<$scope.cardType.length;i++){
-                if($scope.cardType[i].id==$scope.selectCard.card.c_type){
-                    cardTypePrice=$scope.cardType[i].price;
-                    dingdan.card.c_type=$scope.cardType[i].name;
+            for (var i = 0; i < $scope.cardType.length; i++) {
+                if ($scope.cardType[i].id == $scope.selectCard.card.c_type) {
+                    cardTypePrice = $scope.cardType[i].price;
+                    dingdan.card.c_type = $scope.cardType[i].name;
                     break;
                 }
             }
-            for(var j=0;j<$scope.gongyiType.length;j++){
-                if($scope.gongyiType[j].id===$scope.selectCard.card.gongyi){
-                    cardGondYiPrice=$scope.gongyiType[j].price;
-                    dingdan.card.gongyi=$scope.gongyiType[j].name;
+            for (var j = 0; j < $scope.gongyiType.length; j++) {
+                if ($scope.gongyiType[j].id === $scope.selectCard.card.gongyi) {
+                    cardGondYiPrice = $scope.gongyiType[j].price;
+                    dingdan.card.gongyi = $scope.gongyiType[j].name;
                     break;
                 }
             }
@@ -543,127 +546,126 @@ define(['app'], function (app) {
         //下一步
         $scope.next = function () {
             /*if(dingdan.images.length==0){
-                $scope.toast.message="请选择上传照片";
-                $scope.toast.warn=true;
-                $timeout(function(){
-                    $scope.toast.warn=false;
-                },700);
-            }
-            else{
-                $location.path("/" + $scope.path + "/ddxq/");
-            }*/
+             $scope.toast.message="请选择上传照片";
+             $scope.toast.warn=true;
+             $timeout(function(){
+             $scope.toast.warn=false;
+             },700);
+             }
+             else{
+             $location.path("/" + $scope.path + "/ddxq/");
+             }*/
 
 
-            $location.path("/" + $scope.path + "/ddxq/"); //测试
-
-
-
+            $location.path("/" + $scope.path + "/ddxq/"); //测试*/
 
 
         };
         //微信支付
         $scope.addOrder = function () {
-            var data={"openid":ipCookie("openid"),"no":dingdan.no,money:dingdan.totalMoney};
-            orderService.getWechatConfig(data).then(function (data) {
-                WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                        $location.path("/order/wddd");
-                        // 这里可以跳转到订单完成页面向用户展示
-                    } else {
-                        alert("支付失败，请重新进入后支付");
-                    }
-                });
-            });
+            /*var data={"openid":ipCookie("openid"),"no":dingdan.no,money:dingdan.totalMoney};
+             orderService.getWechatConfig(data).then(function (data) {
+             WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+             if (res.err_msg == "get_brand_wcpay_request:ok") {
+             $location.path("/order/wddd");
+             // 这里可以跳转到订单完成页面向用户展示
+             } else {
+             alert("支付失败，请重新进入后支付");
+             }
+             });
+             });*/
+
+            $location.path("/order/wddd");
 
         };
 
         //表单验证
-        $scope.form={
-            name:false,
-            company:false,
-            place:false,
-            phone:false,
-            QQ:false,
-            note:false
+        $scope.form = {
+            name: false,
+            company: false,
+            place: false,
+            phone: false,
+            QQ: false,
+            note: false
         };
 
         //添加订单
         $scope.tijiao = function () {
-            /*//表单验证
-            if(dingdan.userInfo.name==""){
-                $scope.form.name=true;
-                return false;
-            }else{
-                $scope.form.name=false;
-            }
-            if(dingdan.userInfo.company==""){
-                $scope.form.company=true;
-                return false;
-            }else{
-                $scope.form.company=false;
-            }
-            if($scope.address.place==undefined){
-                $scope.form.place=true;
-                return false;
-            }else{
-                $scope.form.place=false;
-            }
-            if(dingdan.userInfo.phone==""){
-                $scope.form.phone=true;
-                return false;
-            }else{
-                $scope.form.phone=false;
-            }
+            //表单验证
+            /* if(dingdan.userInfo.name==""){
+             $scope.form.name=true;
+             return false;
+             }else{
+             $scope.form.name=false;
+             }
+             if(dingdan.userInfo.company==""){
+             $scope.form.company=true;
+             return false;
+             }else{
+             $scope.form.company=false;
+             }
+             if($scope.address.place==undefined){
+             $scope.form.place=true;
+             return false;
+             }else{
+             $scope.form.place=false;
+             }
+             if(dingdan.userInfo.phone==""){
+             $scope.form.phone=true;
+             return false;
+             }else{
+             $scope.form.phone=false;
+             }
              dingdan.userInfo.address += $scope.address.place;
-            dingdan.no = Date.parse(new Date());
-            dingdan.openid=ipCookie("openid");
-            orderService.order(dingdan).then(function (data) {
-                $location.path("/order/zfdd");
-            });*/
+             dingdan.no = Date.parse(new Date());
+             dingdan.openid=ipCookie("openid");
+             orderService.order(dingdan).then(function (data) {
+             $location.path("/order/zfdd");
+             });*/
 
 
             dingdan.userInfo.address += $scope.address.place;
             dingdan.no = Date.parse(new Date());
-            dingdan.openid=ipCookie("openid");
+            dingdan.openid = ipCookie("openid");
             orderService.order(dingdan).then(function (data) {
                 $location.path("/order/zfdd");
             });
         };
         //添加货到付款订单
         $scope.COD = function () {
-            orderService.deliveryPay(dingdan.no,ipCookie("openid")).then(function (data) {
+            orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
                 $location.path("/order/wddd");
             });
         };
-/*        //判断是否为空
-        function isNull(arg1) {
-            return !arg1 && arg1 !== 0 && typeof arg1 !== "boolean" ? true : false;
-        }*/
+        /*        //判断是否为空
+         function isNull(arg1) {
+         return !arg1 && arg1 !== 0 && typeof arg1 !== "boolean" ? true : false;
+         }*/
         //图片路径
-        $scope.imagesPath=config.url.api+"/v1/images?name=";
+        $scope.imagesPath = config.url.api + "/v1/images?name=";
 
         //初始化数据
-        return orderService.list().then(function (result) {
+        return orderService.list($rootScope.addressDefault.selectAdd).then(function (result) {
 
             //初始化下拉数据
-            $scope.cardType=result[0].c_type;
-            $scope.gongyiType=result[0].gongyi;
+            $scope.cardType = result[0].c_type;
+            $scope.gongyiType = result[0].gongyi;
             //默认选中设置
-            $scope.selectCard.card.c_type=$scope.cardType[0].id;
-            $scope.selectCard.card.gongyi=$scope.gongyiType[0].id;
+            $scope.selectCard.card.c_type = $scope.cardType[0].id;
+            $scope.selectCard.card.gongyi = $scope.gongyiType[0].id;
             $scope.jia();  //计算出默认价格
 
             //判断当前路由
             var path = $location.path();
             var strs = path.split('/');
             $scope.path = strs[1];  //路由
-            if(strs[1]=="order"){
-                dingdan.order_type=1;//直接印刷
+            if (strs[1] == "order") {
+                dingdan.order_type = 1;//直接印刷
             }
 
 
-          /*  $scope.type = result[0].c_type;
-            $scope.gongyi = result[0].gongyi;*/
+            /*  $scope.type = result[0].c_type;
+             $scope.gongyi = result[0].gongyi;*/
 
         });
     }

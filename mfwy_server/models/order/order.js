@@ -3,10 +3,11 @@
  */
 /*订单集合*/
 var order={
-    openid:String,//用户openid
+       openid:String,//用户openid
     no:String, //订单号
     order_type:Number,//订单类型 1 直接印刷 2。看稿印刷
-    card:{c_type:String,gongyi:String},//名片信息
+    card:{c_type:String,gongyi:String},//名片信息,
+    currentAdd:String,//当前位置
     images:[String],//图片
     num:Number,//数量
     totalMoney:String,//总金额

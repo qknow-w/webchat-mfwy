@@ -2,12 +2,17 @@
 <div class="weui_cells weui_cells_split" style="background: #fe4101">
     <div class="weui_cell">
 
-        <div class="weui_cell_bd" style="">
-            <!--<select name="" id="zhandian">
-                <option value="lanzhou">兰州站</option>
-                <option value="lanzhou">成都站</option>
-                <option value="lanzhou">重庆站</option>
-            </select>-->
+       <!-- <div class="weui_cell_bd" style="">
+            <select  name="" id="zhandian" style="background: transparent" class="" ng-model="address.defaulttt"
+                    ng-options="a.value as a.name for a in currentAddress">
+            </select>
+
+        </div>-->
+        <div class="weui_cell_hd weui_cell_primary" style="height: 30px;padding: 0;margin: 0">
+            <select name="" class="weui_select" style="height: 20px;padding: 0;margin: 0;color: #fff" ng-model="addressDefault.selectAdd"
+                    ng-options="a.value as a.name for a in currentAddress">
+
+            </select>
         </div>
         <div class="weui_cell_bd weui_cell_primary" style="text-align: right;">
             <img src="/images/logo.png" height="26" alt=""/>

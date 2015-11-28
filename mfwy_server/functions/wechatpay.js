@@ -23,7 +23,8 @@ router.post('/pay/order', function (req, res, next) {
         body: '蜜蜂网印',
         attach: '蜜蜂网印',
         out_trade_no:req.body.no,//订单号
-        total_fee: parseInt(req.body.money)*100,
+        total_fee: 1,
+       /* total_fee: parseInt(req.body.money)*100,*/
         spbill_create_ip: "115.28.6.179",
         openid: req.body.openid,
         //openid:req.body.openid,

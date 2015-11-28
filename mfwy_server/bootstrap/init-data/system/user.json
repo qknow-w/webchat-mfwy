@@ -3,6 +3,14 @@
     "name": "Administrator",
     "account": "admin",
     "password": "admin",
+    "currentAdd":"2",
+    "email": null
+  },
+  {
+    "name": "Administrator",
+    "account": "admin1",
+    "password": "admin1",
+    "currentAdd":"2",
     "email": null
   }
 ]

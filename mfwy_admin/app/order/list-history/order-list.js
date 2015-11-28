@@ -23,7 +23,8 @@ angular.module('order-list-history', ['resource.orders']).config([
                 $skip: (pageNo - 1) * 10,
                 $top: 10,
                 $count: true,
-                $filter:'states eq false'
+                $filter:'states eq 3',
+                $orderby:"createInfo desc"
             }, function(data) {
                 return $scope.data = data;
             });

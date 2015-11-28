@@ -1,4 +1,7 @@
 [{
   "c_type":[{"num":1,"name":"铜板纸","price":"2"},{"num":2,"name":"一块钱名片","price":"1"},{"num":3,"name":"M04-300g星幻冰白布纹","price":"60"}],
-  "gongyi":[{"num":1,"name":"不覆腊-加0","price":"0"},{"num":2,"name":"覆膜-加1元","price":"1"},{"num":3,"name":"圆角-加20元","price":"20"}]
+  "gongyi":[{"num":1,"name":"不覆腊-加0","price":"0"},{"num":2,"name":"覆膜-加1元","price":"1"},{"num":3,"name":"圆角-加20元","price":"20"}],"currentAdd":"1"
+},{
+  "c_type":[{"num":1,"name":"铜板纸","price":"2"},{"num":2,"name":"一块钱名片","price":"1"},{"num":3,"name":"M04-300g星幻冰白布纹","price":"60"}],
+  "gongyi":[{"num":1,"name":"不覆腊-加0","price":"0"},{"num":2,"name":"覆膜-加1元","price":"1"},{"num":3,"name":"圆角-加20元","price":"20"}],"currentAdd":"2"
 }]

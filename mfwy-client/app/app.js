@@ -1,8 +1,48 @@
 define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRoute', 'jquery', 'config', 'swiper', 'ngSwiper', 'ngCookie'], function (config, dependencyResolverFor, angularAMD) {
 
+
     var app = angular.module('app', ['ui.router', 'ksSwiper', 'ipCookie']);
 
+    app.controller("AppController", ["$rootScope", function ($rootScope) {
+        //baidu map
+        //当前位置
+        $rootScope.currentAddress = [
+            {
+                value: "1",
+                name: '甘肃省'
 
+            },
+            {
+                value: "2",
+                name: '山东省'
+
+            }
+        ];
+        $rootScope.addressDefault={
+            selectAdd:"1"
+        };
+        //default selected
+       // $rootScope.addressDefault.selectAdd="1";
+/*        $scope.addressChange=function(){
+
+        };*/
+/*
+        $rootScope.app_address = "";
+        var geolocation = new BMap.Geolocation();
+        $rootScope.app_address = "当前位置";
+        return geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                $rootScope.app_address = r.address.city;
+                $rootScope.$apply();//apply
+                /!* alert('当前位置' + r.address.city);
+                 alert('当前位置' + $rootScope.app_address);*!/
+            }
+
+
+        }, {enableHighAccuracy: true});
+*/
+
+    }]);
     app.config([
         '$locationProvider',
         '$controllerProvider',

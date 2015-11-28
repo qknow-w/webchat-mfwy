@@ -86,6 +86,7 @@ router.get('/oauth-openid', function (req, res, next) {
         console.log(result);
         var openid = result.openid;
         res.writeHeader(301, {'Location': "http://qknow.com.cn?openid="  + openid });
+
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
 

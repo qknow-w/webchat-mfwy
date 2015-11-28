@@ -5,14 +5,17 @@ angular.module("zy.services.security", ['resource.users', 'ipCookie']).factory("
         var deferred, token;
         deferred = $q.defer();
         token = ipCookie('authorization');
+        currentAdd= ipCookie('currentAdd');
         if (token) {
           $http.defaults.headers.common['authorization'] = token;
+          $http.defaults.headers.common['currentAdd'] = currentAdd;
           $http.post("" + config.url.api + "/v1/auto-login", void 0).success(function(data) {
             return deferred.resolve(data);
           }).error(function(error) {
             ipCookie.remove('authorization', {
               path: '/'
             });
+            ipCookie.remove('currentAdd');
             return deferred.reject(void 0);
           });
         } else {
@@ -29,7 +32,9 @@ angular.module("zy.services.security", ['resource.users', 'ipCookie']).factory("
         }).success(function(data, status, headers) {
           var params, token;
           token = headers('authorization');
+          currentAdd=headers('currentAdd');
           $http.defaults.headers.common['authorization'] = token;
+          $http.defaults.headers.common['currentAdd'] = currentAdd;
           params = {
             path: '/',
             domain: config.host.domain
@@ -41,6 +46,7 @@ angular.module("zy.services.security", ['resource.users', 'ipCookie']).factory("
             params.expires = 180;
           }
           ipCookie('authorization', token, params);
+          ipCookie('currentAdd', currentAdd, params );
           return deferred.resolve(data);
         }).error(function(error) {
           return deferred.reject(void 0);
@@ -54,8 +60,12 @@ angular.module("zy.services.security", ['resource.users', 'ipCookie']).factory("
           ipCookie.remove('authorization', {
             path: '/'
           });
+          ipCookie.remove('currentAdd');
           delete $http.defaults.headers.common['authorization'];
+          delete $http.defaults.headers.common['currentAdd'];
           return deferred.resolve("OK");
+        }).error(function(err){
+
         });
         return deferred.promise;
       }

@@ -54,7 +54,8 @@ odata.resources = server.resources;
 server.use(require("./middleware/authorization"));
 server.use(domainError());
 server.use(cors({
-    exposedHeaders: "authorization"
+    exposedHeaders: ["authorization","currentAdd"]
+
 }));
 server.use(morgan("short"));
 

@@ -47,14 +47,15 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-lg-1 control-label">名片备注</label>
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.note" required/>
+                    </div>
                     <label class="col-lg-1 control-label">支付类型</label>
 
                     <div class="col-lg-5">
-                        <input type="text" class="form-control" ng-model="payInfo.payType" required/>
-                    </div>
-                    <label class="col-lg-1 control-label">支付状态</label>
-                    <div class="col-lg-5">
-                        <input type="text" class="form-control" ng-model="payInfo.payState" required/>
+                        <input type="text" class="form-control" ng-model="entity.payInfo.payType" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -91,25 +92,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-1 control-label">名片备注</label>
 
-                    <div class="col-lg-5">
-                        <input type="text" class="form-control" ng-model="entity.note" required/>
-                    </div>
                     <label class="col-lg-1 control-label">是否分享</label>
                     <div class="col-lg-5">
-                        <input type="text" class="form-control" ng-model="entity.boolShared" required/>
+                        <input type="text" class="form-control" ng-show="entity.boolShared" value="已分享"  required/>
+                        <input type="text" class="form-control" ng-show="entity.boolShared==false" value="未分享"  required/>
                     </div>
                 </div>
                 <div ng-show="entity.images[0]" class="form-group" >
                     <label class="col-lg-1 control-label">图片</label>
 
-                    <div class="col-lg-5">
-                        <img  class="img-thumbnail"  src="http://gobiiig.com:8003{{entity.images[0]}}" alt=""/>
+                    <div class="col-lg-5" ng-repeat="a in entity.images">
+                        <img  class="img-thumbnail"  src="http://17quay.cn/v1/images?name={{a}}" alt=""/>
                     </div>
-                    <div class="col-lg-5 ">
-                        <img   class="img-thumbnail" src="http://gobiiig.com:8003{{entity.images[1]}}" alt=""/>
-                    </div>
+
                 </div>
 
                 <div class="form-group">

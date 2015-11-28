@@ -14,7 +14,7 @@
     <table class="table table-hover table-striped table-bordered">
         <thead>
         <tr>
-            <th style="width: 40px">订单号</th>
+            <th style="width: 70px">订单号</th>
             <th>姓名</th>
             <th>地址</th>
             <th>电话</th>
@@ -22,11 +22,12 @@
             <th>总金额</th>
             <th>时间</th>
             <th>备注</th>
+            <th>状态</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in data.value" style="height: 50px;">
+        <tr ng-repeat="item in data.value">
             <td><span><i class="fa"></i>{{item.no}}</span></td>
             <td>{{item.userInfo.name}}</td>
             <td>{{item.userInfo.address}}</td>
@@ -36,9 +37,13 @@
             <td>{{item.createInfo.createTime|date:'yyyy-MM-dd HH:mm:ss' }}</td>
             <td>{{item.note}}</td>
             <td>
-                <a class="btn btn-success" href="/order/{{item.id}}">详情</a>
-                <!--<a class="btn btn-primary" href="/activity/{{item.id}}">编辑</a>-->
-                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>
+                <span  href="javascript:void (0)" >已完成</span>
+
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="/order/{{item.id}}">详情</a>
+<!--                <a class="btn btn-primary" ng-show="item.states==1||item.states==2" href="/activity/{{item.id}}">发货</a>
+                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>-->
         </tr>
         </tbody>
     </table>

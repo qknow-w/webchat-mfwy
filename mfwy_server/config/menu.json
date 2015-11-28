@@ -6,7 +6,7 @@
       "sub_button":[{
         "type": "view",
         "name":"网印商城",
-        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
+        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
       }]
 
     }
