@@ -4,12 +4,28 @@
             <i class="fa fa-home home-icon"></i>
             <a href="/">主页</a>
         </li>
-        <li class="active">订单</li>
+        <li class="active">历史订单</li>
     </ul>
 </div>
 
 <div class="page-content">
+    <div class="row">
+        <div class="col-lg-6">
+            <label style="display: inline-block;text-align: left"><a style="display: inline-block;"
+                                                                     class="btn btn-success btn-xs"
+                                                                     href="javascript:void 0" ng-click="importOrder()">导出excel</a></label>
 
+        </div>
+        <div class="col-lg-6">
+            <div id="sample-table-2_filter" class="dataTables_filter">
+                <label><input style="display: inline-block;width: 200px" type="search" class="form-control input-sm"
+                              placeholder="订单号/姓名" ng-model="search" aria-controls="sample-table-2">
+                    <a style="display: inline-block" class="btn btn-success btn-xs" href="javascript:void 0"
+                       ng-click="orderSearch()">搜索</a></label>
+            </div>
+        </div>
+
+    </div>
     <div class="hr hr-10 dotted hr-double"></div>
     <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -20,7 +36,9 @@
             <th>电话</th>
             <!-- <th style="width: 200px;">简介</th>-->
             <th>总金额</th>
+            <th>订单类型</th>
             <th>时间</th>
+            <th>所属城市</th>
             <th>备注</th>
             <th>状态</th>
             <th>操作</th>
@@ -34,16 +52,30 @@
             <td>{{item.userInfo.phone}}</td>
             <td>{{item.totalMoney}}</td>
             <!-- <td style="text-overflow:ellipsis;overflow:hidden;">{{item.info.brief}}</td>-->
+            <td>
+                <span ng-show="item.order_type==1">直接印刷</span>
+
+                <span ng-show="item.order_type==2">看搞印刷</span>
+                <span ng-show="item.order_type==3">重新设计</span>
+
+                <span ng-show="item.order_type==4">快印名片</span>
+            </td>
             <td>{{item.createInfo.createTime|date:'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td>
+                <span ng-show="item.currentAdd==1">甘肃省</span>
+
+                <span ng-show="item.currentAdd==2">山东省</span>
+
+            </td>
             <td>{{item.note}}</td>
             <td>
-                <span  href="javascript:void (0)" >已完成</span>
+                <span href="javascript:void (0)">已完成</span>
 
             </td>
             <td>
                 <a class="btn btn-success btn-xs" href="/order/{{item.id}}">详情</a>
-<!--                <a class="btn btn-primary" ng-show="item.states==1||item.states==2" href="/activity/{{item.id}}">发货</a>
-                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>-->
+                <!--                <a class="btn btn-primary" ng-show="item.states==1||item.states==2" href="/activity/{{item.id}}">发货</a>
+                                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>-->
         </tr>
         </tbody>
     </table>

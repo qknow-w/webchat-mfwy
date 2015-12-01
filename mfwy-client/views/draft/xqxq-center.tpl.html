@@ -1,0 +1,75 @@
+<div class="weui_cell " style="padding:10px 0;" ng-controller="WeiXinController">
+    <a href="javascript:;" ng-click="chooseImage()" class="a-btn"><i class="fa fa-camera"></i>选择照片</a>
+    <a href="javascript:;" ng-click="upload()" class="a-btn"><i class="fa fa-upload"></i>上传照片</a>
+    <p class="tips"> 拍摄名片正反,看稿印刷,需要和客户确认！</p>
+    <div   ng-show="toast.upload">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast" ></i>
+            <p class="weui_toast_content" ng-bind="toast.message"></p>
+        </div>
+    </div>
+
+</div>
+<div class="weui_cells">
+    <div class="weui_cell weui_cell_select">
+        <div class="weui_cell_bd">
+            <label class="weui_label" style="text-align: center">纸张:</label>
+        </div>
+        <div class="weui_cell_hd weui_cell_primary">
+            <select name="" class="weui_select type" id="" ng-change="jia()" ng-model="selectCard.card.c_type"
+                    ng-options="a.id as a.name for a in cardType">
+
+            </select>
+            <!-- <select class="weui_select type" name="" ng-model="order.card.c_type" ng-change="jia()" style="font-size:0.8em;" >
+                 <option value="">请选择纸板类型</option>
+                 <option ng-repeat="a in type" data-typeprice="{{a.price}}" value="{{a.name}}">{{a.name}}</option>
+             </select>-->
+
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="weui_cell weui_cell_select">
+        <div class="weui_cell_bd" style="text-align: center">
+            <label class="weui_label">工艺:</label></div>
+        <div class="weui_cell_hd weui_cell_primary ">
+            <select name="" class="weui_select type" ng-change="jia()" ng-model="selectCard.card.gongyi"
+                    ng-options="a.id as a.name for a in gongyiType">
+            </select>
+            <!-- &lt;!&ndash; <select name="" class="weui_select gongyi" ng-change="jia()" ng-model="order.card.gongyi">
+                  <option value="">请选择工艺</option>
+                  <option ng-repeat="a in gongyi" data-gongyiprice="{{a.price}}" value="{{a.name}}">{{a.name}}</option>
+              </select>&ndash;&gt;-->
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div class="weui_cell weui_cell_select">
+        <div class="weui_cell_bd" style="text-align: center">
+            <label class="weui_label">数量:</label>
+        </div>
+        <div class="weui_cell_hd weui_cell_primary">
+            <select name="" class="weui_select type" ng-change="jia()" ng-model="order.num"
+                    ng-options="a.value as a.name for a in shuling">
+
+            </select>
+        </div>
+    </div>
+    <div class="clear">
+        <div class="weui_cells">
+            <div class="weui_cell_bd" style="vertical-align: top;text-align: center">
+                <label class="weui_label">备注:</label></div>
+            <div class="weui_cell_hd weui_cell_primary " style="border-bottom: none;">
+                <textarea style="width: 99%;padding: 0;margin-top:0.5em;" rows="3" ng-model="order.note"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="weui_cell">
+        <div class="hd">
+            <p style="text-align: center">合计金额：<span class="jine jine-l">￥{{danjia}}</span></p>
+        </div>
+        <a class="weui_btn " ng-click="next()" style="background: #f11e09">下一步</a>
+    </div>
+</div>

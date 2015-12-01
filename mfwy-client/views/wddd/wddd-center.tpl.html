@@ -22,8 +22,7 @@
                 </div>
                 <div class="weui_cell_ft">
                     <span class="color-fe" ng-show="a.states==0">等待买家付款</span>
-                    <span class="color-fe" ng-show="a.states==1">等待卖家发货</span>
-                    <span class="color-fe" ng-show="a.states==2">等待卖家发货</span>
+                    <span class="color-fe" ng-show="a.states==1||a.states==2||a.states==4">等待卖家发货</span>
                     <span class="color-fe" ng-show="a.states==3">交易完成</span>
                    <!-- <span class="color-fe" ng-show="a.states==4">等待买家收货</span>-->
                     <span class="color-fe" ng-show="a.states==5">等待买家收货</span>
@@ -54,7 +53,7 @@
                 <div class="weui_cell_bd weui_cell_primary">
                 </div>
                 <div class="weui_cell_ft">
-                    <a href="" class="weui_btn weui_btn_mini weui_btn_default" ng-click="orderDedail(a.id)">查看详情</a>
+                    <a href="" class="weui_btn weui_btn_mini weui_btn_default" ng-click="orderDetail(a.id)">查看详情</a>
                     <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default" ng-show="a.states==3||a.states==0" ng-click="deleteOrder()">删除订单</a>
                     <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_warn" style="background: #fe4101;"
                        ng-click="confirm(a.id)" ng-show="a.states!==3&&a.states!==0">确认收货</a>

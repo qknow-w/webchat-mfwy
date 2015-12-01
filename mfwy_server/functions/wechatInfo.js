@@ -167,9 +167,18 @@ router.get("/getMedia", function (req, res, next) {
     //'q5BotgQBpTjzFfuBuSAxY5tm1ez6wDMXSbxLhBjmHArc19cKhPWYmOB5WkPRZpL-'
     api.getMedia(media_id, function(err,result,ress){
         filename =crypto.createHash('sha1').update('' + +new Date()).digest('hex')+"."+ress.headers['content-type'].split('/')[1];
-        fs.writeFile("./static/material/"+filename,result,function(err){
+
+        var myDate = new Date();
+        var currentDate = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
+        var goalDirPath = './static/material/' + currentDate;
+        //判断 目录是否存在
+        if (fs.existsSync(goalDirPath)) {
+        } else {
+            fs.mkdirSync(goalDirPath);
+        }
+        fs.writeFile("./static/material/"+currentDate+"/"+filename,result,function(err){
             if(err){res.status(500).send('fail')}
-            res.send("material/"+filename);
+            res.send("material/"+currentDate+"/"+filename);
         });
 
     });

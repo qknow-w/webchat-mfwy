@@ -10,7 +10,7 @@ angular.module('template-list', ['resource.templates']).config([
         });
     }
 ]).controller('TemplateCtrl', [
-    "$scope","$location","Templates","messager", function($scope,$location,Templates,messager) {
+    "$scope","$location","Templates","messager",'ipCookie', function($scope,$location,Templates,messager,ipCookie) {
         $scope.delete=function(id){
            return Templates["delete"]({id:id},function(){
                messager.success("delete successfully.");
@@ -23,7 +23,7 @@ angular.module('template-list', ['resource.templates']).config([
                 $skip: (pageNo - 1) * 10,
                 $top: 10,
                 $count: true,
-                $filter:'type eq 0'
+                $filter:"type eq 0 and currentAdd eq '"+ipCookie('currentAdd')+"'"
             }, function(data) {
                 return $scope.data = data;
 

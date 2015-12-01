@@ -1,4 +1,4 @@
-angular.module("app", ['ngRoute', 'ngCookies', 'ngSanitize', "activity",'order','template','dingzhi','connection', 'system', 'dialogs', 'framework.controllers', 'zy.services', 'zy.directives', 'zy.filters', 'zy.untils', 'ngProgress', 'ngStorage', 'ngDialog', 'angularFileUpload', 'ui.utils', 'ui.bootstrap', 'ui.bootstrap.datetimepicker','dateRange'])
+angular.module("app", ['ngRoute', 'ngCookies', 'ngSanitize', "activity",'order','paper','technology','template','dingzhi','connection', 'system', 'dialogs', 'framework.controllers', 'zy.services', 'zy.directives', 'zy.filters', 'zy.untils', 'ngProgress', 'ngStorage', 'ngDialog', 'angularFileUpload', 'ui.utils', 'ui.bootstrap', 'ui.bootstrap.datetimepicker','dateRange'])
     .config([
         "$locationProvider", function ($locationProvider) {
             return $locationProvider.html5Mode({

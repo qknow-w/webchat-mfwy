@@ -74,6 +74,7 @@ server.use(require('./functions/upload'));
 server.use(require('./functions/wechatInfo'));
 server.use(require('./functions/wechatpay'));
 server.use(require('./functions/order'));
+server.use(require('./functions/card'));
 //resources
 server.use(require('./resources/system/user'));
 server.use(require('./resources/card/card'));

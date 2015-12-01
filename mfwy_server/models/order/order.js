@@ -19,8 +19,6 @@ var order={
     boolShared:{type:Boolean,default:false},  //状态
     createInfo:{createTime: {type: Date, default: Date.now},people:String},
     updateInfo:{createTime: {type: Date, default: Date.now},people:String},
-    states:Number //状态 0 待付款 1 已支付 3 已完成  5已发货 6删除订单
-
+    states:Number //状态 0 待付款 1 已支付 3 已完成  4 已下单 5已发货 6删除订单
 };
-
 module.exports=order;

@@ -38,7 +38,7 @@ angular.module("template-edit", ["resource.templates"]).config([
     }
 ])
     .controller("TemplateEditCtrl", ["$scope", "$routeParams", "$location", "$rootScope","$http", "FileUploader", "Templates", "template", "messager",
-        function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Templates, template, messager) {
+        'ipCookie',function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Templates, template, messager,ipCookie) {
 
 
 
@@ -83,6 +83,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                 entity.statistics = [0, 0, 0];*/
                 if (!$routeParams.id) {
                     entity.type=0;
+                    entity.currentAdd=ipCookie('currentAdd');
                     return Templates.post(entity, function (data) {
                         messager.success("Save successfully.");
 

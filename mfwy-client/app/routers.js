@@ -19,7 +19,7 @@ define([], function () {
                 ]
             },
             "template": {
-                url: "/template",
+                url: "/app/template",
                 views: {
                     "header": "/views/tpl/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/tpl/adv.tpl.html?v=" + urlArgs,
@@ -45,7 +45,7 @@ define([], function () {
                 ]
             },
             "template.xqxq": {
-                url: "/xqxq/:id",
+                url: "/xqxq",
                 views: {
                     "tpl-header": "/views/xqxq/xqxq-header.tpl.html?v=" + urlArgs,
                     "tpl-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
@@ -58,7 +58,7 @@ define([], function () {
                 ]
             },
             "template.ddxq": {
-                url: "/ddxq/:id",
+                url: "/ddxq",
                 views: {
                     "tpl-header": "/views/ddxq/ddxq-header.tpl.html?v=" + urlArgs,
                     "tpl-adv": "/views/ddxq/ddxq-adv.tpl.html?v=" + urlArgs,
@@ -80,7 +80,7 @@ define([], function () {
                 ]
             },
             "order": {
-                url: "/order",
+                url: "/app/order",
                 views: {
                     "header": "/views/xqxq/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/xqxq/adv.tpl.html?v=" + urlArgs,
@@ -92,8 +92,20 @@ define([], function () {
                     '/app/services/orderService.js?v=' + urlArgs
                 ]
             },
-            "order.xqxq": {
-                url: "/xqxq/:id",
+            "order.draft": {//看稿印刷
+                url: "/draft",
+                views: {
+                    "xqxq-header": "/views/draft/xqxq-header.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-center": "/views/draft/xqxq-center.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
+                ]
+            },
+            "order.xqxq": {//直接印刷
+                url: "/xqxq",
                 views: {
                     "xqxq-header": "/views/xqxq/xqxq-header.tpl.html?v=" + urlArgs,
                     "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
@@ -104,8 +116,32 @@ define([], function () {
                     "/app/services/weixinService.js?v=" + urlArgs
                 ]
             },
+            "order.redesign": {//重新设计
+                url: "/redesign",
+                views: {
+                    "xqxq-header": "/views/redesign/xqxq-header.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-center": "/views/redesign/xqxq-center.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
+                ]
+            },
+            "order.quick": {//快印名片
+                url: "/quick",
+                views: {
+                    "xqxq-header": "/views/quick/xqxq-header.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
+                ]
+            },
             "order.ddxq": {
-                url: "/ddxq/:id",
+                url: "/ddxq",
                 views: {
                     "xqxq-header": "/views/ddxq/ddxq-header.tpl.html?v=" + urlArgs,
                     "xqxq-adv": "/views/ddxq/ddxq-adv.tpl.html?v=" + urlArgs,
@@ -129,7 +165,7 @@ define([], function () {
                 ]
             },
             "custom": {
-                url: "/custom",
+                url: "/app/custom",
                 views: {
                     "header": "/views/gddz/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/gddz/adv.tpl.html?v=" + urlArgs,
@@ -153,7 +189,7 @@ define([], function () {
                 ]
             },
             "custom.dzxq": {
-                url: "/dzxq/:id",
+                url: "/dzxq",
                 views: {
                     "gddz-header": "/views/dzxq/header.tpl.html?v=" + urlArgs,
                     "gddz-adv": "/views/dzxq/adv.tpl.html?v=" + urlArgs,
@@ -175,7 +211,7 @@ define([], function () {
                 ]
             },
             "myorder": {
-                url: "/order",
+                url: "/app/order",
                 views: {
                     "header": "/views/wddd/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/wddd/adv.tpl.html?v=" + urlArgs,
@@ -212,7 +248,7 @@ define([], function () {
                 ]
             },
             "settle": {
-                url: "/settle",
+                url: "/app/settle",
                 views: {
                     "header": "/views/mpaj/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/home/adv.tpl.html?v=" + urlArgs,
@@ -235,7 +271,7 @@ define([], function () {
                 ]
             },
             "contact": {
-                url: "/contact",
+                url: "/app/contact",
                 views: {
                     "header": "/views/zrm/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/home/adv.tpl.html?v=" + urlArgs,

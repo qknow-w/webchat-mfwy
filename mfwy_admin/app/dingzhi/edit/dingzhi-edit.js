@@ -38,7 +38,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
     }
 ])
     .controller("DingzhiEditCtrl", ["$scope", "$routeParams", "$location", "$rootScope","$http", "FileUploader", "Templates", "dingzhi", "messager",
-        function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Templates, dingzhi, messager) {
+       "ipCookie", function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Templates, dingzhi, messager,ipCookie) {
 
 
 
@@ -83,6 +83,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                 entity.statistics = [0, 0, 0];*/
                 if (!$routeParams.id) {
                     entity.type=0;
+                    entity.currentAdd=ipCookie('currentAdd');
                     return Templates.post(entity, function (data) {
                         messager.success("Save successfully.");
                     });

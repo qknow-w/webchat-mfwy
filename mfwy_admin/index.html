@@ -45,7 +45,7 @@
                 <div class="navbar-header pull-right" role="navigation">
                     <ul class="nav ace-nav">
                         <li class="grey">
-                            <a href="{{ ::config.url.public }}" title="Redirect To Website.">
+                            <a href="javascript:void (0)" title="Redirect To Website.">
                                 <i class="fa fa-home"></i>
                             </a>
                         </li>
@@ -136,7 +136,32 @@
                         </li>
                         <li class="hsub" active-parent-link="open active">
                             <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-tag"></i>
+                                <i class="menu-icon fa fa-photo"></i>
+                                <span class="menu-text"> 名片管理 </span>
+
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+                            <b class="arrow"></b>
+                            <ul class="submenu">
+                                <li active-link="active">
+                                    <a href="/paper">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        纸张类型
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                                <li active-link="active">
+                                    <a href="/technology">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        工艺类型
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="hsub" active-parent-link="open active">
+                            <a href="javascript: void(0)" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-calendar"></i>
                                 <span class="menu-text"> 模板管理 </span>
 
                                 <b class="arrow fa fa-angle-down"></b>
@@ -161,7 +186,7 @@
                         </li>
                         <li class="hsub" active-parent-link="open active">
                             <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-tag"></i>
+                                <i class="menu-icon fa fa-file-o"></i>
                                 <span class="menu-text"> 人脉管理 </span>
 
                                 <b class="arrow fa fa-angle-down"></b>
@@ -306,11 +331,11 @@
     <link href='/app/style.css' rel='stylesheet' />
     <link href='/app/system/user/user.css' rel='stylesheet' />
     <!--STYLES END-->
-    <script src="/plugin/ckeditor_4.4.5/ckeditor.js"></script>
-    <script src="/plugin/EpicEditor-v0.2.2/js/epiceditor.js"></script>
+<!--    <script src="/plugin/ckeditor_4.4.5/ckeditor.js"></script>
+    <script src="/plugin/EpicEditor-v0.2.2/js/epiceditor.js"></script>-->
     <!--SCRIPTS-->
     <script src='/vendor/jquery/jquery.js'></script>
-    <script src='/vendor/jqueryui/jqueryui.js'></script>
+    <!--<script src='/vendor/jqueryui/jqueryui.js'></script>
     <script src='/vendor/jquery-cookie/jquery-cookie.js'></script>
     <script src='/vendor/jquery-plugin/jquery.autosize.js'></script>
     <script src='/vendor/jquery-plugin/jquery.colorbox.js'></script>
@@ -319,7 +344,7 @@
     <script src='/vendor/jquery-plugin/jquery.inputlimiter.1.3.1.js'></script>
     <script src='/vendor/jquery-plugin/jquery.maskedinput.js'></script>
     <script src='/vendor/jquery-plugin/jquery.slimscroll.js'></script>
-    <script src='/vendor/jquery-plugin/scroll-to-top.js'></script>
+    <script src='/vendor/jquery-plugin/scroll-to-top.js'></script>-->
     <script src='/vendor/bootstrap/bootstrap.js'></script>
     <script src='/vendor/bootstrap-plugin/bootstrap-colorpicker.js'></script>
     <script src='/vendor/bootstrap-plugin/bootstrap-hover-dropdown.js'></script>
@@ -342,7 +367,7 @@
     <script src='/vendor/angular-ui-router/angular-ui-router.js'></script>
     <script src='/vendor/angular-ui-utils/angular-ui-utils.js'></script>
     <script src='/vendor/angular-utils-pagination/dirPagination.js'></script>
-    <script src='/vendor/angulartics/angulartics-adobe.js'></script>
+    <!--<script src='/vendor/angulartics/angulartics-adobe.js'></script>
     <script src='/vendor/angulartics/angulartics-chartbeat.js'></script>
     <script src='/vendor/angulartics/angulartics-flurry.js'></script>
     <script src='/vendor/angulartics/angulartics-ga-cordova.js'></script>
@@ -355,7 +380,7 @@
     <script src='/vendor/angulartics/angulartics-scroll.js'></script>
     <script src='/vendor/angulartics/angulartics-segmentio.js'></script>
     <script src='/vendor/angulartics/angulartics-splunk.js'></script>
-    <script src='/vendor/angulartics/angulartics-woopra.js'></script>
+    <script src='/vendor/angulartics/angulartics-woopra.js'></script>-->
     <script src='/vendor/angulartics/angulartics.js'></script>
     <script src='/vendor/blueimp-md5/blueimp-md5.js'></script>
     <script src='/vendor/moment/moment.js'></script>
@@ -400,6 +425,7 @@
     <script src='/app/order/list/order-list.js'></script>
     <script src='/app/order/list-history/order-list.js'></script>
     <script src='/app/order/edit/order-edit.js'></script>
+    <script src='/app/order/upload/upload-edit.js'></script>
 
     <script src='/common/resources/templates.js'></script>
     <script src='/app/template/template.js'></script>
@@ -415,6 +441,17 @@
     <script src='/app/connection/list/connection-list.js'></script>
     <script src='/app/connection/edit/connection-edit.js'></script>
     <script src='/common/resources/connection.js'></script>
+
+
+    <script src='/app/paper/paper.js'></script>
+    <script src='/app/paper/list/paper-list.js'></script>
+    <script src='/app/paper/edit/paper-edit.js'></script>
+    <script src='/common/resources/cards.js'></script>
+
+    <script src='/app/technology/technology.js'></script>
+    <script src='/app/technology/list/technology-list.js'></script>
+    <script src='/app/technology/edit/technology-edit.js'></script>
+
 
     <script src='/app/activity/activity.js'></script>
     <script src='/common/resources/users.js'></script>

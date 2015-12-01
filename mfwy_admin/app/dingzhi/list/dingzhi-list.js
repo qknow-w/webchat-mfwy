@@ -10,20 +10,19 @@ angular.module('dingzhi-list', ['resource.templates']).config([
         });
     }
 ]).controller('DingzhiCtrl', [
-    "$scope","$location","Templates","messager", function($scope,$location,Templates,messager) {
+    "$scope","$location","Templates","messager",'ipCookie', function($scope,$location,Templates,messager,ipCookie) {
         $scope.delete=function(id){
            return Templates["delete"]({id:id},function(){
                messager.success("delete successfully.");
                $scope.setPage(1);
            })
         };
-
         $scope.setPage = function(pageNo) {
             return Templates.list({
                 $skip: (pageNo - 1) * 10,
                 $top: 10,
                 $count: true,
-                $filter:'type eq 1'
+                $filter:"type eq 1 and currentAdd eq '"+ipCookie('currentAdd')+"'"
 
             }, function(data) {
                 return $scope.data = data;

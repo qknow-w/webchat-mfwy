@@ -502,7 +502,6 @@ define(['app'], function (app) {
             boolShared: false,
             note: ""
         };
-        console.log($rootScope.addressDefault.selectAdd);
         $scope.order.currentAdd=$rootScope.addressDefault.selectAdd;//绑定当前选择地址
         $scope.user = {
             id: "",
@@ -553,11 +552,20 @@ define(['app'], function (app) {
              },700);
              }
              else{
-             $location.path("/" + $scope.path + "/ddxq/");
+             $location.path("/app/order/ddxq");
              }*/
 
+            //计算价格
+            /*if(dingdan.order_type ==1){
 
-            $location.path("/" + $scope.path + "/ddxq/"); //测试*/
+            }else if(dingdan.order_type ==2){
+
+            }*/
+
+
+
+            console.log("/app/order/ddxq");
+            $location.path("/app/order/ddxq"); //测试*/
 
 
         };
@@ -575,7 +583,7 @@ define(['app'], function (app) {
              });
              });*/
 
-            $location.path("/order/wddd");
+            $location.path("/app/order/wddd");
 
         };
 
@@ -620,7 +628,7 @@ define(['app'], function (app) {
              dingdan.no = Date.parse(new Date());
              dingdan.openid=ipCookie("openid");
              orderService.order(dingdan).then(function (data) {
-             $location.path("/order/zfdd");
+             $location.path("app/order/zfdd");
              });*/
 
 
@@ -628,13 +636,13 @@ define(['app'], function (app) {
             dingdan.no = Date.parse(new Date());
             dingdan.openid = ipCookie("openid");
             orderService.order(dingdan).then(function (data) {
-                $location.path("/order/zfdd");
+                $location.path("/app/order/zfdd");
             });
         };
         //添加货到付款订单
         $scope.COD = function () {
             orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
-                $location.path("/order/wddd");
+                $location.path("/app/order/wddd");
             });
         };
         /*        //判断是否为空
@@ -657,10 +665,21 @@ define(['app'], function (app) {
 
             //判断当前路由
             var path = $location.path();
+            console.log(path);
             var strs = path.split('/');
-            $scope.path = strs[1];  //路由
-            if (strs[1] == "order") {
+           /* $scope.path = strs[3];  //路由
+            console.log(strs[3]);*/
+            if (strs[3] == "xqxq") {
                 dingdan.order_type = 1;//直接印刷
+            }
+            else if(strs[3] == "draft"){
+                dingdan.order_type = 2;//看搞印刷
+            }
+            else if(strs[3] == "redesign"){
+                dingdan.order_type = 3;//重新设计
+            }
+            else if(strs[3] == "quick"){
+                dingdan.order_type = 4;//快印名片
             }
 
 

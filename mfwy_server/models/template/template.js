@@ -6,6 +6,7 @@ var template={
     name:String,//名称
     no:Number,//编号
     images:[String],//模板图片
+    currentAdd:String,//当前位置
     type:Number,//类型 0 模板 1定制
     card:{c_type:String,gongyi:String},//名片信息
     price:String,//价格

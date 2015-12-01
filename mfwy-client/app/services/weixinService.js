@@ -3,7 +3,6 @@
  */
 define(['app'], function (app) {
     app.factory('weixinService', ['$q','$http','$window', function ($q,$http,$window) {
-        console.log($window.location.href.split('#')[0]);
         getConfig=function(){
             var deferred;
             deferred = $q.defer();

@@ -1,0 +1,48 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li><a href="/paper">纸张类型</a></li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <tabset>
+        <tab heading="纸张类型">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">名称</label>
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.name" required/>
+                    </div>
+                    <label class="col-lg-1 control-label">价格</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.price" required/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label"></label>
+
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-primary" ng-click="modifyPaper()" >
+                            <i class="fa fa-save"></i>
+                            保存
+                        </button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="button" class="btn btn-success" href="javascript:window.history.back()">
+                            <i class="fa fa-save"></i>
+                            返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+

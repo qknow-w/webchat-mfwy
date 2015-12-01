@@ -161,9 +161,9 @@ define(['app'], function (app) {
         };
 
         //订单详情
-        $scope.orderDedail=function(id){
+        $scope.orderDetail=function(id){
             myorderService.detailedOrder(id).then(function (data) {
-                $location.path("/order/detail");
+                $location.path("/app/order/detail");
                 $scope.orderDedail=data;
                 console.log(data);
                 console.log($scope.orderDedail);
@@ -172,11 +172,6 @@ define(['app'], function (app) {
             });
 
         };
-
-
-
-
-
 
         return myorderService.list(ipCookie("openid")).then(function(result){
             $scope.myorder=result;
