@@ -12,13 +12,15 @@
 
     <div class="hr hr-10 dotted hr-double"></div>
    <div class="row">
-       <div  class="col-lg-3" ng-repeat="item in data.value">
+       <div class="col-lg-1"></div>
+       <div  class="col-lg-2" ng-repeat="item in data.value">
        <div>
-           <img style="display: block;margin: 0 auto" src="http://localhost:40002/v1/images?name={{item.images[0]}}" alt="" width="220px" height="200px" />
+           <img style="display: block;margin: 0 auto" ng-src="http://17quay.cn/v1/images?name={{item.images[0]}}" alt="" width="220px" height="200px" />
            <a href="" ng-click="delete(item.id) "><span style="display: block;margin: 0 auto;text-align: center;font-size: 18px">删除</span></a>
-           <a href="/connection/new/{{item.id}}" style="text-underline: none"><span style="display: block;margin: 0 auto;text-align: center;font-size: 18px">添加到人脉</span></a>
+           <a href="/connections/new/{{item.id}}" style="text-underline: none"><span style="display: block;margin: 0 auto;text-align: center;font-size: 18px">添加到人脉</span></a>
        </div>
        </div>
+       <div class="col-lg-1"></div>
    </div>
     <div zy-odata-pager="data" class="text-center"></div>
 </div>

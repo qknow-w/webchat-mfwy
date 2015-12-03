@@ -19,7 +19,7 @@ define([], function () {
                 ]
             },
             "template": {
-                url: "/app/template",
+                url: "/app/template",//名片模板
                 views: {
                     "header": "/views/tpl/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/tpl/adv.tpl.html?v=" + urlArgs,
@@ -140,6 +140,18 @@ define([], function () {
                     "/app/services/weixinService.js?v=" + urlArgs
                 ]
             },
+            "order.tpl": {//模板印刷
+                url: "/tpl",
+                views: {
+                    "xqxq-header": "/views/quick/xqxq-header.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
+                ]
+            },
             "order.ddxq": {
                 url: "/ddxq",
                 views: {
@@ -174,10 +186,11 @@ define([], function () {
                 },
                 dependencies: [
                     '/app/controllers/CustomController.js?v=' + urlArgs,
-                    '/app/services/customService.js?v=' + urlArgs
+                    '/app/services/customService.js?v=' + urlArgs,
+                    "/app/services/orderService.js?v=" + urlArgs
                 ]
             },
-            "custom.gddz": {
+            "custom.gddz": {//高端定制
                 url: "/gddz",
                 views: {
                     "gddz-header": "/views/gddz/gddz-header.tpl.html?v=" + urlArgs,
@@ -196,6 +209,8 @@ define([], function () {
                     "gddz-center": "/views/dzxq/center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
                     /*'controllers/HomeController'*/
                 ]
             },
@@ -211,7 +226,7 @@ define([], function () {
                 ]
             },
             "myorder": {
-                url: "/app/order",
+                url: "/app/order",//我的订单
                 views: {
                     "header": "/views/wddd/header.tpl.html?v=" + urlArgs,
                     "adv": "/views/wddd/adv.tpl.html?v=" + urlArgs,
@@ -247,7 +262,7 @@ define([], function () {
                     /*'controllers/HomeController'*/
                 ]
             },
-            "settle": {
+            "settle": {//名片安家
                 url: "/app/settle",
                 views: {
                     "header": "/views/mpaj/header.tpl.html?v=" + urlArgs,
@@ -256,7 +271,17 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/SettleController.js?v=' + urlArgs
+                    '/app/controllers/SettleController.js?v=' + urlArgs,
+                    "/app/services/settleService.js?v=" + urlArgs
+                ]
+            },
+            "settle.detail": {//查看名片
+                url: "/detail",
+                views: {
+                    "mpaj-header": "/views/family/family-header.tpl.html?v=" + urlArgs,
+                    "mpaj-center": "/views/family/family-center.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
                 ]
             },
             "settle.mpaj": {
@@ -267,14 +292,15 @@ define([], function () {
 
                 },
                 dependencies: [
-                    /* 'controllers/HomeController'*/
+                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/app/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "contact": {
                 url: "/app/contact",
                 views: {
                     "header": "/views/zrm/header.tpl.html?v=" + urlArgs,
-                    "adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    /*"adv": "/views/home/adv.tpl.html?v=" + urlArgs,*/
                     "center": "/views/zrm/center.tpl.html?v=" + urlArgs,
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
@@ -287,7 +313,8 @@ define([], function () {
                 url: "/zrm",
                 views: {
                     "zrm-header": "/views/zrm/zrm-header.tpl.html?v=" + urlArgs,
-                    "zrm-center": "/views/zrm/zrm-center.tpl.html?v=" + urlArgs
+                    "zrm-center": "/views/zrm/zrm-center.tpl.html?v=" + urlArgs,
+                    "zrm-adv": "/views/home/adv.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
                     /*'controllers/HomeController'*/

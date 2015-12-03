@@ -1,55 +1,115 @@
+<style type="text/css">
+    html, body {
+        color: #222;
+        font-family: Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
 
-    <style type="text/css">
-        html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
-        img { border:0; }
-        ul { list-style: none outside none; margin:0; padding: 0; }
-        body {
-            background-color:#fff;
-        }
-        body .mainmenu:after { clear: both; content: " "; display: block; }
-        body .mainmenu li{
-            float:left;
-            margin-left: 2.5%;
-            margin-top: 2.5%;
-            width: 30%;
-            overflow:hidden;
-        }
+    img {
+        border: 0;
+    }
 
-        body .mainmenu li a{ display:block;  color:#FFF;   text-align:center }
-        body .mainmenu li a b{
-            display:block; height:95px;
-            border-radius: 10px;
-        }
-        body .mainmenu li a img{
-            margin: 23px auto;
-            width: 50px;
-            height: 50px;
-        }
+    ul {
+        list-style: none outside none;
+        margin: 0;
+        padding: 0;
+    }
 
-        body .mainmenu li a span{ display:block; height:30px; line-height:30px;background-color:#FFF; color: #999; font-size:14px; }
-        body .mainmenu li:nth-child(8n+1) b{background-color:#ff8b00}
-        body .mainmenu li:nth-child(8n+2) b{background-color:#fe4101}
-        body .mainmenu li:nth-child(8n+3) b{background-color:#0db6d5}
-        body .mainmenu li:nth-child(8n+4) b{background-color:#46b036}
-        body .mainmenu li:nth-child(8n+5) b{background-color:#e5007f}
-        body .mainmenu li:nth-child(8n+6) b{background-color:#cc0ac0}
-        body .mainmenu li:nth-child(8n+7) b{background-color:#01afec}
-        body .mainmenu li:nth-child(8n+8) b{background-color:#bd76ea}
-    </style>
+    body {
+        background-color: #fff;
+    }
+
+    body .mainmenu:after {
+        clear: both;
+        content: " ";
+        display: block;
+    }
+
+    body .mainmenu li {
+        float: left;
+        margin-left: 2.5%;
+        margin-top: 2.5%;
+        width: 30%;
+        overflow: hidden;
+    }
+
+    body .mainmenu li a {
+        display: block;
+        color: #FFF;
+        text-align: center
+    }
+
+    body .mainmenu li a b {
+        display: block;
+        height: 95px;
+        border-radius: 10px;
+    }
+
+    body .mainmenu li a img {
+        margin: 23px auto;
+        width: 50px;
+        height: 50px;
+    }
+
+    body .mainmenu li a span {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        background-color: #FFF;
+        color: #999;
+        font-size: 14px;
+    }
+
+    body .mainmenu li:nth-child(8n+1) b {
+        background-color: #ff8b00
+    }
+
+    body .mainmenu li:nth-child(8n+2) b {
+        background-color: #fe4101
+    }
+
+    body .mainmenu li:nth-child(8n+3) b {
+        background-color: #0db6d5
+    }
+
+    body .mainmenu li:nth-child(8n+4) b {
+        background-color: #46b036
+    }
+
+    body .mainmenu li:nth-child(8n+5) b {
+        background-color: #e5007f
+    }
+
+    body .mainmenu li:nth-child(8n+6) b {
+        background-color: #cc0ac0
+    }
+
+    body .mainmenu li:nth-child(8n+7) b {
+        background-color: #01afec
+    }
+
+    body .mainmenu li:nth-child(8n+8) b {
+        background-color: #bd76ea
+    }
+</style>
 
 <ul class="mainmenu">
-    <li><a ui-sref="order.xqxq" ><b><img src="../../images/zjys.png" /></b><span>直接印刷</span></a></li>
-    <li><a ui-sref="order.draft" ><b><img src="../../images/kgys.png" /></b><span>看稿印刷</span></a></li>
-    <li><a ui-sref="order.redesign" ><b><img src="../../images/cxsj.png" /></b><span>重新设计</span></a></li>
-    <li><a href="http://www.mfwy.net" ><b><img src="../../images/zxsj.png" /></b><span>在线设计</span></a></li>
-    <li><a ui-sref="order.quick" ><b><img src="../../images/kymp.png" /></b><span>快印名片</span></a></li>
-    <li><a ui-sref="myorder.wddd" ><b><img src="../../images/kymp.png" /></b><span>我的订单</span></a></li>
-    <!--<li><a ui-sref="settle.mpaj" ><b><img src="../../images/mpaj.png" /></b><span>名片安家</span></a></li>-->
-  <!--  <li><a ui-sref="template.tpl" ><b><img src="../../images/mpmb.png" /></b><span>名片模板</span></a></li>
-    <li><a ui-sref="custom.gddz" ><b><img src="../../images/gddz-l.png" /></b><span>高端定制</span></a></li>
-    <li ><a ui-sref="contact.zrm" ><b style="background:#bd761a"><img style="width:65px;height:45px;" src="../../images/zrm.png" /></b><span>找人脉</span></a></li>-->
-    <li><a href="javascript:alert('维护升级中...,稍候访问')" ><b><img src="../../images/mpmb.png" /></b><span>名片模板</span></a></li>
+    <li><a ui-sref="order.xqxq"><b><img src="../../images/zjys.png"/></b><span>直接印刷</span></a></li>
+    <li><a ui-sref="order.draft"><b><img src="../../images/kgys.png"/></b><span>看稿印刷</span></a></li>
+    <li><a ui-sref="order.redesign"><b><img src="../../images/cxsj.png"/></b><span>重新设计</span></a></li>
+    <li><a href="http://www.mfwy.net"><b><img src="../../images/zxsj.png"/></b><span>在线设计</span></a></li>
+    <li><a ui-sref="order.quick"><b><img src="../../images/kymp.png"/></b><span>快印名片</span></a></li>
+    <li><a ui-sref="settle.mpaj"><b><img src="../../images/mpaj.png"/></b><span>名片安家</span></a></li>
+    <li><a ui-sref="template.tpl"><b><img src="../../images/mpmb.png"/></b><span>名片模板</span></a></li>
+    <li><a ui-sref="custom.gddz"><b><img src="../../images/gddz-l.png"/></b><span>高端定制</span></a></li>
+    <li><a ui-sref="contact.zrm"><b style="background:#bd761a"><img style="width:65px;height:45px;"
+                                                                    src="../../images/zrm.png"/></b><span>找人脉</span></a>
+    </li>
+    <!--<li><a href="javascript:alert('维护升级中...,稍候访问')" ><b><img src="../../images/mpmb.png" /></b><span>名片模板</span></a></li>
     <li><a href="javascript:alert('维护升级中...,稍候访问')" ><b><img src="../../images/gddz-l.png" /></b><span>高端定制</span></a></li>
     <li ><a href="javascript:alert('维护升级中...,稍候访问')" ><b style="background:#bd761a"><img style="width:65px;height:45px;" src="../../images/zrm.png" /></b><span>找人脉</span></a></li>
+    -->
 </ul>
 

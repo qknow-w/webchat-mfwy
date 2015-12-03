@@ -11,9 +11,8 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                     return ab = {
                         name: "",//名称
                         price: "",//地址
-                        card: {"c_type":"",gongyi:""},//时间  数组  开始时间和结束时间
-                        info: {theme: "", sponsor: "", brief: ""},//另外的信息  主题、主办方、简介
-                        images: []//图片  广告、海报
+                        card: {"c_type":"",gongyi:""},//
+                        images: []
                     };
                 }
             }
@@ -48,6 +47,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
 
                // console.log($scope.entity.images.ad);
             };
+            //正面
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template"
             });
@@ -55,6 +55,18 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
 
             uploaderPoster.onCompleteItem = function (fileItem, response, status, headers) {
                 $scope.entity.images.push(response)  ;
+                // uploaderPoster.clearQueue();
+            };
+
+            //反面上传
+            var uploaderPosterr = $scope.uploaderPosterr = new FileUploader({
+                url: "" + config.url.api + "/v1/file-upload/?path=template",
+                removeAfterUpload:true
+            });
+
+
+            uploaderPosterr.onCompleteItem = function (fileItem, response, status, headers) {
+                $scope.entity.images[1]=response  ;
                 // uploaderPoster.clearQueue();
             };
             $scope.submit = function () {
@@ -82,7 +94,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                 delete  $scope.entity.posterUrl;
                 entity.statistics = [0, 0, 0];*/
                 if (!$routeParams.id) {
-                    entity.type=0;
+                    entity.type=1;
                     entity.currentAdd=ipCookie('currentAdd');
                     return Templates.post(entity, function (data) {
                         messager.success("Save successfully.");

@@ -1,316 +1,327 @@
 <!doctype html>
 <html ng-app="app" class="no-js">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" href="/css/index.css"/>
     <link rel="stylesheet" href="/vendor/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
 
 
     <title ng-bind="::config.site.name">Loading...</title>
-    <style>[ng-cloak] {display: none;}</style>
+    <style>[ng-cloak] {
+        display: none;
+    }</style>
 </head>
 <body ng-class="{'login-layout':__logoff, 'no-skin':__login}">
-    <div ng-hide="__login || __logoff">
-        <div class="loading-container">
-            <div class="loading"></div>
-            <div id="loading-text">loading</div>
-        </div>
-
+<div ng-hide="__login || __logoff">
+    <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-text">loading</div>
     </div>
 
-    <div ng-cloak ng-show="loading">
-        <div class="loadingbox" ng-show="loading">{{ loadingTip || 'Loading...' }}</div>
-    </div>
+</div>
 
-    <div ng-cloak ng-show="__login" ng-controller="MainCtrl">
-        <div class="navbar navbar-default navbar-fixed-top" id="navbar">
-            <div class="navbar-container" id="navbar-container">
-                <button type="button" class="navbar-toggle menu-toggler pull-left fixed" id="menu-toggler">
-					<span class="sr-only">Toggle sidebar</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-                <div class="navbar-header pull-left">
-                    <a href="/" class="navbar-brand">
-                        <i class="fa fa-bug"></i>
+<div ng-cloak ng-show="loading">
+    <div class="loadingbox" ng-show="loading">{{ loadingTip || 'Loading...' }}</div>
+</div>
 
-                       <!-- {{config.siteName}} Admin
-                        <small class="white"> - {{newVersion.ver}}</small>-->
-                        蜜蜂网印后台管理
-                    </a>
-                </div>
-                <div class="navbar-header pull-right" role="navigation">
-                    <ul class="nav ace-nav">
-                        <li class="grey">
-                            <a href="javascript:void (0)" title="Redirect To Website.">
-                                <i class="fa fa-home"></i>
-                            </a>
-                        </li>
-                        <li class="light-blue">
-                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" ng-src="{{account.name | gravatar}}" />
+<div ng-cloak ng-show="__login" ng-controller="MainCtrl">
+    <div class="navbar navbar-default navbar-fixed-top" id="navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left fixed" id="menu-toggler">
+                <span class="sr-only">Toggle sidebar</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header pull-left">
+                <a href="/" class="navbar-brand">
+                    <i class="fa fa-bug"></i>
+
+                    <!-- {{config.siteName}} Admin
+                     <small class="white"> - {{newVersion.ver}}</small>-->
+                    蜜蜂网印后台管理
+                </a>
+            </div>
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <li class="grey">
+                        <a href="javascript:void (0)" title="Redirect To Website.">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" ng-src="{{account.name | gravatar}}"/>
                                     <span class="user-info">
                                         <small>欢迎,</small>
                                         {{account.name}}
                                     </span>
-                                <i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" ng-controller="LoginCtrl">
-                                <li>
-                                    <a ng-click="logout()">
-                                        <i class="fa fa-power-off"></i>
-                                        退出
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close"
+                            ng-controller="LoginCtrl">
+                            <li>
+                                <a ng-click="logout()">
+                                    <i class="fa fa-power-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <div class="main-container" id="main-container">
-            <div class="main-container-inner">
-                <div class="sidebar sidebar-fixed responsive" id="sidebar">
-                    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                            <button class="btn btn-success">
-                                <i class="ace-icon fa fa-signal"></i>
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="ace-icon fa fa-pencil"></i>
-                            </button>
-                            <button class="btn btn-warning">
-                                <i class="ace-icon fa fa-users"></i>
-                            </button>
-                            <button class="btn btn-danger">
-                                <i class="ace-icon fa fa-cogs"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                            <span class="btn btn-success"></span>
-                            <span class="btn btn-info"></span>
-                            <span class="btn btn-warning"></span>
-                            <span class="btn btn-danger"></span>
-                        </div>
-                    </div>
-                    <ul class="nav nav-list">
-                        <li active-link="active">
-                            <a href="/">
-                                <i class="menu-icon fa fa-dashboard"></i>
-                                <span class="menu-text">功能菜单</span>
-                            </a>
-                        </li>
-                        <li class="hsub" active-parent-link="open active">
-                            <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-list"></i>
-                                <span class="menu-text"> 订单管理 </span>
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                <li active-link="active">
-                                    <a href="/order">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        当前订单
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                                <li active-link="active">
-                                    <a href="/historyOrder">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        历史订单
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                               <!-- <li active-link="active">
-                                    <a href="/category">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        商家管理
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>-->
-                            </ul>
-                        </li>
-                        <li class="hsub" active-parent-link="open active">
-                            <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-photo"></i>
-                                <span class="menu-text"> 名片管理 </span>
-
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                <li active-link="active">
-                                    <a href="/paper">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        纸张类型
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                                <li active-link="active">
-                                    <a href="/technology">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        工艺类型
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="hsub" active-parent-link="open active">
-                            <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-calendar"></i>
-                                <span class="menu-text"> 模板管理 </span>
-
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                <li active-link="active">
-                                    <a href="/template/0">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        模板管理
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                                <li active-link="active">
-                                    <a href="/dingzhi/0">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        定制管理
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="hsub" active-parent-link="open active">
-                            <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-file-o"></i>
-                                <span class="menu-text"> 人脉管理 </span>
-
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                <li active-link="active">
-                                    <a href="/family">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        名片安家
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                                <li active-link="active">
-                                    <a href="/connection">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        人脉管理
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="hsub" active-parent-link="open active">
-                            <a href="javascript: void(0)" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-tag"></i>
-                                <span class="menu-text"> 系统管理 </span>
-
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                <li active-link="active">
-                                    <a href="/system/user">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        用户管理
-                                    </a>
-                                    <b class="arrow"></b>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				    </div>
-                    <script type="text/javascript">
-                        try { ace.settings.check('sidebar', 'collapsed'); } catch (e) { }
-                    </script>
-                </div>
-                <div class="main-content" ng-view></div>
-            </div>
-            <a href="Javascript: void(0)" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-            </a>
         </div>
     </div>
+    <div class="main-container" id="main-container">
+        <div class="main-container-inner">
+            <div class="sidebar sidebar-fixed responsive" id="sidebar">
+                <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                        <button class="btn btn-success">
+                            <i class="ace-icon fa fa-signal"></i>
+                        </button>
+                        <button class="btn btn-info">
+                            <i class="ace-icon fa fa-pencil"></i>
+                        </button>
+                        <button class="btn btn-warning">
+                            <i class="ace-icon fa fa-users"></i>
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="ace-icon fa fa-cogs"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                        <span class="btn btn-success"></span>
+                        <span class="btn btn-info"></span>
+                        <span class="btn btn-warning"></span>
+                        <span class="btn btn-danger"></span>
+                    </div>
+                </div>
+                <ul class="nav nav-list">
+                    <li active-link="active">
+                        <a href="/">
+                            <i class="menu-icon fa fa-dashboard"></i>
+                            <span class="menu-text">功能菜单</span>
+                        </a>
+                    </li>
+                    <li class="hsub" active-parent-link="open active">
+                        <a href="javascript: void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-list"></i>
+                            <span class="menu-text"> 订单管理 </span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li active-link="active">
+                                <a href="/order">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    当前订单
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li active-link="active">
+                                <a href="/historyOrder">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    历史订单
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <!-- <li active-link="active">
+                                 <a href="/category">
+                                     <i class="menu-icon fa fa-caret-right"></i>
+                                     商家管理
+                                 </a>
+                                 <b class="arrow"></b>
+                             </li>-->
+                        </ul>
+                    </li>
+                    <li class="hsub" active-parent-link="open active">
+                        <a href="javascript: void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-photo"></i>
+                            <span class="menu-text"> 名片管理 </span>
 
-    <div ng-cloak ng-show="__logoff" class="main-container" ng-controller="LoginCtrl">
-        <div class="main-content">
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div class="login-container">
-                        <div class="center">
-                            <h1>
-                                <img src="/img/logo.gif" alt="" width="36px" height="36px" style="margin-top: -6px;" />
-                                <span class="red">{{::config.site.name}}</span><span class="white"></span>
-                            </h1>
-                            <h4 class="blue">&copy;MFWY</h4>
-                        </div>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li active-link="active">
+                                <a href="/paper">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    纸张类型
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li active-link="active">
+                                <a href="/technology">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    工艺类型
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="hsub" active-parent-link="open active">
+                        <a href="javascript: void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-file-o"></i>
+                            <span class="menu-text"> 人脉管理 </span>
 
-                        <div class="space-6"></div>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li active-link="active">
+                                <a href="/family">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    名片安家
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li active-link="active">
+                                <a href="/connection">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    人脉管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
 
-                        <div class="position-relative">
-                            <div id="login-box" class="login-box visible widget-box no-border">
-                                <div class="widget-body">
-                                    <div class="widget-main">
-                                        <h4 class="header blue lighter bigger">
-                                            <i class="fa fa-coffee green"></i>
-                                            登陆信息
-                                        </h4>
+                        </ul>
+                    </li>
+                    <li class="hsub" active-parent-link="open active">
+                        <a href="javascript: void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-calendar"></i>
+                            <span class="menu-text"> 模板管理 </span>
 
-                                        <div class="space-6"></div>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li active-link="active">
+                                <a href="/template/0">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    模板管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li active-link="active">
+                                <a href="/dingzhi/0">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    定制管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
 
-                                        <form name="form" ng-submit="login()">
-                                            <fieldset>
-                                                <label class="block clearfix">
+                    <li class="hsub" active-parent-link="open active">
+                        <a href="javascript: void(0)" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-tag"></i>
+                            <span class="menu-text"> 系统管理 </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                           <!-- <li active-link="active">
+                                <a href="/system/user">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    用户管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>-->
+                        </ul>
+                    </li>
+                </ul>
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
+                       data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('sidebar', 'collapsed');
+                    } catch (e) {
+                    }
+                </script>
+            </div>
+            <div class="main-content" ng-view></div>
+        </div>
+        <a href="Javascript: void(0)" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div>
+</div>
+
+<div ng-cloak ng-show="__logoff" class="main-container" ng-controller="LoginCtrl">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                    <div class="center">
+                        <h1>
+                            <img src="/img/logo.gif" alt="" width="36px" height="36px" style="margin-top: -6px;"/>
+                            <span class="red">{{::config.site.name}}</span><span class="white"></span>
+                        </h1>
+                        <h4 class="blue">&copy;MFWY</h4>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="position-relative">
+                        <div id="login-box" class="login-box visible widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header blue lighter bigger">
+                                        <i class="fa fa-coffee green"></i>
+                                        登陆信息
+                                    </h4>
+
+                                    <div class="space-6"></div>
+
+                                    <form name="form" ng-submit="login()">
+                                        <fieldset>
+                                            <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="text" class="form-control" placeholder="用户名" ng-model="user.name" required />
+                                                            <input type="text" class="form-control" placeholder="用户名"
+                                                                   ng-model="user.name" required/>
                                                             <i class="ace-icon fa fa-user"></i>
                                                         </span>
-                                                </label>
+                                            </label>
 
-                                                <label class="block clearfix">
+                                            <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="password" class="form-control" placeholder="密码" ng-model="user.password" required />
+                                                            <input type="password" class="form-control" placeholder="密码"
+                                                                   ng-model="user.password" required/>
                                                             <i class="ace-icon fa fa-lock"></i>
                                                         </span>
+                                            </label>
+
+                                            <div class="space"></div>
+
+                                            <div class="clearfix">
+                                                <label class="inline">
+                                                    <input type="checkbox" class="ace" ng-init="user.remember=false"
+                                                           ng-model="user.remember"/>
+                                                    <span class="lbl"> 自动登陆</span>
                                                 </label>
 
-                                                <div class="space"></div>
+                                                <button class="width-35 pull-right btn btn-sm btn-primary"
+                                                        ng-disabled="submitting || form.$invalid">
+                                                    <i ng-show="loading" class="fa fa-spinner fa-spin fa-large"></i>
+                                                    <i ng-hide="loading" class="fa fa-key"></i>
+                                                    登陆
+                                                </button>
+                                            </div>
 
-                                                <div class="clearfix">
-                                                    <label class="inline">
-                                                        <input type="checkbox" class="ace" ng-init="user.remember=false" ng-model="user.remember" />
-                                                        <span class="lbl"> 自动登陆</span>
-                                                    </label>
+                                            <div class="space-4"></div>
+                                        </fieldset>
+                                    </form>
 
-                                                    <button class="width-35 pull-right btn btn-sm btn-primary" ng-disabled="submitting || form.$invalid">
-                                                        <i ng-show="loading" class="fa fa-spinner fa-spin fa-large"></i>
-                                                        <i ng-hide="loading" class="fa fa-key"></i>
-                                                        登陆
-                                                    </button>
-                                                </div>
-
-                                                <div class="space-4"></div>
-                                            </fieldset>
-                                        </form>
-
-                                        <div class="social-or-login center">
-                                            <span class="bigger-110 red">{{error}}</span>
-                                        </div>
+                                    <div class="social-or-login center">
+                                        <span class="bigger-110 red">{{error}}</span>
                                     </div>
-                                    <div class="toolbar clearfix"><p>&nbsp;</p></div>
                                 </div>
+                                <div class="toolbar clearfix"><p>&nbsp;</p></div>
                             </div>
                         </div>
                     </div>
@@ -318,173 +329,173 @@
             </div>
         </div>
     </div>
-    <!--STYLES-->
-    <link href='/vendor/fontawesome/font-awesome.css' rel='stylesheet' />
-    <link href='/vendor/bootstrap/bootstrap.css' rel='stylesheet' />
-    <link href='/vendor/dropzone/dropzone.css' rel='stylesheet' />
-    <link href='/vendor/ngprogress/ngProgress.css' rel='stylesheet' />
-    <link href='/vendor/messenger/messenger.css' rel='stylesheet' />
-    <link href='/vendor/messenger/messenger-theme-flat.css' rel='stylesheet' />
-    <link href='/vendor/ace_1.3/ace-skins.css' rel='stylesheet' />
-    <link href='/vendor/ace_1.3/ace.css' rel='stylesheet' />
-    <link href='/app/ngDialog-theme.css' rel='stylesheet' />
-    <link href='/app/style.css' rel='stylesheet' />
-    <link href='/app/system/user/user.css' rel='stylesheet' />
-    <!--STYLES END-->
+</div>
+<!--STYLES-->
+<link href='/vendor/fontawesome/font-awesome.css' rel='stylesheet'/>
+<link href='/vendor/bootstrap/bootstrap.css' rel='stylesheet'/>
+<link href='/vendor/dropzone/dropzone.css' rel='stylesheet'/>
+<link href='/vendor/ngprogress/ngProgress.css' rel='stylesheet'/>
+<link href='/vendor/messenger/messenger.css' rel='stylesheet'/>
+<link href='/vendor/messenger/messenger-theme-flat.css' rel='stylesheet'/>
+<link href='/vendor/ace_1.3/ace-skins.css' rel='stylesheet'/>
+<link href='/vendor/ace_1.3/ace.css' rel='stylesheet'/>
+<link href='/app/ngDialog-theme.css' rel='stylesheet'/>
+<link href='/app/style.css' rel='stylesheet'/>
+<link href='/app/system/user/user.css' rel='stylesheet'/>
+<!--STYLES END-->
 <!--    <script src="/plugin/ckeditor_4.4.5/ckeditor.js"></script>
     <script src="/plugin/EpicEditor-v0.2.2/js/epiceditor.js"></script>-->
-    <!--SCRIPTS-->
-    <script src='/vendor/jquery/jquery.js'></script>
-    <!--<script src='/vendor/jqueryui/jqueryui.js'></script>
-    <script src='/vendor/jquery-cookie/jquery-cookie.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.autosize.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.colorbox.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.cookie.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.fileupload.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.inputlimiter.1.3.1.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.maskedinput.js'></script>
-    <script src='/vendor/jquery-plugin/jquery.slimscroll.js'></script>
-    <script src='/vendor/jquery-plugin/scroll-to-top.js'></script>-->
-    <script src='/vendor/bootstrap/bootstrap.js'></script>
-    <script src='/vendor/bootstrap-plugin/bootstrap-colorpicker.js'></script>
-    <script src='/vendor/bootstrap-plugin/bootstrap-hover-dropdown.js'></script>
-    <script src='/vendor/bootstrap-plugin/bootstrap-tag.js'></script>
-    <script src='/vendor/bootstrap-plugin/typeahead-bs2.js'></script>
-    <script src='/vendor/angular/angular.js'></script>
-    <script src='/vendor/angular-translate/angular-translate.js'></script>
-    <script src='/vendor/angular-animate/angular-animate.js'></script>
-    <script src='/vendor/angular-cookie/angular-cookie.js'></script>
-    <script src='/vendor/angular-cookies/angular-cookies.js'></script>
-    <script src='/vendor/angular-deferred-bootstrap/angular-deferred-bootstrap.js'></script>
-    <!--<script src='/vendor/angular-directives/angular-file-upload.js'></script>-->
-    <script src='/vendor/angular-directives/ui-bootstrap-tpls-0.10.0.js'></script>
-    <script src='/vendor/angular-messages/angular-messages.js'></script>
-    <script src='/vendor/angular-resource/angular-resource.js'></script>
-    <script src='/vendor/angular-route/angular-route.js'></script>
-    <script src='/vendor/angular-sanitize/angular-sanitize.js'></script>
-    <script src='/vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.js'></script>
-    <script src='/vendor/angular-translate-storage-local/angular-translate-storage-local.js'></script>
-    <script src='/vendor/angular-ui-router/angular-ui-router.js'></script>
-    <script src='/vendor/angular-ui-utils/angular-ui-utils.js'></script>
-    <script src='/vendor/angular-utils-pagination/dirPagination.js'></script>
-    <!--<script src='/vendor/angulartics/angulartics-adobe.js'></script>
-    <script src='/vendor/angulartics/angulartics-chartbeat.js'></script>
-    <script src='/vendor/angulartics/angulartics-flurry.js'></script>
-    <script src='/vendor/angulartics/angulartics-ga-cordova.js'></script>
-    <script src='/vendor/angulartics/angulartics-ga.js'></script>
-    <script src='/vendor/angulartics/angulartics-gtm.js'></script>
-    <script src='/vendor/angulartics/angulartics-kissmetrics.js'></script>
-    <script src='/vendor/angulartics/angulartics-marketo.js'></script>
-    <script src='/vendor/angulartics/angulartics-mixpanel.js'></script>
-    <script src='/vendor/angulartics/angulartics-piwik.js'></script>
-    <script src='/vendor/angulartics/angulartics-scroll.js'></script>
-    <script src='/vendor/angulartics/angulartics-segmentio.js'></script>
-    <script src='/vendor/angulartics/angulartics-splunk.js'></script>
-    <script src='/vendor/angulartics/angulartics-woopra.js'></script>-->
-    <script src='/vendor/angulartics/angulartics.js'></script>
-    <script src='/vendor/blueimp-md5/blueimp-md5.js'></script>
-    <script src='/vendor/moment/moment.js'></script>
-    <script src='/vendor/moment-range/moment-range.js'></script>
-    <script src='/vendor/messenger/messenger.js'></script>
-    <script src='/vendor/messenger/messenger-theme-future.js'></script>
-    <script src='/vendor/ngprogress/ngProgress.js'></script>
-    <script src='/vendor/ngDialog/ngDialog.js'></script>
-    <script src='/vendor/ngstorage/ngstorage.js'></script>
-    <script src='/vendor/photobox/photobox.js'></script>
-    <script src='/vendor/ace_1.3/ace.js'></script>
-    <script src='/vendor/ace_1.3/ace-elements.js'></script>
-    <script src='/vendor/ace_1.3/ace-extra.js'></script>
-    <script src='/vendor/angular-file-upload/dist/angular-file-upload.min.js'></script>
+<!--SCRIPTS-->
+<script src='/vendor/jquery/jquery.js'></script>
+<!--<script src='/vendor/jqueryui/jqueryui.js'></script>
+<script src='/vendor/jquery-cookie/jquery-cookie.js'></script>
+<script src='/vendor/jquery-plugin/jquery.autosize.js'></script>
+<script src='/vendor/jquery-plugin/jquery.colorbox.js'></script>
+<script src='/vendor/jquery-plugin/jquery.cookie.js'></script>
+<script src='/vendor/jquery-plugin/jquery.fileupload.js'></script>
+<script src='/vendor/jquery-plugin/jquery.inputlimiter.1.3.1.js'></script>
+<script src='/vendor/jquery-plugin/jquery.maskedinput.js'></script>
+<script src='/vendor/jquery-plugin/jquery.slimscroll.js'></script>
+<script src='/vendor/jquery-plugin/scroll-to-top.js'></script>-->
+<script src='/vendor/bootstrap/bootstrap.js'></script>
+<script src='/vendor/bootstrap-plugin/bootstrap-colorpicker.js'></script>
+<script src='/vendor/bootstrap-plugin/bootstrap-hover-dropdown.js'></script>
+<script src='/vendor/bootstrap-plugin/bootstrap-tag.js'></script>
+<script src='/vendor/bootstrap-plugin/typeahead-bs2.js'></script>
+<script src='/vendor/angular/angular.js'></script>
+<script src='/vendor/angular-translate/angular-translate.js'></script>
+<script src='/vendor/angular-animate/angular-animate.js'></script>
+<script src='/vendor/angular-cookie/angular-cookie.js'></script>
+<script src='/vendor/angular-cookies/angular-cookies.js'></script>
+<script src='/vendor/angular-deferred-bootstrap/angular-deferred-bootstrap.js'></script>
+<!--<script src='/vendor/angular-directives/angular-file-upload.js'></script>-->
+<script src='/vendor/angular-directives/ui-bootstrap-tpls-0.10.0.js'></script>
+<script src='/vendor/angular-messages/angular-messages.js'></script>
+<script src='/vendor/angular-resource/angular-resource.js'></script>
+<script src='/vendor/angular-route/angular-route.js'></script>
+<script src='/vendor/angular-sanitize/angular-sanitize.js'></script>
+<script src='/vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.js'></script>
+<script src='/vendor/angular-translate-storage-local/angular-translate-storage-local.js'></script>
+<script src='/vendor/angular-ui-router/angular-ui-router.js'></script>
+<script src='/vendor/angular-ui-utils/angular-ui-utils.js'></script>
+<script src='/vendor/angular-utils-pagination/dirPagination.js'></script>
+<!--<script src='/vendor/angulartics/angulartics-adobe.js'></script>
+<script src='/vendor/angulartics/angulartics-chartbeat.js'></script>
+<script src='/vendor/angulartics/angulartics-flurry.js'></script>
+<script src='/vendor/angulartics/angulartics-ga-cordova.js'></script>
+<script src='/vendor/angulartics/angulartics-ga.js'></script>
+<script src='/vendor/angulartics/angulartics-gtm.js'></script>
+<script src='/vendor/angulartics/angulartics-kissmetrics.js'></script>
+<script src='/vendor/angulartics/angulartics-marketo.js'></script>
+<script src='/vendor/angulartics/angulartics-mixpanel.js'></script>
+<script src='/vendor/angulartics/angulartics-piwik.js'></script>
+<script src='/vendor/angulartics/angulartics-scroll.js'></script>
+<script src='/vendor/angulartics/angulartics-segmentio.js'></script>
+<script src='/vendor/angulartics/angulartics-splunk.js'></script>
+<script src='/vendor/angulartics/angulartics-woopra.js'></script>-->
+<script src='/vendor/angulartics/angulartics.js'></script>
+<script src='/vendor/blueimp-md5/blueimp-md5.js'></script>
+<script src='/vendor/moment/moment.js'></script>
+<script src='/vendor/moment-range/moment-range.js'></script>
+<script src='/vendor/messenger/messenger.js'></script>
+<script src='/vendor/messenger/messenger-theme-future.js'></script>
+<script src='/vendor/ngprogress/ngProgress.js'></script>
+<script src='/vendor/ngDialog/ngDialog.js'></script>
+<script src='/vendor/ngstorage/ngstorage.js'></script>
+<script src='/vendor/photobox/photobox.js'></script>
+<script src='/vendor/ace_1.3/ace.js'></script>
+<script src='/vendor/ace_1.3/ace-elements.js'></script>
+<script src='/vendor/ace_1.3/ace-extra.js'></script>
+<script src='/vendor/angular-file-upload/dist/angular-file-upload.min.js'></script>
 
-    <script src='/vendor/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'></script>
-
-
-    <script src='/config/config.js'></script>
-    <script src='/common/directives.js'></script>
-    <script src='/common/directives/_ngBindHtmlUnsafe.js'></script>
-    <script src='/common/directives/activeLink.js'></script>
-    <script src='/common/directives/ckeditor.js'></script>
-    <script src='/common/directives/dropzone.js'></script>
-    <script src='/common/directives/epicEditor.js'></script>
-    <script src='/common/directives/myDatepicker.js'></script>
-    <script src='/common/directives/oDataPager.js'></script>
-    <script src='/common/directives/dateTimePrase.js'></script>
-    <script src='/common/filters.js'></script>
-    <script src='/common/init.js'></script>
+<script src='/vendor/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'></script>
 
 
-    <script src='/common/resources/activities.js'></script>
-    <script src='/common/resources/orders.js'></script>
-    <script src='/common/resources/picture.js'></script>
-    <script src='/app/activity/list/activity-list.js'></script>
-    <script src='/app/activity/edit/activity-edit.js'></script>
-
-    <script src='/app/activity/picture/picture-list.js'></script>
-
-    <script src='/app/order/order.js'></script>
-    <script src='/app/order/list/order-list.js'></script>
-    <script src='/app/order/list-history/order-list.js'></script>
-    <script src='/app/order/edit/order-edit.js'></script>
-    <script src='/app/order/upload/upload-edit.js'></script>
-
-    <script src='/common/resources/templates.js'></script>
-    <script src='/app/template/template.js'></script>
-    <script src='/app/template/list/template-list.js'></script>
-    <script src='/app/template/edit/template-edit.js'></script>
-
-    <script src='/app/dingzhi/dingzhi.js'></script>
-    <script src='/app/dingzhi/list/dingzhi-list.js'></script>
-    <script src='/app/dingzhi/edit/dingzhi-edit.js'></script>
-
-    <script src='/app/connection/connection.js'></script>
-    <script src='/app/connection/picture/picture-list.js'></script>
-    <script src='/app/connection/list/connection-list.js'></script>
-    <script src='/app/connection/edit/connection-edit.js'></script>
-    <script src='/common/resources/connection.js'></script>
+<script src='/config/config.js'></script>
+<script src='/common/directives.js'></script>
+<script src='/common/directives/_ngBindHtmlUnsafe.js'></script>
+<script src='/common/directives/activeLink.js'></script>
+<script src='/common/directives/ckeditor.js'></script>
+<script src='/common/directives/dropzone.js'></script>
+<script src='/common/directives/epicEditor.js'></script>
+<script src='/common/directives/myDatepicker.js'></script>
+<script src='/common/directives/oDataPager.js'></script>
+<script src='/common/directives/dateTimePrase.js'></script>
+<script src='/common/filters.js'></script>
+<script src='/common/init.js'></script>
 
 
-    <script src='/app/paper/paper.js'></script>
-    <script src='/app/paper/list/paper-list.js'></script>
-    <script src='/app/paper/edit/paper-edit.js'></script>
-    <script src='/common/resources/cards.js'></script>
+<script src='/common/resources/activities.js'></script>
+<script src='/common/resources/orders.js'></script>
+<script src='/common/resources/picture.js'></script>
+<script src='/app/activity/list/activity-list.js'></script>
+<script src='/app/activity/edit/activity-edit.js'></script>
 
-    <script src='/app/technology/technology.js'></script>
-    <script src='/app/technology/list/technology-list.js'></script>
-    <script src='/app/technology/edit/technology-edit.js'></script>
+<script src='/app/activity/picture/picture-list.js'></script>
 
+<script src='/app/order/order.js'></script>
+<script src='/app/order/list/order-list.js'></script>
+<script src='/app/order/list-history/order-list.js'></script>
+<script src='/app/order/edit/order-edit.js'></script>
+<script src='/app/order/upload/upload-edit.js'></script>
 
-    <script src='/app/activity/activity.js'></script>
-    <script src='/common/resources/users.js'></script>
-    <script src='/common/services.js'></script>
-    <script src='/common/services/context.js'></script>
-    <script src='/common/services/messager.js'></script>
-    <script src='/common/services/odataResource.js'></script>
-    <script src='/common/services/security.js'></script>
-    <script src='/common/services/tip.js'></script>
-    <script src='/common/services/version.js'></script>
-    <script src='/common/templates.js'></script>
-    <script src='/common/untils.js'></script>
-    <script src='/common/untils/ajaxErrorHandler.js'></script>
-    <script src='/common/untils/ajaxLoading.js'></script>
-    <script src='/common/untils/promissLoading.js'></script>
-    <script src='/app/_framework/framework-LoginCtrl.js'></script>
-    <script src='/app/_framework/framework-MainCtrl.js'></script>
-    <script src='/app/_framework/framework.js'></script>
-    <script src='/app/app.js'></script>
+<script src='/common/resources/templates.js'></script>
+<script src='/app/template/template.js'></script>
+<script src='/app/template/list/template-list.js'></script>
+<script src='/app/template/edit/template-edit.js'></script>
+<script src='/app/connection/upload/upload-edit.js'></script>
 
+<script src='/app/dingzhi/dingzhi.js'></script>
+<script src='/app/dingzhi/list/dingzhi-list.js'></script>
+<script src='/app/dingzhi/edit/dingzhi-edit.js'></script>
 
-
-
-    <script src='/app/dialogs/dialogs.js'></script>
-    <script src='/app/dialogs/version-upgrade/version-upgrade-dialog.js'></script>
+<script src='/app/connection/connection.js'></script>
+<script src='/app/connection/picture/picture-list.js'></script>
+<script src='/app/connection/list/connection-list.js'></script>
+<script src='/app/connection/edit/connection-edit.js'></script>
+<script src='/common/resources/connection.js'></script>
 
 
-    <script src='/app/system/401/index.js'></script>
-    <script src='/app/system/404/index.js'></script>
-    <script src='/app/system/history/history.js'></script>
-    <script src='/app/system/system.js'></script>
-    <script src='/app/system/user/user-edit-dialog.js'></script>
-    <script src='/app/system/user/user.js'></script>
-    <!--SCRIPTS END-->
-    <script src="/plugin/dropzone.min.js"></script>
+<script src='/app/paper/paper.js'></script>
+<script src='/app/paper/list/paper-list.js'></script>
+<script src='/app/paper/edit/paper-edit.js'></script>
+<script src='/common/resources/cards.js'></script>
+
+<script src='/app/technology/technology.js'></script>
+<script src='/app/technology/list/technology-list.js'></script>
+<script src='/app/technology/edit/technology-edit.js'></script>
+
+
+<script src='/app/activity/activity.js'></script>
+<script src='/common/resources/users.js'></script>
+<script src='/common/services.js'></script>
+<script src='/common/services/context.js'></script>
+<script src='/common/services/messager.js'></script>
+<script src='/common/services/odataResource.js'></script>
+<script src='/common/services/security.js'></script>
+<script src='/common/services/tip.js'></script>
+<script src='/common/services/version.js'></script>
+<script src='/common/templates.js'></script>
+<script src='/common/untils.js'></script>
+<script src='/common/untils/ajaxErrorHandler.js'></script>
+<script src='/common/untils/ajaxLoading.js'></script>
+<script src='/common/untils/promissLoading.js'></script>
+<script src='/app/_framework/framework-LoginCtrl.js'></script>
+<script src='/app/_framework/framework-MainCtrl.js'></script>
+<script src='/app/_framework/framework.js'></script>
+<script src='/app/app.js'></script>
+
+
+<script src='/app/dialogs/dialogs.js'></script>
+<script src='/app/dialogs/version-upgrade/version-upgrade-dialog.js'></script>
+
+
+<script src='/app/system/401/index.js'></script>
+<script src='/app/system/404/index.js'></script>
+<script src='/app/system/history/history.js'></script>
+<script src='/app/system/system.js'></script>
+<script src='/app/system/user/user-edit-dialog.js'></script>
+<script src='/app/system/user/user.js'></script>
+<!--SCRIPTS END-->
+<script src="/plugin/dropzone.min.js"></script>
 </body>

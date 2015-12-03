@@ -2,10 +2,64 @@
  * Created by Administrator on 2015/11/7 0007.
  */
 define(['app'], function (app) {
-    app.controller('CustomController', ['$scope','customService','$stateParams', function ($scope,customService,$stateParams) {
-       var unit_price;
-       var customid=$stateParams.id;
-        $scope.address={};
+    app.controller('CustomController', ['$scope','$rootScope', '$location','customService','orderService','ipCookie', function ($scope,$rootScope, $location,customService,orderService,ipCookie) {
+        //监听上传回调
+        $scope.$on('imagePath', function (event, data) {
+            //父级能得到值
+            dingdan.images = data;
+        });
+
+        var text;
+        //订单模板
+        dingdan = $scope.order = {
+            num: 2,
+            openid: "",
+            order_type: 0,
+            images: [],
+            no: "",
+            payInfo: {
+                payType: ""
+            },
+            currentAdd:"",
+            temInfo: {
+                id: "",
+                name:"",
+                price: ""
+            },
+            totalMoney: 0,
+            card: {
+                c_type: "",
+                gongyi: ""
+            },
+            userInfo: {
+                name: "",
+                id: "",
+                address: text,
+                phone: "",
+                QQ: "",
+                company: "",
+                note: ""    //地址备注
+            },
+            expressInfo: {
+                no: "",
+                state: ""
+            },
+            states: 0,
+            boolShared: false,
+            note: ""
+        };
+
+        //省份 城市  地区选择
+        $scope.or = function () {
+            var address = $scope.address;
+            text = (address.province + address.city + address.district);
+            dingdan.userInfo.address = text;
+            console.log(text);
+        };
+
+        $scope.address = {
+            place: ""
+        };
         $scope.division = {
             "北京市": {"北京市": ["东城区", "西城区", "崇文区", "宣武区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云县", "延庆县"]},
             "上海市": {"上海市": ["黄浦区", "卢湾区", "徐汇区", "长宁区", "静安区", "普陀区", "闸北区", "虹口区", "杨浦区", "闵行区", "宝山区", "嘉定区", "浦东新区", "金山区", "松江区", "青浦区", "南汇区", "奉贤区", "崇明县"]},
@@ -402,83 +456,88 @@ define(['app'], function (app) {
                 "省直辖县级行政单位": ["五指山市", "琼海市", "儋州市", "文昌市", "万宁市", "东方市", "定安县", "屯昌县", "澄迈县", "临高县", "白沙黎族自治县", "昌江黎族自治县", "乐东黎族自治县", "陵水黎族自治县", "保亭黎族苗族自治县", "琼中黎族苗族自治县", "西沙群岛", "南沙群岛", "中沙群岛的岛礁及其海域"]
             }
         };
-        var dingdan;
-        $scope.or=function(){
-            var address = $scope.address;
-            text = (address.province + address.city + address.district+address.place)||"请选择地址。。。";
-            dingdan.userInfo.address=text;
-        };
-       dingdan= $scope.order={
-            num:"2",
-            openid:"wqr",
-            images:"1111.jpg",
-            no:"",
-            payInfo:{
-                payType:"在线支付",
-                payState:false
-            },
-            temInfo:{
-                id:"124",
-                type:"铜版纸",
-                price:"￥120.00"
-            },
-            totalMoney:"￥24.00",
-            card:{
-                c_type:"铜版纸",
-                gongyi:"不覆膜-加0"
-            },
-            userInfo:{
-                name:"wt",
-                id:"242",
-                address: "",
-                phone:"1324",
-                QQ:"1234",
-                company:"可合法",
-                note:"备注"    //地址备注
-            },
-            expressInfo:{
-                no:"",
-                state:""
-            },
-            state:true,
-            boolShared:false,
-            note:"备注"
-        };
-        $scope.buy=function(){
 
+
+        $scope.entity = "";
+
+        //立即购买
+        $scope.buy=function(id,price,name){
+
+            dingdan.order_type=6;
+            dingdan.temInfo.id=id;
+            dingdan.temInfo.name=name;
+            dingdan.temInfo.price=price;
+            dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
+            //跳转
+            $location.path('/app/custom/dzxq');
         };
-        var num=parseInt($scope.order.num);
-        $scope.maxus=function(){
-            num+=1;
-            $scope.order.num=num;
-            $scope.price=num*unit_price;
+
+        //下一步提示toast
+        $scope.toast = {
+            warn: false,
+            message: ""
         };
-        $scope.minus=function(){
-            if($scope.order.num>1){
-                num-=1;
-                $scope.order.num=num;
-                $scope.price=num*unit_price
+
+        //选择数量 重新计算价格
+        $scope.selectNum=function(){
+            if(dingdan.num<1){
+                dingdan.num=1;
             }
+            dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
         };
-        $scope.tijiao=function(){
-            console.log($scope.order);
-            customService.order(dingdan).then(function (data) {
-                alert("订单提交成功");
-        }, function (error) {
-            alert("提交错误");
-        });
-        };
-        var custom=function(){
-            customService.custom().then(function(data) {
-                   $scope.orders=data;
-            });
-            };
-        custom();
-        return customService.custom_1(customid).then(function(data) {
-            $scope.price=data.price*$scope.order.num;
-            unit_price=data.price;
-        });
-    }
 
+        //添加订单
+        $scope.tijiao = function () {
+            //表单验证
+            /* if(dingdan.userInfo.name==""){
+             $scope.form.name=true;
+             return false;
+             }else{
+             $scope.form.name=false;
+             }
+             if(dingdan.userInfo.company==""){
+             $scope.form.company=true;
+             return false;
+             }else{
+             $scope.form.company=false;
+             }
+             if($scope.address.place==undefined){
+             $scope.form.place=true;
+             return false;
+             }else{
+             $scope.form.place=false;
+             }
+             if(dingdan.userInfo.phone==""){
+             $scope.form.phone=true;
+             return false;
+             }else{
+             $scope.form.phone=false;
+             }
+
+             dingdan.userInfo.address += $scope.address.place;
+             dingdan.no = Date.parse(new Date());
+             dingdan.openid=ipCookie("openid");
+             orderService.order(dingdan).then(function (data) {
+             $location.path("app/order/zfdd");
+             });*/
+
+
+            dingdan.userInfo.address += $scope.address.place;
+            dingdan.no = Date.parse(new Date());
+            dingdan.openid = ipCookie("openid");
+            orderService.order(dingdan).then(function (data) {
+                $rootScope.custom={
+                    no:dingdan.no,
+                    money:dingdan.totalMoney
+                };
+                $location.path("/app/order/zfdd");
+            });
+        };
+
+        //读取数据
+        return customService.custom($rootScope.addressDefault.selectAdd).then(function (data) {
+            $scope.entity = data;
+        })
+    }
     ]);
 });

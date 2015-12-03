@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2015/12/1 0001.
  */
-angular.module('upload-edit', []).controller('UploadDialogCtrl1', [
+angular.module('upload-family', []).controller('UploadDialogCtrl', [
     '$scope','$http', 'messager', 'tip','FileUploader', function($scope,$http, messager, tip,FileUploader) {
         //复制order-list.js scope.id
         $scope.id=angular.copy($scope.$parent.id);
@@ -28,11 +28,11 @@ angular.module('upload-edit', []).controller('UploadDialogCtrl1', [
 
         //保存
         $scope.save = function() {
-            return $http.post(config.url.api+"/v1/orders/designFile", {"id": $scope.id,"design":images}).success(function (data) {
-                messager.success("保存成功");
+            return $http.post(config.url.api+"/v1/family/designFile", {"id": $scope.id,"design":images}).success(function (data) {
+                messager.success("上传成功");
                 return $scope.closeThisDialog();
             }).error(function (error) {
-                messager.success("保存失败，请重新保存");
+                messager.success("上传失败，请重新上传");
                 return $scope.closeThisDialog();
             });
 

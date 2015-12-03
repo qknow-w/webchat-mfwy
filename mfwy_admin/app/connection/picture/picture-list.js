@@ -22,7 +22,8 @@ angular.module('connection-picture', ['resource.pictures']).config([
             return Pictures.list({
                 $skip: (pageNo - 1) * 10,
                 $top: 10,
-                $count: true
+                $count: true,
+                $filter:"states eq false"
             }, function(data) {
                 return $scope.data = data;
 

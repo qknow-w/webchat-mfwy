@@ -106,7 +106,7 @@ angular.module('order-list', ['resource.orders']).config([
             $scope.id=id;
             ngDialog.open({
                 template: '/app/order/upload/upload-edit.tpl.html',
-                controller: 'UploadDialogCtrl',
+                controller: 'UploadDialogCtrl1',
                 scope:$scope
             });
         };

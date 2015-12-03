@@ -3,21 +3,30 @@
  */
 angular.module("connection-edit", ["resource.connections"]).config([
     "$routeProvider", function ($routeProvider) {
-        return $routeProvider.when("/connection/new/:id", {
+        return $routeProvider.when("/connections/new/:id", {
             templateUrl: "/app/connection/edit/connection-edit.tpl.html",
             controller: 'ConnectionEditCtrl',
             resolve: {
-                connection: function () {
-                    return ac = {
-                        name: "",//名称
-                        company: "",//地址
-                        address: "",//时间  数组  开始时间和结束时间
-                        qq:  "",//另外的信息  主题、主办方、简介
-                        phone: "",//图片  广告、海报
-                        whcaht:"",
-                        images:[]
-                    };
-                }
+                connection: ["$q", "$route", "Pictures", function ($q, $route, Pictures) {
+                    var deferred;
+                    deferred = $q.defer();
+                    Pictures.get({
+                        id: $route.current.params.id
+                    }, function (data) {
+                        var ac = {
+                            name: "",//名称
+                            company: "",//地址
+                            address: "",//时间  数组  开始时间和结束时间
+                            qq:  "",//另外的信息  主题、主办方、简介
+                            phone: "",//图片  广告、海报
+                            whcaht:"",
+                            images:data.images
+                        };
+                        return deferred.resolve(ac);
+                    });
+                    return deferred.promise;
+
+                }]
             }
         }).when("/connection/:id", {
             templateUrl: "/app/connection/edit/connection-edit.tpl.html",
@@ -40,7 +49,7 @@ angular.module("connection-edit", ["resource.connections"]).config([
     }
 ])
     .controller("ConnectionEditCtrl", ["$scope", "$routeParams", "$location", "$rootScope","$http", "FileUploader", "Connections", "connection","Pictures", "messager",
-        function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Connections, connection, Pictures,messager) {
+        'ngDialog',function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Connections, connection, Pictures,messager,ngDialog) {
 
 
 
@@ -124,6 +133,16 @@ angular.module("connection-edit", ["resource.connections"]).config([
                 }, entity, function (data) {
                     return messager.success("Save successfully.");
                 });*/
+            };
+
+            //上传设计文件 dialog
+            $scope.uploadFile=function(){
+                $scope.id=$routeParams.id;
+                ngDialog.open({
+                    template: '/app/connection/upload/upload-edit.tpl.html',
+                    controller: 'UploadDialogCtrl',
+                    scope:$scope
+                });
             };
 
 

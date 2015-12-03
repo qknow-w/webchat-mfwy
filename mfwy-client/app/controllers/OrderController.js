@@ -8,7 +8,6 @@ define(['app'], function (app) {
         $scope.$on('imagePath', function (event, data) {
             //父级能得到值
             dingdan.images = data;
-
         });
 
         //监听分享回调
@@ -474,10 +473,10 @@ define(['app'], function (app) {
             payInfo: {
                 payType: ""
             },
-            currentAdd:"",
+            currentAdd: "",
             temInfo: {
                 id: "",
-                type: "",
+                name: "",
                 price: ""
             },
             totalMoney: 0,
@@ -502,7 +501,7 @@ define(['app'], function (app) {
             boolShared: false,
             note: ""
         };
-        $scope.order.currentAdd=$rootScope.addressDefault.selectAdd;//绑定当前选择地址
+        $scope.order.currentAdd = $rootScope.addressDefault.selectAdd;//绑定当前选择地址
         $scope.user = {
             id: "",
             province: "",   //省份
@@ -537,53 +536,105 @@ define(['app'], function (app) {
             }
 
             //计算总价格
-            $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
-            dingdan.totalMoney = $scope.danjia;
+            if(dingdan.order_type==1){
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
+                dingdan.totalMoney = $scope.danjia;
+            }else if(dingdan.order_type==2){
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+2;
+                dingdan.totalMoney = $scope.danjia;
+            }else{
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
+                dingdan.totalMoney = $scope.danjia;
+            }
+
+            //计算总价格
+
 
         };
 
         //下一步
         $scope.next = function () {
-            /*if(dingdan.images.length==0){
-             $scope.toast.message="请选择上传照片";
-             $scope.toast.warn=true;
-             $timeout(function(){
-             $scope.toast.warn=false;
-             },700);
-             }
-             else{
-             $location.path("/app/order/ddxq");
-             }*/
 
-            //计算价格
-            /*if(dingdan.order_type ==1){
+            if (dingdan.images.length == 0) {
+                $scope.toast.message = "请选择上传照片";
+                $scope.toast.warn = true;
+                $timeout(function () {
+                    $scope.toast.warn = false;
+                }, 700);
+            }
+            else {
 
-            }else if(dingdan.order_type ==2){
+                if ($rootScope.hasOwnProperty('tpl')) {
+                    dingdan.temInfo.id = $rootScope.tpl.id;
+                    dingdan.temInfo.name = $rootScope.tpl.name;
+                }
 
+                //计算价格
+                /*if(dingdan.order_type ==1){
+
+                 }else if(dingdan.order_type ==2){
+
+                 }*/
+
+
+                $location.path("/app/order/ddxq");
+            }
+
+
+
+
+           /* if ($rootScope.hasOwnProperty('tpl')) {
+                dingdan.temInfo.id = $rootScope.tpl.id;
+                dingdan.temInfo.name = $rootScope.tpl.name;
+                console.log(dingdan.temInfo);
             }*/
 
 
 
-            console.log("/app/order/ddxq");
-            $location.path("/app/order/ddxq"); //测试*/
+
+
+            $location.path("/app/order/ddxq"); //测试*!/
 
 
         };
         //微信支付
         $scope.addOrder = function () {
-            /*var data={"openid":ipCookie("openid"),"no":dingdan.no,money:dingdan.totalMoney};
-             orderService.getWechatConfig(data).then(function (data) {
-             WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
-             if (res.err_msg == "get_brand_wcpay_request:ok") {
-             $location.path("/order/wddd");
-             // 这里可以跳转到订单完成页面向用户展示
-             } else {
-             alert("支付失败，请重新进入后支付");
-             }
-             });
-             });*/
+            //是否高端定制
+            console.log($rootScope.hasOwnProperty('custom'));
 
-            $location.path("/app/order/wddd");
+            if ($rootScope.hasOwnProperty('custom')) {
+                /* console.log($rootScope.custom.no);
+                 console.log($rootScope.custom.money);
+
+                 /!*var data={"openid":ipCookie("openid"),"no":$rootScope.custom.no,money:$rootScope.custom.money};
+                 orderService.getWechatConfig(data).then(function (data) {
+                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                 if (res.err_msg == "get_brand_wcpay_request:ok") {
+                 $location.path("/order/wddd");
+                 // 这里可以跳转到订单完成页面向用户展示
+                 } else {
+                 alert("支付失败，请重新进入后支付");
+                 }
+                 });
+                 });*!/*/
+
+                $location.path("/app/order/wddd");
+            } else {
+                /* var data={"openid":ipCookie("openid"),"no":dingdan.no,money:dingdan.totalMoney};
+                 orderService.getWechatConfig(data).then(function (data) {
+                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                 if (res.err_msg == "get_brand_wcpay_request:ok") {
+                 $location.path("/order/wddd");
+                 // 这里可以跳转到订单完成页面向用户展示
+                 } else {
+                 alert("支付失败，请重新进入后支付");
+                 }
+                 });
+                 });*/
+
+                $location.path("/app/order/wddd");
+            }
+
 
         };
 
@@ -599,8 +650,10 @@ define(['app'], function (app) {
 
         //添加订单
         $scope.tijiao = function () {
+
+            console.log($scope.address.place);
             //表单验证
-            /* if(dingdan.userInfo.name==""){
+             if(dingdan.userInfo.name==""){
              $scope.form.name=true;
              return false;
              }else{
@@ -612,38 +665,60 @@ define(['app'], function (app) {
              }else{
              $scope.form.company=false;
              }
-             if($scope.address.place==undefined){
+             if($scope.address.place==undefined||$scope.address.place==""){
              $scope.form.place=true;
              return false;
              }else{
              $scope.form.place=false;
              }
              if(dingdan.userInfo.phone==""){
-             $scope.form.phone=true;
+                 $scope.form.phone=true;
              return false;
              }else{
              $scope.form.phone=false;
              }
-             dingdan.userInfo.address += $scope.address.place;
+             /*dingdan.userInfo.address += $scope.address.place;
              dingdan.no = Date.parse(new Date());
              dingdan.openid=ipCookie("openid");
              orderService.order(dingdan).then(function (data) {
              $location.path("app/order/zfdd");
              });*/
 
+            if (dingdan.no == "") {
+                dingdan.userInfo.address += $scope.address.place;
+                dingdan.no = Date.parse(new Date());
+                dingdan.openid = ipCookie("openid");
+                orderService.order(dingdan).then(function (data) {
+                    $location.path("/app/order/zfdd");
+                });
+            } else {
+                alert("请不要重复提交订单.")
+            }
 
-            dingdan.userInfo.address += $scope.address.place;
-            dingdan.no = Date.parse(new Date());
-            dingdan.openid = ipCookie("openid");
-            orderService.order(dingdan).then(function (data) {
-                $location.path("/app/order/zfdd");
-            });
+
         };
         //添加货到付款订单
         $scope.COD = function () {
-            orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
-                $location.path("/app/order/wddd");
-            });
+            console.log(dingdan.no);
+            //是否高端定制
+            if ($rootScope.hasOwnProperty('custom')) {
+                console.log($rootScope.custom.no);
+                orderService.deliveryPay($rootScope.custom.no, ipCookie("openid")).then(function (data) {
+                    $location.path("/app/order/wddd");
+                });
+            } else {
+               /* if (dingdan.no == "") {
+                    orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
+                        $location.path("/app/order/wddd");
+                    });
+                } else {
+                    alert("请不要重复提交订单.")
+                }*/
+                orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
+                    $location.path("/app/order/wddd");
+                });
+            }
+
         };
         /*        //判断是否为空
          function isNull(arg1) {
@@ -667,19 +742,22 @@ define(['app'], function (app) {
             var path = $location.path();
             console.log(path);
             var strs = path.split('/');
-           /* $scope.path = strs[3];  //路由
-            console.log(strs[3]);*/
+            /* $scope.path = strs[3];  //路由
+             console.log(strs[3]);*/
             if (strs[3] == "xqxq") {
                 dingdan.order_type = 1;//直接印刷
             }
-            else if(strs[3] == "draft"){
+            else if (strs[3] == "draft") {
                 dingdan.order_type = 2;//看搞印刷
             }
-            else if(strs[3] == "redesign"){
+            else if (strs[3] == "redesign") {
                 dingdan.order_type = 3;//重新设计
             }
-            else if(strs[3] == "quick"){
+            else if (strs[3] == "quick") {
                 dingdan.order_type = 4;//快印名片
+            }
+            else if (strs[3] == "tpl") {
+                dingdan.order_type = 5;//模板印刷
             }
 
 

@@ -5,14 +5,14 @@
 var order={
        openid:String,//用户openid
     no:String, //订单号
-    order_type:Number,//订单类型 1 直接印刷 2。看稿印刷
+    order_type:Number,//订单类型 1 直接印刷 2。看稿印刷 3重新设计 4 快印名片  5名片模板 6高端定制
     card:{c_type:String,gongyi:String},//名片信息,
     currentAdd:String,//当前位置
     images:[String],//图片
     num:Number,//数量
     totalMoney:String,//总金额
     payInfo:{payType:String,payState:Boolean},//支付信息  类型 状态  微信支付  or  货到付款
-    temInfo:{id:String,type:Number,price:String},//模板信息 id 模板类型  价格
+    temInfo:{id:String,name:String,price:String},//模板信息 名称 id 模板类型  价格
     expressInfo:{no:String,state:Number},// 快递信息  快递号、状态  0 未收货、已收货
     userInfo:{name:String,company:String,address:String,phone:String,QQ:String,note:String},//用户地址信息  姓名 公司 地址 电话 qq 备注
     note:String,//备注

@@ -26,7 +26,7 @@ var config = {
 
 //wechat oauth
 var client = new OAuth(appid, appsecret);
-
+var api = new WechatAPI(appid, appsecret);
 
 //微信自动回复
 router.all('/wechat', wechat(config, function (req, res, next) {
@@ -71,6 +71,8 @@ var url = client.getAuthorizeURL('http://17quay.cn/oauth-openid', '1', 'snsapi_b
 console.log(url);
 //注册回调
 
+
+//skip qknow.com.cn  跳转到首页
 router.get('/oauth-openid', function (req, res, next) {
     // console.log(req.query.code);
 
@@ -89,9 +91,6 @@ router.get('/oauth-openid', function (req, res, next) {
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
-
-
-
         //console.log(result);
         //var openid = result.openid;
         //console.log(result.openid);
@@ -101,13 +100,40 @@ router.get('/oauth-openid', function (req, res, next) {
 });
 
 
-router.get("/JSSDK", function (req, res, next) {
+//skip qknow.com.cn  跳转到我的订单
+router.get('/oauth-openid-selforder', function (req, res, next) {
+    // console.log(req.query.code);
 
+    console.log(req.query.code);
+    var code = req.query.code;
+
+    //获取openid
+
+    client.getUserByCode(code, function (err, result) {
+        if (err) {
+            res.send(err);
+        }
+        console.log(result);
+        var openid = result.openid;
+        res.writeHeader(301, {'Location': "http://qknow.com.cn/app/order/wddd?openid="  + openid });
+
+        //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
+        return res.end();
+        //console.log(result);
+        //var openid = result.openid;
+        //console.log(result.openid);
+        /**/
+    });
+
+});
+
+
+
+router.get("/JSSDK", function (req, res, next) {
     var para_url = req.query.para;
-    var api = new WechatAPI(appid, appsecret);
     var param = {
         debug: false,
-        jsApiList: ['openLocation', 'getLocation','chooseImage','uploadImage'],
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline','chooseImage','uploadImage'],
         url: para_url
     };
     api.getJsConfig(param, function (err, result) {

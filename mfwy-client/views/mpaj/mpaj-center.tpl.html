@@ -1,54 +1,116 @@
-
 <style type="text/css">
-    html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
-    img { border:0; }
-    ul { list-style: none outside none; margin:0; padding: 0; }
-    body {
-        background-color:#fff;
+    html, body {
+        color: #222;
+        font-family: Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
     }
-    body .mainmenu:after { clear: both; content: " "; display: block; }
 
-    body .mainmenu li{
-        float:left;
+    img {
+        border: 0;
+    }
+
+    ul {
+        list-style: none outside none;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #fff;
+    }
+
+    body .mainmenu:after {
+        clear: both;
+        content: " ";
+        display: block;
+    }
+
+    body .mainmenu li {
+        float: left;
         margin-left: 3%;
+        /* display: block;
+         margin: 0 auto;*/
         margin-top: 2.5%;
         width: 45%;
-        overflow:hidden;
+        overflow: hidden;
     }
 
-    body .mainmenu li a{ display:block;  color:#FFF;   text-align:center }
-    body .mainmenu li a b{
-        display:block; height:95px;
-        width:80%;
-        margin:0 auto;
+    body .mainmenu li a {
+        display: block;
+        color: #FFF;
+        text-align: center
+    }
+
+    body .mainmenu li a b {
+        display: block;
+        height: 95px;
+        width: 80%;
+        margin: 0 auto;
         border-radius: 10px;
     }
-    body .mainmenu li a img{
+
+    body .mainmenu li a img {
         margin: 23px auto;
         width: 50px;
         height: 50px;
     }
 
-    body .mainmenu li a span{ display:block; height:30px; line-height:30px;background-color:#FFF; color: #999; font-size:14px; }
+    body .mainmenu li a span {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        background-color: #FFF;
+        color: #999;
+        font-size: 14px;
+    }
 
-    body .mainmenu li:nth-child(8n+1) b{background-color:#ee0a3b}
-    body .mainmenu li:nth-child(8n+2) b{background-color:#fe4101}
+    body .mainmenu li:nth-child(8n+1) b {
+        background-color: #ee0a3b
+    }
+
+    body .mainmenu li:nth-child(8n+2) b {
+        background-color: #fe4101
+    }
 
 </style>
 
 <ul class="mainmenu">
-    <li><a href="javascript:" ><b><img src="../../images/tjxx.png" /></b><span>提交信息</span></a></li>
-    <li><a href="javascript:" ><b><img src="../../images/ckmp.png" /></b><span>查看名片</span></a></li>
+    <li><a href="javascript:" ng-click="submitSettle()"><b><img src="../../images/ckmp.png"/></b><span>提交信息</span></a>
+    </li>
+    <li><a href="javascript:" ng-click="seeCard()"><b><img src="../../images/tjxx.png"/></b><span>查看名片</span></a></li>
 </ul>
-<div class="weui_cell " style="padding:10px 0;border-bottom: 1px solid #d7d7d7;">
-    <a href="javascript:;" class="a-btn"><i class="fa fa-camera"></i>选择照片</a>
-    <a href="javascript:;" class="a-btn"><i class="fa fa-upload"></i>上传照片</a>
+<div class="weui_cell " style="padding:10px 0;border-bottom: 1px solid #d7d7d7;" ng-controller="WeiXinController">
+    <a href="javascript:;" class="a-btn" ng-click="chooseImage()"><i class="fa fa-camera"></i>选择照片</a>
+    <a href="javascript:;" class="a-btn" ng-click="upload()"><i class="fa fa-upload"></i>上传照片</a>
+
+    <div ng-show="toast.upload">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast"></i>
+
+            <p class="weui_toast_content" ng-bind="toast.message"></p>
+        </div>
+    </div>
 </div>
 <div class="weui_cell">
     <div class="weui_cell_hd" style="vertical-align: top;">
-        <label >注：</label>
+        <label>注：</label>
     </div>
     <div class="weui_cell_bd weui_cell_primary">
         <p>客户相传文件到平台，我们负责为客户设计好拍照的图片，并进行展示，如客户以后需要印刷，可以直接下载使用并下单印刷。</p>
     </div>
 </div>
+<div class="weui_dialog_alert" ng-show="toast.card"  >
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">查看名片(可左右滑动)</strong></div>
+        <div class="weui_dialog_bd" >
+            查看内容
+        </div>
+        <div class="weui_dialog_ft"><a href="javascript:;" class="weui_btn_dialog primary" ng-click="closeDialog()">确定</a></div>
+    </div>
+</div>
+
+

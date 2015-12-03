@@ -28,13 +28,15 @@ var weconfig = {
     encodingAESKey: encodingAESKey
 };
 
-/*//实例化 WechatAPI
+/*
+//实例化 WechatAPI
  var api = new WechatAPI(appid, appsecret);
 console.log(menu);
  //创建菜单
  api.createMenu(menu, function(err,result){
  console.log(result);
- });*/
+ });
+*/
 
 
 
@@ -75,6 +77,7 @@ server.use(require('./functions/wechatInfo'));
 server.use(require('./functions/wechatpay'));
 server.use(require('./functions/order'));
 server.use(require('./functions/card'));
+server.use(require('./functions/family'));
 //resources
 server.use(require('./resources/system/user'));
 server.use(require('./resources/card/card'));

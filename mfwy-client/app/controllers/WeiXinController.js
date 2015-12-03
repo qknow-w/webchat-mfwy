@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/11/15 0015.
  */
 define(['app', 'weixin'], function (app, wx) {
-    app.controller('WeiXinController', ['$scope', 'weixinService', '$http', '$timeout', function ($scope, weixinService, $http, $timeout) {
+    app.controller('WeiXinController', ['$scope', '$http', '$window', '$timeout', 'weixinService', function ($scope, $http, $window, $timeout, weixinService) {
         var images = {
             localId: [],
             serverId: []
@@ -12,7 +12,7 @@ define(['app', 'weixin'], function (app, wx) {
             upload: false,
             message: ""
         };
-
+        //选择照片
         $scope.chooseImage = function () {
             wx.chooseImage({
                 success: function (res) {
@@ -22,6 +22,7 @@ define(['app', 'weixin'], function (app, wx) {
             });
 
         };
+        //上传照片
         $scope.upload = function () {
             if (images.localId.length == 0) {
                 $scope.toast.upload = true;
@@ -97,22 +98,22 @@ define(['app', 'weixin'], function (app, wx) {
             success: function () {
                 $scope.$emit('shareSuccess', "success");
                 // 用户确认分享后执行的回调函数
-               /* $scope.toast.upload = true;
+                $scope.toast.upload = true;
                 $scope.toast.message = "分享成功";
                 $timeout(function () {
                     $scope.toast.upload = false;
 
-                }, 700);*/
+                }, 700);
 
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-              /*  $scope.toast.upload = true;
+                $scope.toast.upload = true;
                 $scope.toast.message = "分享失败，请重新分享";
                 $timeout(function () {
                     $scope.toast.upload = false;
 
-                }, 700);*/
+                }, 700);
 
             }
         });
@@ -126,49 +127,57 @@ define(['app', 'weixin'], function (app, wx) {
             success: function () {
                 $scope.$emit('shareSuccess', "success");
                 // 用户确认分享后执行的回调函数
-               /* $scope.toast.upload = true;
+                $scope.toast.upload = true;
                 $scope.toast.message = "分享成功";
                 $timeout(function () {
                     $scope.toast.upload = false;
 
-                }, 700);*/
+                }, 700);
 
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
                 // 用户取消分享后执行的回调函数
-                /*$scope.toast.upload = true;
+                $scope.toast.upload = true;
                 $scope.toast.message = "分享失败，请重新分享";
                 $timeout(function () {
                     $scope.toast.upload = false;
 
-                }, 700);*/
+                }, 700);
             }
         });
 
 
-        return weixinService.getConfig().then(function (result) {
-            wx.config({
-                debug: false,
-                appId: result.appId,
-                timestamp: result.timestamp,
-                nonceStr: result.nonceStr,
-                signature: result.signature,
-                jsApiList: [
-                    //'checkJsApi',
-                    'onMenuShareAppMessage',
-                    'onMenuShareTimeline',
-                    'chooseImage',
-                    'uploadImage'
+        var ua = $window.navigator.userAgent.toLowerCase();
+        //var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return weixinService.getConfig().then(function (result) {
+                wx.config({
+                    debug: false,
+                    appId: result.appId,
+                    timestamp: result.timestamp,
+                    nonceStr: result.nonceStr,
+                    signature: result.signature,
+                    jsApiList: [
+                        //'checkJsApi',
+                        'onMenuShareAppMessage',
+                        'onMenuShareTimeline',
+                        'chooseImage',
+                        'uploadImage'
+                    ]
+                });
+                wx.error(function (res) {
+                    //alert("系统繁忙，请关闭后重新进入");
+                    // WeixinJSBridge.call('closeWindow');
+                    //alert(res);
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                });
+            });
+        } else {
 
 
-                ]
-            });
-            wx.error(function (res) {
-                // alert(res);
-                // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-            });
-        });
+            //return false;
+        }
 
 
     }

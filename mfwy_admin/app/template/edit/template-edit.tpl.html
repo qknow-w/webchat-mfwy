@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group" ng-hide="entity.id">
-                    <label class="col-lg-1 control-label">图片</label>
+                    <label class="col-lg-1 control-label">正面</label>
 
                     <div class="col-lg-5">
                         <input type="file" name="poster" accept="image/*" nv-file-select="" class="form-control"
@@ -52,13 +52,28 @@
 
 
                 </div>
+                <div class="form-group" ng-hide="entity.id">
+                    <label class="col-lg-1 control-label">反面</label>
+
+                    <div class="col-lg-5">
+                        <input type="file" name="poster" accept="image/*" nv-file-select="" class="form-control"
+                               uploader="uploaderPosterr"/>
+                    </div>
+                    <div class="col-lg-1" ng-repeat="item in uploaderPosterr.queue">
+                        <button ng-click="item.upload()" class="btn btn-sm btn-primary"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传
+                        </button>
+                    </div>
+
+
+                </div>
 
 
                 <div ng-show="entity.images[0]" class="form-group" >
                     <label class="col-lg-1 control-label">模板图片</label>
 
-                    <div class="col-lg-5">
-                        <img  width="220px" height="200px" class="img-thumbnail"  src="http://localhost:40002/v1/images?name={{entity.images[0]}}" alt=""/>
+                    <div class="col-lg-5" ng-repeat="a in entity.images">
+                        <img class="img-thumbnail" ng-src="http://17quay.cn/v1/images?name={{a}}" alt=""/>
                     </div>
 
                 </div>

@@ -54,7 +54,7 @@
                 </div>
                 <div class="weui_cell_ft">
                     <a href="" class="weui_btn weui_btn_mini weui_btn_default" ng-click="orderDetail(a.id)">查看详情</a>
-                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default" ng-show="a.states==3||a.states==0" ng-click="deleteOrder()">删除订单</a>
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default" ng-show="a.states==3||a.states==0" ng-click="deleteOrder(a.id)">删除订单</a>
                     <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_warn" style="background: #fe4101;"
                        ng-click="confirm(a.id)" ng-show="a.states!==3&&a.states!==0">确认收货</a>
                 </div>

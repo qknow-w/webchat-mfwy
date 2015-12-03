@@ -24,7 +24,10 @@ router.post('/v1/file-upload', function (req, res, next) {
         //原路径
         sourcePath = files.file[0].path;
         //目标路径
-        targetFolder = "./static/template/" + req.query.path;
+        //目标路径
+        var myDate = new Date();
+        var currentDate = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
+        targetFolder = "./static/" + req.query.path+"/" + currentDate;
         mkdirp(targetFolder);
         //文件名 加密
         filename = crypto.createHash('sha1').update('' + +new Date()).digest('hex');
@@ -38,7 +41,7 @@ router.post('/v1/file-upload', function (req, res, next) {
                 throw err;
             }
             res.set("Connection", 'keep-alive');
-            return res.send('/template/' + req.query.path + '/' + filename + fileExtension);
+            return res.send(req.query.path +"/" + currentDate+ '/' + filename + fileExtension);
         });
 
     });
@@ -101,9 +104,9 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
         });
         //添加excel
         var excel = [];
-        excel.push(["订单号", "名片类型", "名片工艺", "支付类型", "姓名", "地址", "电话", "数量", "总金额"]);
-        excel.push([result.no, result.card.c_type, result.card.gongyi, result.payInfo.payType, result.userInfo.name,
-            result.userInfo.address, result.userInfo.phone, result.num, result.totalMoney]);
+        excel.push(["订单号", "名片类型", "名片工艺","名片备注", "支付类型", "姓名", "地址", "电话", "地址备注","数量", "总金额"]);
+        excel.push([result.no, result.card.c_type, result.card.gongyi,result.note, result.payInfo.payType, result.userInfo.name,
+            result.userInfo.address, result.userInfo.phone,result.userInfo.note, result.num, result.totalMoney]);
         var buffer = xlsx.build([{name: "订单excel", data: excel}]); // returns a buffer
         zip.file(uuid.v1() + ".xlsx", buffer);//
 
@@ -147,9 +150,9 @@ router.get('/v1/file/multil/zip', function (req, res, next) {
             });
             //添加excel
             var excel = [];
-            excel.push(["订单号", "名片类型", "名片工艺", "支付类型", "姓名", "地址", "电话", "数量", "总金额"]);
-            excel.push([result.no, result.card.c_type, result.card.gongyi, result.payInfo.payType, result.userInfo.name,
-                result.userInfo.address, result.userInfo.phone, result.num, result.totalMoney]);
+            excel.push(["订单号", "名片类型", "名片工艺","名片备注", "支付类型", "姓名", "地址", "电话", "地址备注","数量", "总金额"]);
+            excel.push([result.no, result.card.c_type, result.card.gongyi,result.note, result.payInfo.payType, result.userInfo.name,
+                result.userInfo.address, result.userInfo.phone,result.userInfo.note, result.num, result.totalMoney]);
             var buffer = xlsx.build([{name: "订单excel", data: excel}]); // returns a buffer
             zip.file(result.no + "/" + uuid.v1() + ".xlsx", buffer);//
 

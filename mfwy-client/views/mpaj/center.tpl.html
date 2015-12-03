@@ -1,3 +1,11 @@
 <div ng-controller="SettleController">
+    <div ng-show="toast.upload">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast"></i>
+
+            <p class="weui_toast_content" ng-bind="toast.message"></p>
+        </div>
+    </div>
     <div ui-view="mpaj-center"> </div>
 </div>

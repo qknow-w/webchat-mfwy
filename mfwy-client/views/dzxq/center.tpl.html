@@ -1,97 +1,119 @@
-<div class="dzxq-center">
-   <div class="weui_cells weui_cells_form">
-      <div class="weui_cell">
-         <div class="weui_cell_hd">
-            <label class="weui_label">收 货 人：</label>
-         </div>
-         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="order.userInfo.name"/>
-         </div>
-      </div>
-      <div class="weui_cell">
-         <div class="weui_cell_hd">
-            <label class="weui_label">公司名称：</label>
-         </div>
-         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="text" ng-model="order.userInfo.company"/>
-         </div>
-      </div>
-   </div>
-   <div class="weui_cells ">
-      <div class="weui_cell weui_cell_select weui_select_after">
-         <div class="weui_cell_hd">
-            <label class="weui_label">省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</label>
-         </div>
-         <div class="weui_cell_bd weui_cell_primary ">
-            <select required=""class="weui_select" ng-model="address.province" ng-options="key as key for (key,value) in division"
-                    ng-change="address.city='';address.district='';">
-               <option value="">省</option>
-            </select>
-         </div>
-      </div>
-      <div class="weui_cell weui_cell_select weui_select_after">
-         <div class="weui_cell_hd">
-            <label class="weui_label">城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</label>
-         </div>
-         <div class="weui_cell_bd weui_cell_primary">
-            <select class="weui_select" ng-model="address.city" ng-options="key as key for (key,value) in division[address.province]"
-                    ng-change="address.district='';">
-               <option value="">市</option>
-            </select>
-         </div>
-      </div>
+<form class="weui_cells weui_cells_form" novalidate name="addressFrom">
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">收货姓名:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" required ng-model="order.userInfo.name" placeholder="请输入收货姓名">
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+    <div class="weui_cell" >
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">公司名称:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" ng-model="order.userInfo.company" placeholder="请输入公司名称">
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
 
-      <div class="weui_cell weui_cell_select weui_select_after">
-         <div class="weui_cell_hd">
-            <label class="weui_label">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</label>
-         </div>
-         <div class="weui_cell_bd weui_cell_primary ">
-            <select class="weui_select" ng-change="or()" ng-model="address.district" ng-options="value as value for value in division[address.province][address.city]">
-               <option value="">区</option>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">省<span
+                style="display: inline-block;width: 1.9em"></span>份:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+
+            <select required="" class=" weui_select" style="padding: 0;margin: 0;height: 21px"
+                    ng-model="address.province"
+                    ng-options="key as key for (key,value) in division"
+                    ng-change="address.city='';address.district='';">
+                <option value="">省</option>
             </select>
-         </div>
-      </div>
-   </div>
-   <div class="weui_cell">
-      <div class="weui_cell_hd">
-         <label class="weui_label" >详细地址：</label>
-      </div>
-      <div class="weui_cell_bd weui_cell_primary">
-         <input class="weui_input" ng-change="or()" ng-model="address.place" type="text"/>
-      </div>
-   </div>
-   <div class="weui_cell">
-      <div class="weui_cell_hd">
-         <label class="weui_label">联系电话：</label>
-      </div>
-      <div class="weui_cell_bd weui_cell_primary">
-         <input class="weui_input" type="text" ng-model="order.userInfo.phone"/>
-      </div>
-   </div>
-   <div class="weui_cell">
-      <div class="weui_cell_hd">
-         <label class="weui_label">QQ：</label>
-      </div>
-      <div class="weui_cell_bd weui_cell_primary">
-         <input class="weui_input" type="text" ng-model="order.userInfo.QQ"/>
-      </div>
-   </div>
-   <div class="weui_cell">
-      <div class="weui_cell_bd">
-         <label class="weui_label">备注：</label></div>
-      <div class="weui_cell_hd weui_cell_primary " style="border-bottom: none;">
-         <textarea style="width:100%;" rows="3" ng-model="order.note"></textarea>
-      </div>
-   </div>
-   <div class="weui_cell">
-      <label class="">购买数量：</label>
-      <div style=" display: inline-block">
-         <button type="button" ng-click="minus()" style="padding:0.5em;" ><i class="fa fa-minus-square-o"></i></button>
-         <input type="text" class="custom_num" value="1" ng-model="order.num" style="padding:0.5em;" onkeydown="this.onkeyup();"
-                onkeyup="this.size=(this.value.length>1?this.value.length:1);" size="1"/>
-         <button type="button" ng-click="maxus()" style="padding:0.5em;"><i class="fa fa-plus-square-o"></i></button>
-      </div>
-      <p style="display: inline-block;">应付价格：<span class="color-fe">{{price}}</span></p>
-   </div>
-   <a type="button" class="weui_btn" ng-click="tijiao()" ui-sref="custom.zfdd" style="background: #f11e09">提交订单</a>
-</div>
+
+        </div>
+
+    </div>
+
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">城<span
+                style="display: inline-block;width: 1.9em"></span>市:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <select class=" weui_select" style="padding: 0;margin: 0;height: 21px" ng-model="address.city"
+                    ng-options="key as key for (key,value) in division[address.province]"
+                    ng-change="address.district='';">
+                <option value="">市</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">地<span
+                style="display: inline-block;width: 1.9em"></span>区:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <select class=" weui_select" style="padding: 0;margin: 0;height: 21px" ng-change="or()"
+                    ng-model="address.district"
+                    ng-options="value as value for value in division[address.province][address.city]">
+                <option value="">区</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <div class="weui_cell" >
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" ng-model="address.place" placeholder="请输入详细地址">
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">联系电话:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" ng-model="order.userInfo.phone" placeholder="请输入联系电话">
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+    <div class="weui_cell" >
+        <div class="weui_cell_hd" style="padding-right: 1em;text-align: right;"><label class="weui_label"
+                                                                                       style="margin-left: 1em">QQ:</label>
+        </div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" ng-model="order.userInfo.QQ" placeholder="请输入qq号">
+        </div>
+    </div>
+
+    <div class="weui_cell" >
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">备<span
+                style="display: inline-block;width: 1.9em"></span>注:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <textarea class="weui_textarea" placeholder="请输入备注" ng-model="order.userInfo.note"
+                      style="padding: 0"></textarea>
+        </div>
+
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">数<span
+                style="display: inline-block;width: 1.9em"></span>量:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="number" ng-click="selectNum()" ng-model="order.num" placeholder="请选择数量">
+        </div>
+
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">应付价格:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <span >￥{{order.totalMoney}}</span>
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+
+    <!-- <p class="share" style="text-align: center;color: red">点击右上角分享到朋友圈立减2元</p>-->
+    <button type="submit" class="weui_btn" style="background: #f11e09" ng-click="tijiao()">提交订单</button>
+</form>
