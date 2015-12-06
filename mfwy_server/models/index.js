@@ -7,5 +7,6 @@ module.exports={
     connections:require('./connection/connection'),
     families:require('./family/family'),
     orders:require('./order/order'),
-    templates:require('./template/template')
+    templates:require('./template/template'),
+    adv:require('./system/adv')
 };

@@ -1,11 +1,9 @@
 <div class="ad">
     <div class="ad-foot">
 
-        <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
-            <ks-swiper-slide ng-repeat="s in ['/images/home/20150417143642425966758-699-344.jpg',
-                '/images/home/20141128140157729278559-699-344.jpg',
-                '/images/home/20141128135933820251974-699-344.jpg']">
-                <a href="" style="display:block;width: 100%;margin:0 auto;"><img ng-src="{{s}}" width="100%" ></a>
+        <ks-swiper-container autoplay="3000" pagination-is-active="true" swiper="swiper" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-slide ng-repeat="s in advImages">
+                <a href="" style="display:block;width: 100%;margin:0 auto;height: 250px"><img ng-src="http://17quay.cn/v1/images?name={{s.images}}" width="100%" height="100%" ></a>
             </ks-swiper-slide>
         </ks-swiper-container>
 

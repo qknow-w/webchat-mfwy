@@ -3,7 +3,7 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
 
     var app = angular.module('app', ['ui.router', 'ksSwiper', 'ipCookie']);
 
-    app.controller("AppController", ["$rootScope", function ($rootScope) {
+    app.controller("AppController", ["$rootScope",'$scope', '$http','ipCookie',function ($rootScope,$scope,$http,ipCookie) {
         //baidu map
         //当前位置
         $rootScope.currentAddress = [
@@ -21,6 +21,28 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
         $rootScope.addressDefault={
             selectAdd:"1"
         };
+
+        //图片路径
+        $scope.imagesPath = "http://17quay.cn/v1/images?name=";
+
+
+        //读取后台广告
+        $scope.adv=function(){
+            $http.get("http://17quay.cn/v1/adv?$filter=currentAdd eq '"+$rootScope.addressDefault.selectAdd+"'", void 0).success(function(data) {
+                $scope.advImages=data.value;
+            }).error(function(error) {
+                $scope.advImages=[];
+            });
+        };
+
+
+
+        return  $scope.adv();
+
+
+
+
+
         //default selected
        // $rootScope.addressDefault.selectAdd="1";
 /*        $scope.addressChange=function(){

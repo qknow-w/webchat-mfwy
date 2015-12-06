@@ -40,7 +40,7 @@ require.config({
         //'bt': ['angular', 'uiRoute', 'jquery', 'config', 'swiper', 'ngSwiper', 'ngCookie']
 
     },
-    deps: ['app'],
+   // deps: ['app'],
     waitSeconds: 0
 
 });

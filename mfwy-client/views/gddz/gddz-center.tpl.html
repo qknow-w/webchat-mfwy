@@ -3,7 +3,7 @@
     <div ng-repeat="order in entity">
     <div class="weui_cell goods-01">
         <div class="wddd-goods01">
-            <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-container autoplay="3000" pagination-is-active="true" swiper="swiper" on-ready="onReadySwiper(swiper)">
                 <ks-swiper-slide ng-repeat="s in order.images">
                     <a href="" style="display:block;width: 100%;margin:0 auto;height: 200px"><img
                             ng-src="http://17quay.cn/v1/images?name={{s}}" width="100%" height="100%"></a>
@@ -11,14 +11,14 @@
             </ks-swiper-container>
         </div>
     </div>
-    <div class="weui_cell" styel="border-bottom: 1px solid #d7d7d7;">
-        <div class="weui_cell_bd weui_cell_primary">
-            <p class="title">{{order.name}}</p>
-            <p >价格：<span class="jine">{{order.price}}/盒</span></p>
+    <div class="weui_cell" style="border-bottom: 1px solid #d7d7d7;">
+        <div class="weui_cell_bd weui_cell_primary" style="color:#898989;line-height: 1.4em;">
+            <p class="title" style="font-size: 1.4em">{{order.name}}</p>
+            <p >价格：<span class="jine">{{order.price}}</span>/盒</p>
         </div>
         <div class="weui_cell_ft">
-            <a href="javascript:" ng-click="buy(order.id,order.price,order.name)"  class="buy color-fe">立即购买</a>
-        </div>
+            <a href="javascript:" ng-click="buy(order.id,order.price,order.name,order.card.c_type,order.card.gongyi,order.images)"  class="buy color-fe">立即购买</a>
+    </div>
     </div>
 </div>
 </div>

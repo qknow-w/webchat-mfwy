@@ -85,7 +85,7 @@ server.use(require('./resources/connection/connection'));
 server.use(require('./resources/family/family'));
 server.use(require('./resources/order/order'));
 server.use(require('./resources/template/template'));
-
+server.use(require('./resources/system/adv'));
 
 server.listen(config.dev_por || config.pro_por, function () {
     require('./bootstrap/init-data').import();

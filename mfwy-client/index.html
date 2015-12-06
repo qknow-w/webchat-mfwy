@@ -40,17 +40,18 @@
     </div>
     <p class="weui_toast_content">页面加载中</p>
 </div>
-
-
 <div class="header" ui-view="header"></div>
 <div class="adv" ui-view="adv"></div>
 <div class="center" ui-view="center"></div>
 <div class="footer" ui-view="footer"></div>
 </body>
-<!--<script type="text/javascript" charset="utf-8"  src="vendo/angular.js"></script>
-<script type="text/javascript" charset="utf-8"  src="vendo/angular-cookie.min.js"></script>
-<script type="text/javascript" charset="utf-8"  src="vendo/angular-swiper.js"></script>
-<script type="text/javascript" charset="utf-8"  src="vendo/angular-ui-router.min.js"></script>-->
-<script type="text/javascript" charset="utf-8" src="/bower_components/requirejs/require.js?v=1221" data-main="/app/main.js"></script>
+<script type="text/javascript">
+    //console.log('<script type="text/javascript" charset="utf-8" src="/bower_components/requirejs/require.js" data-main="/app/main.js?v='+Date.parse(new Date())+'"'+'></sc' + 'ript>');
+    document.write('<script type="text/javascript" charset="utf-8" src="/bower_components/requirejs/require.js" data-main="/app/main.js?v='+Date.parse(new Date())+'"'+'></sc' + 'ript>');
+</script>
+
+<!--
+<script type="text/javascript" charset="utf-8" src="/bower_components/requirejs/require.js?v="+Date.parse(new Date()) data-main="/app/main.js"></script>
+-->
 
 </html>

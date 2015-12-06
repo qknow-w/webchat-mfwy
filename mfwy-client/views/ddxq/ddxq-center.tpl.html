@@ -4,10 +4,10 @@
 
     </div>
     <div class="weui_cells ddxq-cell">
-        <p class="weui_cell_hd weui_cell_primary">工艺：<span>{{order.card.gongyi}}</span></p>
+        <p class="weui_cell_hd weui_cell_primary" style="line-height: 2.4em">工艺：<span>{{order.card.gongyi}}</span></p>
     </div>
     <div class="weui_cells ddxq-cell">
-        <p class="weui_cell_bd" style="width:50%;">数量：<span>{{order.num}}</span></p>
+        <p class="weui_cell_bd" style="width:50%;line-height: 1.6em">数量：<span>{{order.num}}</span></p>
 
         <p class="weui_cell_hd weui_cell_primary">价格：<span class="jine danjia">￥{{order.totalMoney}}</span></p>
     </div>
@@ -109,11 +109,11 @@
             <textarea class="weui_textarea" placeholder="请输入备注" ng-model="order.userInfo.note"
                       style="padding: 0"></textarea>
         </div>
-
     </div>
+    <div class="weui_cell"></div>
 
-    <p class="share" style="text-align: center;color: red">点击右上角分享到朋友圈立减2元</p>
-    <button type="submit" class="weui_btn" style="background: #f11e09" ng-click="tijiao()">提交订单</button>
+    <p class="share" style="padding-bottom:6px;text-align: center;color: red">点击右上角分享到朋友圈立减2元</p>
+    <button type="submit" class="weui_btn weuibtn"  ng-click="tijiao()">提交订单</button>
 </form>
 
 

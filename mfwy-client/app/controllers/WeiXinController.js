@@ -14,12 +14,51 @@ define(['app', 'weixin'], function (app, wx) {
         };
         //选择照片
         $scope.chooseImage = function () {
-            wx.chooseImage({
-                success: function (res) {
-                    images.localId = res.localIds;
+            var ua = $window.navigator.userAgent.toLowerCase();
+            //var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return weixinService.getConfig().then(function (result) {
+                    wx.config({
+                        debug: false,
+                        appId: result.appId,
+                        timestamp: result.timestamp,
+                        nonceStr: result.nonceStr,
+                        signature: result.signature,
+                        jsApiList: [
+                            //'checkJsApi',
+                            'onMenuShareAppMessage',
+                            'onMenuShareTimeline',
+                            'chooseImage',
+                            'uploadImage'
+                        ]
+                    });
 
-                }
-            });
+                    //上传
+                    wx.chooseImage({
+                        success: function (res) {
+                            images.localId = res.localIds;
+
+                        }
+                    });
+
+                    wx.error(function (res) {
+                        //alert("系统繁忙，请关闭后重新进入");
+                        // WeixinJSBridge.call('closeWindow');
+                        //alert(res);
+                        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                    });
+                });
+            } else {
+
+
+                //return false;
+            }
+
+
+
+
+
+
 
         };
         //上传照片
@@ -65,6 +104,14 @@ define(['app', 'weixin'], function (app, wx) {
                         //images.serverId.push(res.serverId);
                         if (i < length) {
                             upload();
+                        }else{
+                            images.localId=[];
+                            $scope.toast.message = "上传完成";
+                            $scope.toast.upload = true;
+                            $timeout(function () {
+                                $scope.toast.upload = false;
+                            }, 900);
+                            $scope.$emit('imagePath', images.serverId);
                         }
                     },
                     fail: function (res) {
@@ -79,12 +126,7 @@ define(['app', 'weixin'], function (app, wx) {
             }
 
             upload();
-            $scope.toast.message = "上传完成";
-            $scope.toast.upload = true;
-            $timeout(function () {
-                $scope.toast.upload = false;
-            }, 900);
-            $scope.$emit('imagePath', images.serverId);
+
         };
 
         //分享给朋友
@@ -117,8 +159,6 @@ define(['app', 'weixin'], function (app, wx) {
 
             }
         });
-
-
         //分享到朋友圈
         wx.onMenuShareTimeline({
             title: "蜜蜂网印", // 分享标题   活动名称
@@ -148,12 +188,12 @@ define(['app', 'weixin'], function (app, wx) {
         });
 
 
-        var ua = $window.navigator.userAgent.toLowerCase();
+        /*var ua = $window.navigator.userAgent.toLowerCase();
         //var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             return weixinService.getConfig().then(function (result) {
                 wx.config({
-                    debug: false,
+                    debug: true,
                     appId: result.appId,
                     timestamp: result.timestamp,
                     nonceStr: result.nonceStr,
@@ -177,7 +217,7 @@ define(['app', 'weixin'], function (app, wx) {
 
 
             //return false;
-        }
+        }*/
 
 
     }

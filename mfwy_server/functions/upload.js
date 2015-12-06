@@ -125,6 +125,7 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
             // res.send('static/zip/'+zipname+".zip");
             //res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/'+zipname+".zip");
             res.setHeader("Content-Disposition", "attachment;filename=\"" + zipname + "\".zip");
+            res.setHeader('Content-type', 'application/zip');
            // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
             res.sendFile('/home/mfwy-server/static/zip/' + currentDate + "/" + zipname + ".zip");
         });
@@ -171,6 +172,7 @@ router.get('/v1/file/multil/zip', function (req, res, next) {
                     // res.send('static/zip/'+zipname+".zip");
                     //res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/'+zipname+".zip");
                     res.setHeader("Content-Disposition", "attachment;filename=\"" + zipname + "\".zip");
+                    res.setHeader('Content-type', 'application/zip');
                     //res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
                     res.sendFile('/home/mfwy-server/static/zip/' + currentDate + "/" + zipname + ".zip");
                 });

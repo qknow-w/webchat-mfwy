@@ -10,15 +10,13 @@
             </ks-swiper-container>
         </div>
     </div>
-    <div class="weui_cells " style="padding-left:0.8em;padding-right:0.8em;border-bottom:1px solid #ccc;">
-        <div class="weui_cell_hd" style="vertical-align:top;">
-           <!-- <input type="radio" name="sel-mb"/>-->
-        </div>
-        <div class="weui_cell_bd ">
-            <p>{{tpl.name}}</p>
-            <p style="font-size: 0.8em">价格：<span style="color:#fe4100">{{tpl.price}}</span> 元</p>
-            <a u ng-click="tplskip(tpl.id,tpl.price,tpl.name)"
-               class="btn-sure1 weui_btn weui_btn_plain_default">使用此模板下单</a>
+    <div class="weui_cells no-border" style="padding-left:0.8em;padding-right:0.8em;border-bottom:1px solid #ccc;margin-top:-0.3em;">
+
+        <div class="weui_cell_bd " style="">
+            <p style="font-size: 1.4em;color:#898989">{{tpl.name}}</p>
+            <p style="font-size: 0.8em;padding-bottom:0.5em;color:#898989">价格：<span style="color:#fe4100">{{tpl.price}}</span> 元</p>
+            <a  ng-click="tplskip(tpl.id,tpl.price,tpl.name)"
+               class="btn-sure1 weui_btn weui_btn_plain_default" style="background: transparent;margin-top:0.3em;">使用此模板下单</a>
         </div>
     </div>
 </div>

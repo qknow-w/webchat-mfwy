@@ -461,12 +461,15 @@ define(['app'], function (app) {
         $scope.entity = "";
 
         //立即购买
-        $scope.buy=function(id,price,name){
+        $scope.buy=function(id,price,name,c_type,gongyi,images){
 
             dingdan.order_type=6;
             dingdan.temInfo.id=id;
             dingdan.temInfo.name=name;
             dingdan.temInfo.price=price;
+            dingdan.card.c_type=c_type;
+            dingdan.card.gongyi=gongyi;
+            $scope.customImages=images;
             dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
             //跳转
             $location.path('/app/custom/dzxq');
@@ -477,7 +480,16 @@ define(['app'], function (app) {
             warn: false,
             message: ""
         };
-
+       $scope.maxus=function(){
+           dingdan.num=parseInt(dingdan.num)+1;
+           $scope.selectNum();
+       };
+        $scope.minus=function(){
+            if(parseInt(dingdan.num)>1){
+            dingdan.num=parseInt(dingdan.num)-1;
+            };
+            $scope.selectNum();
+        };
         //选择数量 重新计算价格
         $scope.selectNum=function(){
             if(dingdan.num<1){
@@ -486,10 +498,21 @@ define(['app'], function (app) {
             dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
         };
 
+
+        //表单验证
+        $scope.form = {
+            name: false,
+            company: false,
+            place: false,
+            phone: false,
+            QQ: false,
+            note: false
+        };
+
         //添加订单
         $scope.tijiao = function () {
             //表单验证
-            /* if(dingdan.userInfo.name==""){
+             if(dingdan.userInfo.name==""){
              $scope.form.name=true;
              return false;
              }else{
@@ -514,7 +537,7 @@ define(['app'], function (app) {
              $scope.form.phone=false;
              }
 
-             dingdan.userInfo.address += $scope.address.place;
+            /* dingdan.userInfo.address += $scope.address.place;
              dingdan.no = Date.parse(new Date());
              dingdan.openid=ipCookie("openid");
              orderService.order(dingdan).then(function (data) {
@@ -527,12 +550,14 @@ define(['app'], function (app) {
             dingdan.openid = ipCookie("openid");
             orderService.order(dingdan).then(function (data) {
                 $rootScope.custom={
-                    no:dingdan.no,
-                    money:dingdan.totalMoney
+                   id:data.id
                 };
                 $location.path("/app/order/zfdd");
             });
         };
+
+        //图片路径
+        $scope.imagesPath = config.url.api + "/v1/images?name=";
 
         //读取数据
         return customService.custom($rootScope.addressDefault.selectAdd).then(function (data) {

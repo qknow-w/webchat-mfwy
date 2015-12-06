@@ -17,8 +17,6 @@ define(['app'], function (app) {
                 dingdan.totalMoney = dingdan.totalMoney - 2;
                 dingdan.boolShared = true;
             }
-
-
         });
 
         //下拉数量数组
@@ -602,6 +600,8 @@ define(['app'], function (app) {
             //是否高端定制
             console.log($rootScope.hasOwnProperty('custom'));
 
+
+            //$scope.newId
             if ($rootScope.hasOwnProperty('custom')) {
                 /* console.log($rootScope.custom.no);
                  console.log($rootScope.custom.money);
@@ -689,6 +689,8 @@ define(['app'], function (app) {
                 dingdan.no = Date.parse(new Date());
                 dingdan.openid = ipCookie("openid");
                 orderService.order(dingdan).then(function (data) {
+                    console.log(data);
+                    $scope.newId=data.id;//返回生成的id
                     $location.path("/app/order/zfdd");
                 });
             } else {
@@ -702,8 +704,8 @@ define(['app'], function (app) {
             console.log(dingdan.no);
             //是否高端定制
             if ($rootScope.hasOwnProperty('custom')) {
-                console.log($rootScope.custom.no);
-                orderService.deliveryPay($rootScope.custom.no, ipCookie("openid")).then(function (data) {
+                console.log($rootScope.custom.id);
+                orderService.deliveryPay($rootScope.custom.id).then(function (data) {
                     $location.path("/app/order/wddd");
                 });
             } else {
@@ -714,16 +716,14 @@ define(['app'], function (app) {
                 } else {
                     alert("请不要重复提交订单.")
                 }*/
-                orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
+
+                //dingdan.no, ipCookie("openid")
+                orderService.deliveryPay($scope.newId).then(function (data) {
                     $location.path("/app/order/wddd");
                 });
             }
 
         };
-        /*        //判断是否为空
-         function isNull(arg1) {
-         return !arg1 && arg1 !== 0 && typeof arg1 !== "boolean" ? true : false;
-         }*/
         //图片路径
         $scope.imagesPath = config.url.api + "/v1/images?name=";
 

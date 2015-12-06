@@ -1,5 +1,5 @@
 <form class="weui_cells weui_cells_form" novalidate name="addressFrom">
-    <div class="weui_cell">
+    <div class="weui_cell" ng-class="{true:'weui_cell_warn',false:''}[form.name]">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">收货姓名:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <input class="weui_input" type="text" required ng-model="order.userInfo.name" placeholder="请输入收货姓名">
@@ -8,7 +8,7 @@
             <i class="weui_icon_warn"></i>
         </div>
     </div>
-    <div class="weui_cell" >
+    <div class="weui_cell" ng-class="{true:'weui_cell_warn',false:''}[form.company]" >
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">公司名称:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <input class="weui_input" type="text" ng-model="order.userInfo.company" placeholder="请输入公司名称">
@@ -46,7 +46,7 @@
         </div>
 
     </div>
-    <div class="weui_cell">
+    <div class="weui_cell" >
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">地<span
                 style="display: inline-block;width: 1.9em"></span>区:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
@@ -60,7 +60,7 @@
     </div>
 
 
-    <div class="weui_cell" >
+    <div class="weui_cell" ng-class="{true:'weui_cell_warn',false:''}[form.place]" >
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <input class="weui_input" type="text" ng-model="address.place" placeholder="请输入详细地址">
@@ -69,7 +69,7 @@
             <i class="weui_icon_warn"></i>
         </div>
     </div>
-    <div class="weui_cell">
+    <div class="weui_cell" ng-class="{true:'weui_cell_warn',false:''}[form.phone]">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">联系电话:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <input class="weui_input" type="text" ng-model="order.userInfo.phone" placeholder="请输入联系电话">
@@ -97,17 +97,29 @@
 
     </div>
     <div class="weui_cell">
+        <div class="weui_cell_hd" style="">
+            <label class="weui_label" style="padding-right: 2em;float:left;line-height:40px;">购买数量：</label>
+            <button class="" ng-click="minus()" style="float:left;width:40px;height:40px;border-radius: inherit;
+            border:1px solid #e8e8e8;background:#eee"><span
+                    style="font-size: 2em;color:#888">-</span></button>
+            <input style="float: left;border:1px solid #e8e8e8;height:38px;font-size: 1.2em;padding-left:5px;width: 2em;text-align: center" type="text"  onkeydown="this.onkeyup();"
+                   onkeyup="this.size=(this.value.length>1?this.value.length:1);" maxlength="4" size="1" ng-change="selectNum()" ng-model="order.num">
+            <button class="" ng-click="maxus()" style="float:left;width:40px;height:40px;border:1px solid #e8e8e8;
+            border-radius: inherit;background:#eee"><span style="font-size: 2em;color:#888">+</span></button>
+        </div>
+    </div>
+    <!--<div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">数<span
                 style="display: inline-block;width: 1.9em"></span>量:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <input class="weui_input" type="number" ng-click="selectNum()" ng-model="order.num" placeholder="请选择数量">
+            <input class="weui_input" type="number" ng-change="selectNum()" ng-model="order.num" placeholder="请选择数量">
         </div>
 
-    </div>
+    </div>-->
     <div class="weui_cell">
-        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">应付价格:</label></div>
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">应付价格：</label></div>
         <div class="weui_cell_bd weui_cell_primary">
-            <span >￥{{order.totalMoney}}</span>
+            <span class="jine">￥{{order.totalMoney}}</span>
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -115,5 +127,5 @@
     </div>
 
     <!-- <p class="share" style="text-align: center;color: red">点击右上角分享到朋友圈立减2元</p>-->
-    <button type="submit" class="weui_btn" style="background: #f11e09" ng-click="tijiao()">提交订单</button>
+    <button type="submit" class="weui_btn weuibtn"  ng-click="tijiao()">提交订单</button>
 </form>

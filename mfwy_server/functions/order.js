@@ -12,9 +12,9 @@ var request=require('request');
 var xlsx = require('node-xlsx');
 
 //更改为货到付款
-router.post("/v1/orders/:no/:openid",function(req,res,next){
+router.post("/v1/orders/after/:id",function(req,res,next){
     console.log(req.params.no);
-    resources.orders.findOne({no: req.params.no,openid:req.params.openid}).exec(function(err,result){
+    resources.orders.findOne({"_id":req.params.id}).exec(function(err,result){
         if(err)  res.status(500).send(err);
         console.log("result",result);
         result.states=2; // 2 货到付款
@@ -214,6 +214,7 @@ router.get("/v1/orders/excel/all",function(req,res,next){
         var myDate=new Date();
         var filename= myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
         res.setHeader("Content-Disposition",  "attachment;filename=\"" +filename + "\".xlsx");
+        res.setHeader('Content-type', 'application/vnd.ms-excel');
         res.send(buffer);
     });
 });
@@ -240,6 +241,7 @@ router.get("/v1/orders/excel/history/all/super",function(req,res,next){
         var myDate=new Date();
         var filename= myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
         res.setHeader("Content-Disposition",  "attachment;filename=\"" +filename + "\".xlsx");
+        res.setHeader('Content-type', 'application/vnd.ms-excel');
         res.send(buffer);
     });
 

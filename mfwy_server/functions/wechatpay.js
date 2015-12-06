@@ -27,10 +27,10 @@ router.post('/pay/order', function (req, res, next) {
        /* total_fee: parseInt(req.body.money)*100,*/
         spbill_create_ip: "115.28.6.179",
         openid: req.body.openid,
+        orderid:req.body.orderid,//id
         //openid:req.body.openid,
         trade_type: 'JSAPI'
     };
-
     payment.getBrandWCPayRequestParams(order, function (err, payargs) {
         if(err)  res.send(err);
         res.send(payargs);
@@ -44,7 +44,7 @@ router.post('/pay/payback', middleware(initConfig).getNotify().done(function(mes
     var order_id = message.out_trade_no;
     console.log("order_id",order_id);
    // var attach = {};
-    resources.orders.findOne({no: order_id,openid:openid}).exec(function(err,result){
+    resources.orders.findOne({"_id":message.orderid}).exec(function(err,result){
         if(err) console.log(err);  res.reply(err);
         console.log("result",result);
         result.states=1;
