@@ -1,0 +1,1 @@
+define(["app"],function(e){e.factory("weixinService",["$q","$http","$window","ipCookie",function(e,t,n,r){return getConfig=function(){var n;return n=e.defer(),t.get(config.url.api+"/JSSDK?para=http://qknow.com.cn/?openid="+r("openid"),void 0).success(function(e){return n.resolve(e)}).error(function(e){return n.reject(void 0)}),n.promise},{getConfig:getConfig}}])});

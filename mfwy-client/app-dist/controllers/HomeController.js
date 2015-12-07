@@ -1,0 +1,1 @@
+define(["app"],function(e){e.controller("HomeController",["$scope",function(e){}])});

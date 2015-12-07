@@ -4,7 +4,7 @@
 
 
 require.config({
-    baseUrl: '/app',
+    baseUrl: '/app-dist',
     paths: {
         /*'angular': '/bower_components/angular/angular',
          'uiRoute': '/bower_components/angular-ui-router/release/angular-ui-router.min',

@@ -1,5 +1,6 @@
 {
   "name": "mfwy-client",
+  "file":"app",
   "version": "1.0.0",
   "description": "mfwy-client",
   "main": "index.js",

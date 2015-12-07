@@ -1,0 +1,1 @@
+define(["app"],function(e){e.factory("customService",["$q","$http",function(e,t){return custom=function(n){var r;return r=e.defer(),t.get(config.url.api+"/v1/templates?$filter=type eq 1 and currentAdd eq '"+n+"'",void 0).success(function(e){return r.resolve(e.value)}).error(function(e){return console.log(e),r.reject(void 0)}),r.promise},{custom:custom}}])});

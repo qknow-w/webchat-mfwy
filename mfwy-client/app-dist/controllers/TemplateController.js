@@ -1,0 +1,1 @@
+define(["app"],function(e){e.controller("TemplateController",["$scope","$rootScope","templateService","$location",function(e,t,n,r){return e.entity="",e.tplskip=function(e,n,i){t.tpl={type:5,id:e,price:n,name:i},r.path("/app/order/tpl")},n.tpl(t.addressDefault.selectAdd).then(function(t){e.entity=t})}])});

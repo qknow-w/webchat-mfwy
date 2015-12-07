@@ -3,6 +3,8 @@
  */
 define([], function () {
     var urlArgs = Date.parse(new Date());
+    var app='app-dist'; //压缩前目录
+
     return {
         defaultRoutePath: '/',
         routes: {
@@ -27,8 +29,8 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/TemplateController.js?v=' + urlArgs,
-                    '/app/services/templateService.js?v=' + urlArgs
+                    '/'+app+'/controllers/TemplateController.js?v=' + urlArgs,
+                    '/'+app+'/services/templateService.js?v=' + urlArgs
                 ]
 
             },
@@ -53,8 +55,8 @@ define([], function () {
                 },
                 dependencies: [
                     /*'controllers/OrderController'*/
-                    "/app/controllers/WeiXinController.js?" + urlArgs,
-                    "/app/services/weixinService.js?" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?" + urlArgs,
+                    "/"+app+"/services/weixinService.js?" + urlArgs
                 ]
             },
             "template.ddxq": {
@@ -88,8 +90,8 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/OrderController.js?v=' + urlArgs,
-                    '/app/services/orderService.js?v=' + urlArgs
+                    '/'+app+'/controllers/OrderController.js?v=' + urlArgs,
+                    '/'+app+'/services/orderService.js?v=' + urlArgs
                 ]
             },
             "order.draft": {//看稿印刷
@@ -100,8 +102,8 @@ define([], function () {
                     "xqxq-center": "/views/draft/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.xqxq": {//直接印刷
@@ -112,8 +114,8 @@ define([], function () {
                     "xqxq-center": "/views/xqxq/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.redesign": {//重新设计
@@ -124,8 +126,8 @@ define([], function () {
                     "xqxq-center": "/views/redesign/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.quick": {//快印名片
@@ -136,8 +138,8 @@ define([], function () {
                     "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.tpl": {//模板印刷
@@ -148,8 +150,8 @@ define([], function () {
                     "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.ddxq": {
@@ -160,8 +162,8 @@ define([], function () {
                     "xqxq-center": "/views/ddxq/ddxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "order.zfdd": {
@@ -172,8 +174,8 @@ define([], function () {
                     "xqxq-center": "/views/zfdd/center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "custom": {
@@ -185,9 +187,9 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/CustomController.js?v=' + urlArgs,
-                    '/app/services/customService.js?v=' + urlArgs,
-                    "/app/services/orderService.js?v=" + urlArgs
+                    '/'+app+'/controllers/CustomController.js?v=' + urlArgs,
+                    '/'+app+'/services/customService.js?v=' + urlArgs,
+                    "/"+app+"/services/orderService.js?v=" + urlArgs
                 ]
             },
             "custom.gddz": {//高端定制
@@ -209,8 +211,8 @@ define([], function () {
                     "gddz-center": "/views/dzxq/center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                     /*'controllers/HomeController'*/
                 ]
             },
@@ -234,9 +236,9 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/MyorderController.js?v=' + urlArgs,
-                    '/app/services/myorderService.js?v=' + urlArgs,
-                    '/app/services/orderService.js?v=' + urlArgs
+                    '/'+app+'/controllers/MyorderController.js?v=' + urlArgs,
+                    '/'+app+'/services/myorderService.js?v=' + urlArgs,
+                    '/'+app+'/services/orderService.js?v=' + urlArgs
                 ]
             },
             "myorder.wddd": {
@@ -271,8 +273,8 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/SettleController.js?v=' + urlArgs,
-                    "/app/services/settleService.js?v=" + urlArgs
+                    '/'+app+'/controllers/SettleController.js?v=' + urlArgs,
+                    "/"+app+"/services/settleService.js?v=" + urlArgs
                 ]
             },
             "settle.detail": {//查看名片
@@ -292,8 +294,8 @@ define([], function () {
 
                 },
                 dependencies: [
-                    "/app/controllers/WeiXinController.js?v=" + urlArgs,
-                    "/app/services/weixinService.js?v=" + urlArgs
+                    "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,
+                    "/"+app+"/services/weixinService.js?v=" + urlArgs
                 ]
             },
             "contact": {
@@ -305,8 +307,8 @@ define([], function () {
                     "footer": "/views/home/footer.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
-                    '/app/controllers/ContactController.js?v=' + urlArgs,
-                    '/app/services/contactService.js?v=' + urlArgs
+                    '/'+app+'/controllers/ContactController.js?v=' + urlArgs,
+                    '/'+app+'/services/contactService.js?v=' + urlArgs
                 ]
             },
             "contact.zrm": {

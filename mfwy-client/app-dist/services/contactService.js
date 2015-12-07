@@ -1,0 +1,1 @@
+define(["app"],function(e){e.factory("contactService",["$q","$http",function(e,t){return list=function(){var n;return n=e.defer(),t.get(config.url.api+"/v1/connections",void 0).success(function(e){return n.resolve(e.value)}).error(function(e){return console.log(e),n.reject(void 0)}),n.promise},{list:list}}])});

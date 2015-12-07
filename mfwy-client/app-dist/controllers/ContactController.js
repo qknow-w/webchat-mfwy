@@ -1,0 +1,1 @@
+define(["app"],function(e){e.controller("ContactController",["$scope","contactService",function(e,t){return t.list().then(function(t){e.contactlist=t,console.log(t)})}])});

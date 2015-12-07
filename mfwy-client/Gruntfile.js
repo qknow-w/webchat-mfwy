@@ -35,11 +35,24 @@ module.exports = function (grunt) {
                 ]
 
             }
+        },
+        uglify:{
+            options: {
+                banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'//Ìí¼Óbanner
+            },
+            build: {
+                src: 'app/<%=pkg.file %>.js',
+                dest: 'dest/<%=pkg.file %>.min.js'
+            }
+
+
         }
+
     });
 
     grunt.registerTask('default', [
         'connect:server',
-        'watch'
+        'watch',
+        'uglify'
     ]);
 };
