@@ -17,10 +17,10 @@ angular.module("connection-edit", ["resource.connections"]).config([
                             name: "",//名称
                             company: "",//地址
                             address: "",//时间  数组  开始时间和结束时间
-                            qq:  "",//另外的信息  主题、主办方、简介
+                            qq: "",//另外的信息  主题、主办方、简介
                             phone: "",//图片  广告、海报
-                            whcaht:"",
-                            images:data.images
+                            whcaht: "",
+                            images: data.images
                         };
                         return deferred.resolve(ac);
                     });
@@ -48,20 +48,19 @@ angular.module("connection-edit", ["resource.connections"]).config([
         })
     }
 ])
-    .controller("ConnectionEditCtrl", ["$scope", "$routeParams", "$location", "$rootScope","$http", "FileUploader", "Connections", "connection","Pictures", "messager",
-        'ngDialog',function ($scope, $routeParams, $location, $rootScope,$http, FileUploader,Connections, connection, Pictures,messager,ngDialog) {
-
+    .controller("ConnectionEditCtrl", ["$scope", "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Connections", "connection", "Pictures", "messager",
+        'ngDialog','ipCookie', function ($scope, $routeParams, $location, $rootScope, $http, FileUploader, Connections, connection, Pictures, messager, ngDialog,ipCookie) {
 
 
             $scope.get = function () {
 
                 $scope.entity = connection;
 
-               // console.log($scope.entity.images.ad);
+                // console.log($scope.entity.images.ad);
             };
 
             $scope.submit = function () {
-                console.log( $location.path().substr(0,15));
+                console.log($location.path().substr(0, 15));
                 console.log($routeParams.id);
                 $scope.isSubmit = true;
                 $scope.loading = "Saving";
@@ -80,18 +79,25 @@ angular.module("connection-edit", ["resource.connections"]).config([
                  delete  $scope.entity.adUrl;
                  delete  $scope.entity.posterUrl;
                  entity.statistics = [0, 0, 0];*/
-                if ($location.path().substr(0,15)=='/connection/new') {
+                if ($location.path().substr(0, 16) == '/connections/new') {
 
                     Pictures.get({
-                            id: $routeParams.id
-                        }, function (data) {
-                            angular.forEach(data.images,function(items){
-                                console.log(items);
-                                entity.images.push(items);
-                            });
+                        id: $routeParams.id
+                    }, function (data) {
+                        /*angular.forEach(data.images,function(items){
+                         console.log(items);
+                         entity.images.push(items);
+                         });*/
+                        entity.images = data.images;
+                        entity.currentAdd=ipCookie('currentAdd');
+                        return Connections.post(entity, function (data) {
 
-                            return Connections.post(entity, function (data) {
-                                messager.success("Save successfully.");
+
+
+
+
+                            messager.success("Save successfully.");
+                            return $location.path("/family");
                         });
 
 
@@ -102,8 +108,8 @@ angular.module("connection-edit", ["resource.connections"]).config([
                     }, entity, function (data) {
 
 
-
                         messager.success("modify successfully.");
+                        return $location.path("/family");
                         //return $location.path("/activity");
                         /*var promise = $http({
                          method:"post",
@@ -125,26 +131,25 @@ angular.module("connection-edit", ["resource.connections"]).config([
                 save();
             };
             saveModify = function () {
-              /*  var entity;
-                $scope.loading = "Saving";
-                entity = $scope.entity;
-                return Activities.put({
-                    id: "" + entity.id
-                }, entity, function (data) {
-                    return messager.success("Save successfully.");
-                });*/
+                /*  var entity;
+                 $scope.loading = "Saving";
+                 entity = $scope.entity;
+                 return Activities.put({
+                 id: "" + entity.id
+                 }, entity, function (data) {
+                 return messager.success("Save successfully.");
+                 });*/
             };
 
             //上传设计文件 dialog
-            $scope.uploadFile=function(){
-                $scope.id=$routeParams.id;
+            $scope.uploadFile = function () {
+                $scope.id = $routeParams.id;
                 ngDialog.open({
                     template: '/app/connection/upload/upload-edit.tpl.html',
                     controller: 'UploadDialogCtrl',
-                    scope:$scope
+                    scope: $scope
                 });
             };
-
 
 
             return $scope.get();

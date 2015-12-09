@@ -3,7 +3,8 @@
  */
 /*人脉信息*/
 var connection = {
-    card_family: String,//安家图片，
+    card_family: String,//安家图片,
+    currentAdd:String,//当前位置// ，
     name: String,//名称
     company: String,//公司
     images: [String],//图片

@@ -24,6 +24,7 @@ router.post("/v1/cards/ctype/:pid/:cid", function (req, res, next) {
         var children = result.c_type.id(req.params.cid);
         children.price = req.body.price;
         children.name = req.body.name;
+        children.images = req.body.images;
         result.save();
         res.send("success");
     });
@@ -45,7 +46,7 @@ router.delete("/v1/cards/ctype/:pid/:cid", function (req, res, next) {
 router.post("/v1/cards/ctype/:pid/", function (req, res, next) {
     resources.cards.findById(req.params.pid).exec(function (err, result) {
         if (err)  res.status(500).send(err);
-        result.c_type.push({"name": req.body.name, "price": req.body.price});
+        result.c_type.push({"name": req.body.name, "price": req.body.price,"images":req.body.images});
         result.save();
         res.send("success");
     });
@@ -69,6 +70,7 @@ router.post("/v1/cards/gongyi/:pid/:cid", function (req, res, next) {
         var children = result.gongyi.id(req.params.cid);
         children.price = req.body.price;
         children.name = req.body.name;
+        children.images = req.body.images;
         result.save();
         res.send("success");
     });
@@ -90,7 +92,7 @@ router.delete("/v1/cards/gongyi/:pid/:cid", function (req, res, next) {
 router.post("/v1/cards/gongyi/:pid/", function (req, res, next) {
     resources.cards.findById(req.params.pid).exec(function (err, result) {
         if (err)  res.status(500).send(err);
-        result.gongyi.push({"name": req.body.name, "price": req.body.price});
+        result.gongyi.push({"name": req.body.name, "price": req.body.price,"images":req.body.images});
         result.save();
         res.send("success");
     });

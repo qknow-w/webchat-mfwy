@@ -19,15 +19,30 @@ angular.module('template-list', ['resource.templates']).config([
         };
 
         $scope.setPage = function(pageNo) {
-            return Templates.list({
-                $skip: (pageNo - 1) * 10,
-                $top: 10,
-                $count: true,
-                $filter:"type eq 0 and currentAdd eq '"+ipCookie('currentAdd')+"'"
-            }, function(data) {
-                return $scope.data = data;
+            if(ipCookie('currentAdd')=="0"){
+                return Templates.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true,
+                    $filter:"type eq 0"
+                }, function(data) {
+                    return $scope.data = data;
 
-            });
+                });
+            }else{
+                return Templates.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true,
+                    $filter:"type eq 0 and currentAdd eq '"+ipCookie('currentAdd')+"'"
+                }, function(data) {
+                    return $scope.data = data;
+
+                });
+            }
+
+
+
         };
 
         return $scope.setPage(1);

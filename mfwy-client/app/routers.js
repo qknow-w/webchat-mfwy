@@ -3,7 +3,7 @@
  */
 define([], function () {
     var urlArgs = Date.parse(new Date());
-    var app='app-dist'; //压缩前目录
+    var app='app'; //压缩前目录
 
     return {
         defaultRoutePath: '/',
@@ -98,7 +98,7 @@ define([], function () {
                 url: "/draft",
                 views: {
                     "xqxq-header": "/views/draft/xqxq-header.tpl.html?v=" + urlArgs,
-                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/draft/xqxq-adv.tpl.html?v=" + urlArgs,
                     "xqxq-center": "/views/draft/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
@@ -110,7 +110,7 @@ define([], function () {
                 url: "/xqxq",
                 views: {
                     "xqxq-header": "/views/xqxq/xqxq-header.tpl.html?v=" + urlArgs,
-                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
                     "xqxq-center": "/views/xqxq/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
@@ -122,7 +122,7 @@ define([], function () {
                 url: "/redesign",
                 views: {
                     "xqxq-header": "/views/redesign/xqxq-header.tpl.html?v=" + urlArgs,
-                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
                     "xqxq-center": "/views/redesign/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
@@ -134,7 +134,7 @@ define([], function () {
                 url: "/quick",
                 views: {
                     "xqxq-header": "/views/quick/xqxq-header.tpl.html?v=" + urlArgs,
-                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
                     "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [

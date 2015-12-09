@@ -515,6 +515,31 @@ define(['app'], function (app) {
         $scope.danjia = 0;
         //下拉选择
         $scope.jia = function () {
+            console.log($scope.selectCard.card.c_type);
+
+            //选择对应纸张图片
+            for (var i= 0, max = $scope.cardType.length; i < max; i++) {
+                if($scope.selectCard.card.c_type===$scope.cardType[i].id){
+                    console.log($scope.cardType[i].images);
+                    $scope.advImages=[$scope.cardType[i].images];
+                    //$scope.advImages.push($scope.cardType[i].images);
+                    // $scope.$apply();
+                    break;
+                }
+            }
+            //选择对应工艺图片
+            for (var j= 0, maxj = $scope.gongyiType.length; j < maxj; j++) {
+                if($scope.selectCard.card.gongyi===$scope.gongyiType[j].id){
+                    console.log($scope.gongyiType[j].images);
+                    $scope.advImages.push($scope.gongyiType[j].images)
+                    //$scope.advImages.push($scope.cardType[i].images);
+                    // $scope.$apply();
+                    break;
+                }
+            }
+            // $scope.gongyiType
+
+
             var cardTypePrice = "";// 纸张价格
             var cardGondYiPrice = "";//纸张工艺价格
             var num = $scope.order.num;
@@ -534,13 +559,13 @@ define(['app'], function (app) {
             }
 
             //计算总价格
-            if(dingdan.order_type==1){
+            if (dingdan.order_type == 1) {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
                 dingdan.totalMoney = $scope.danjia;
-            }else if(dingdan.order_type==2){
-                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+2;
+            } else if (dingdan.order_type == 2) {
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + 2;
                 dingdan.totalMoney = $scope.danjia;
-            }else{
+            } else {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
                 dingdan.totalMoney = $scope.danjia;
             }
@@ -579,16 +604,11 @@ define(['app'], function (app) {
             }
 
 
-
-
-           /* if ($rootScope.hasOwnProperty('tpl')) {
-                dingdan.temInfo.id = $rootScope.tpl.id;
-                dingdan.temInfo.name = $rootScope.tpl.name;
-                console.log(dingdan.temInfo);
-            }*/
-
-
-
+            /* if ($rootScope.hasOwnProperty('tpl')) {
+             dingdan.temInfo.id = $rootScope.tpl.id;
+             dingdan.temInfo.name = $rootScope.tpl.name;
+             console.log(dingdan.temInfo);
+             }*/
 
 
             $location.path("/app/order/ddxq"); //测试*!/
@@ -653,31 +673,31 @@ define(['app'], function (app) {
 
             console.log($scope.address.place);
             //表单验证
-             if(dingdan.userInfo.name==""){
-             $scope.form.name=true;
-             return false;
-             }else{
-             $scope.form.name=false;
-             }
-             if(dingdan.userInfo.company==""){
-             $scope.form.company=true;
-             return false;
-             }else{
-             $scope.form.company=false;
-             }
-             if($scope.address.place==undefined||$scope.address.place==""){
-             $scope.form.place=true;
-             return false;
-             }else{
-             $scope.form.place=false;
-             }
-             if(dingdan.userInfo.phone==""){
-                 $scope.form.phone=true;
-             return false;
-             }else{
-             $scope.form.phone=false;
-             }
-             /*dingdan.userInfo.address += $scope.address.place;
+            if (dingdan.userInfo.name == "") {
+                $scope.form.name = true;
+                return false;
+            } else {
+                $scope.form.name = false;
+            }
+            if (dingdan.userInfo.company == "") {
+                $scope.form.company = true;
+                return false;
+            } else {
+                $scope.form.company = false;
+            }
+            if ($scope.address.place == undefined || $scope.address.place == "") {
+                $scope.form.place = true;
+                return false;
+            } else {
+                $scope.form.place = false;
+            }
+            if (dingdan.userInfo.phone == "") {
+                $scope.form.phone = true;
+                return false;
+            } else {
+                $scope.form.phone = false;
+            }
+            /*dingdan.userInfo.address += $scope.address.place;
              dingdan.no = Date.parse(new Date());
              dingdan.openid=ipCookie("openid");
              orderService.order(dingdan).then(function (data) {
@@ -690,7 +710,7 @@ define(['app'], function (app) {
                 dingdan.openid = ipCookie("openid");
                 orderService.order(dingdan).then(function (data) {
                     console.log(data);
-                    $scope.newId=data.id;//返回生成的id
+                    $scope.newId = data.id;//返回生成的id
                     $location.path("/app/order/zfdd");
                 });
             } else {
@@ -709,13 +729,13 @@ define(['app'], function (app) {
                     $location.path("/app/order/wddd");
                 });
             } else {
-               /* if (dingdan.no == "") {
-                    orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
-                        $location.path("/app/order/wddd");
-                    });
-                } else {
-                    alert("请不要重复提交订单.")
-                }*/
+                /* if (dingdan.no == "") {
+                 orderService.deliveryPay(dingdan.no, ipCookie("openid")).then(function (data) {
+                 $location.path("/app/order/wddd");
+                 });
+                 } else {
+                 alert("请不要重复提交订单.")
+                 }*/
 
                 //dingdan.no, ipCookie("openid")
                 orderService.deliveryPay($scope.newId).then(function (data) {
@@ -724,40 +744,43 @@ define(['app'], function (app) {
             }
 
         };
+
         //图片路径
         $scope.imagesPath = config.url.api + "/v1/images?name=";
 
         //初始化数据
         return orderService.list($rootScope.addressDefault.selectAdd).then(function (result) {
+            console.log(result);
+            if (result.length > 0) {
+                //初始化下拉数据
+                $scope.cardType = result[0].c_type;
+                $scope.gongyiType = result[0].gongyi;
+                //默认选中设置
+                $scope.selectCard.card.c_type = $scope.cardType[0].id;
+                $scope.selectCard.card.gongyi = $scope.gongyiType[0].id;
+                $scope.jia();  //计算出默认价格
 
-            //初始化下拉数据
-            $scope.cardType = result[0].c_type;
-            $scope.gongyiType = result[0].gongyi;
-            //默认选中设置
-            $scope.selectCard.card.c_type = $scope.cardType[0].id;
-            $scope.selectCard.card.gongyi = $scope.gongyiType[0].id;
-            $scope.jia();  //计算出默认价格
-
-            //判断当前路由
-            var path = $location.path();
-            console.log(path);
-            var strs = path.split('/');
-            /* $scope.path = strs[3];  //路由
-             console.log(strs[3]);*/
-            if (strs[3] == "xqxq") {
-                dingdan.order_type = 1;//直接印刷
-            }
-            else if (strs[3] == "draft") {
-                dingdan.order_type = 2;//看搞印刷
-            }
-            else if (strs[3] == "redesign") {
-                dingdan.order_type = 3;//重新设计
-            }
-            else if (strs[3] == "quick") {
-                dingdan.order_type = 4;//快印名片
-            }
-            else if (strs[3] == "tpl") {
-                dingdan.order_type = 5;//模板印刷
+                //判断当前路由
+                var path = $location.path();
+                console.log(path);
+                var strs = path.split('/');
+                /* $scope.path = strs[3];  //路由
+                 console.log(strs[3]);*/
+                if (strs[3] == "xqxq") {
+                    dingdan.order_type = 1;//直接印刷
+                }
+                else if (strs[3] == "draft") {
+                    dingdan.order_type = 2;//看搞印刷
+                }
+                else if (strs[3] == "redesign") {
+                    dingdan.order_type = 3;//重新设计
+                }
+                else if (strs[3] == "quick") {
+                    dingdan.order_type = 4;//快印名片
+                }
+                else if (strs[3] == "tpl") {
+                    dingdan.order_type = 5;//模板印刷
+                }
             }
 
 

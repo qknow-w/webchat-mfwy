@@ -87,7 +87,7 @@ router.get('/oauth-openid', function (req, res, next) {
         }
         console.log(result);
         var openid = result.openid;
-        res.writeHeader(301, {'Location': "http://qknow.com.cn?openid="  + openid });
+        res.writeHeader(301, {'Location': "http://121wogo.com?openid="  + openid });
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
@@ -115,7 +115,7 @@ router.get('/oauth-openid-selforder', function (req, res, next) {
         }
         console.log(result);
         var openid = result.openid;
-        res.writeHeader(301, {'Location': "http://qknow.com.cn/app/order/wddd?openid="  + openid });
+        res.writeHeader(301, {'Location': "http://121wogo.com/app/order/wddd?openid="  + openid });
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();

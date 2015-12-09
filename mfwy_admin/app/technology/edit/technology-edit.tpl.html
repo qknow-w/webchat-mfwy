@@ -23,12 +23,35 @@
                         <input type="text" class="form-control" ng-model="entity.price" required/>
                     </div>
                 </div>
+                <div class="form-group" ng-hide="entity.id">
+                    <label class="col-lg-1 control-label">图片</label>
+
+                    <div class="col-lg-5">
+                        <input type="file" name="poster" accept="image/*" nv-file-select="" class="form-control"
+                               uploader="uploaderPoster"/>
+                    </div>
+                    <div class="col-lg-1" ng-repeat="item in uploaderPoster.queue">
+                        <button ng-click="item.upload()" class="btn btn-sm btn-primary"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传
+                        </button>
+                    </div>
+                </div>
+
+
+                <div ng-show="entity.images" class="form-group">
+                    <label class="col-lg-1 control-label">图片</label>
+
+                    <div class="col-lg-5">
+                        <img class="img-thumbnail" ng-src="http://17quay.cn/v1/images?name={{entity.images}}" alt=""/>
+                    </div>
+
+                </div>
 
 
                 <div class="form-group">
-                    <label class="col-lg-1 control-label"></label>
+                    <label class="col-lg-10 control-label"></label>
 
-                    <div class="col-lg-10">
+                    <div class="col-lg-1">
                         <button type="button" class="btn btn-primary" ng-click="modifyPaper()" >
                             <i class="fa fa-save"></i>
                             保存

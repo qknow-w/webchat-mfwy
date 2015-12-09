@@ -24,7 +24,7 @@ angular.module('order-list-history', ['resource.orders']).config([
 
         //search
         $scope.orderSearch = function() {
-            if(ipCookie('currentAdd')==1){
+            if(ipCookie('currentAdd')=="0"){
                 return $http.get(config.url.api+"/v1/orders/history/pagination/super?skip=0&top=10&search="+$scope.search).success(function(data) {
                     return $scope.data = data;
                 }).error(function(error) {
@@ -41,7 +41,7 @@ angular.module('order-list-history', ['resource.orders']).config([
 
 
         $scope.setPage = function(pageNo) {
-            if(ipCookie('currentAdd')==1){
+            if(ipCookie('currentAdd')=="0"){
                 return $http.get(config.url.api+"/v1/orders/history/pagination/super?skip="+(pageNo - 1) * 10+"&top=10&search="+$scope.search).success(function(data) {
                     return $scope.data = data;
                 }).error(function(error) {
@@ -60,7 +60,7 @@ angular.module('order-list-history', ['resource.orders']).config([
         //import excel
         $scope.importOrder=function(){
 
-            if(ipCookie('currentAdd')==1){
+            if(ipCookie('currentAdd')=="0"){
                 window.location.href=config.url.api+"/v1/orders/excel/history/all/super?search="+$scope.search;
 
             }else{

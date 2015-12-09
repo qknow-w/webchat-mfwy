@@ -160,6 +160,21 @@ define(['app'], function (app) {
 
         };
 
+
+        //完全删除删除订单
+        $scope.deleteOrderr=function(id){
+            myorderService.deleteOrderr(id).then(function (data) {
+                $scope.dialog.message="删除成功";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            },function(err){
+                $scope.dialog.message="删除成功失败,请重新删除";
+                $scope.dialog.selfOrder=true;
+                $scope.all();
+            });
+
+        };
+
         //订单详情
         $scope.orderDetail=function(id){
             myorderService.detailedOrder(id).then(function (data) {

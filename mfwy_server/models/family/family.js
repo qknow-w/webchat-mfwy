@@ -3,7 +3,8 @@
  */
 /*名片安家*/
 var family={
-    openid:String,//用户信息
+    openid:String,//用户信息,
+    currentAdd:String,//当前位置
     images:[String],//图片
     createInfo:{createTime: {type: Date, default: Date.now},people:String},
     updateInfo:{createTime: {type: Date, default: Date.now},people:String},

@@ -100,7 +100,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                     entity.currentAdd=ipCookie('currentAdd');
                     return Templates.post(entity, function (data) {
                         messager.success("Save successfully.");
-
+                        return $location.path("/template/0");
 
                     });
                 } else {
@@ -109,6 +109,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                     }, entity, function (data) {
 
                         messager.success("modify successfully.");
+                        return $location.path("/template/0");
                         //return $location.path("/activity");
                         /*var promise = $http({
                             method:"post",

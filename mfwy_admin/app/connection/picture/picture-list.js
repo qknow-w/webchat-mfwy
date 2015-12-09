@@ -10,7 +10,7 @@ angular.module('connection-picture', ['resource.pictures']).config([
         });
     }
 ]).controller('FamilyCtrl', [
-    "$scope","$location","Pictures","messager", function($scope,$location,Pictures,messager) {
+    "$scope","$location","Pictures","messager",'ipCookie', function($scope,$location,Pictures,messager,ipCookie) {
         $scope.delete=function(id){
            return Pictures["delete"]({id:id},function(){
                messager.success("delete successfully.");
@@ -19,15 +19,31 @@ angular.module('connection-picture', ['resource.pictures']).config([
         };
 
         $scope.setPage = function(pageNo) {
-            return Pictures.list({
-                $skip: (pageNo - 1) * 10,
-                $top: 10,
-                $count: true,
-                $filter:"states eq false"
-            }, function(data) {
-                return $scope.data = data;
+            if(ipCookie('currentAdd')=="0"){
+                return Pictures.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true,
+                    $filter:"states eq false"
+                }, function(data) {
+                    return $scope.data = data;
 
-            });
+                });
+            }else{
+                return Pictures.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true,
+                    $filter:"states eq false and currentAdd eq '"+ipCookie('currentAdd')+"'"
+                }, function(data) {
+                    return $scope.data = data;
+
+                });
+            }
+
+
+
+
         };
 
         return $scope.setPage(1);

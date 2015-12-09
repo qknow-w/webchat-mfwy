@@ -28,6 +28,7 @@ var weconfig = {
     encodingAESKey: encodingAESKey
 };
 
+
 /*
 //实例化 WechatAPI
  var api = new WechatAPI(appid, appsecret);
@@ -35,8 +36,9 @@ console.log(menu);
  //创建菜单
  api.createMenu(menu, function(err,result){
  console.log(result);
- });
-*/
+ });*/
+
+
 
 
 
@@ -49,7 +51,7 @@ console.log(menu);
 var config=require("./config/pro_config");
 
 //connect mongodb
-var server = odata('mongodb://115.28.6.179/mywydb');
+var server = odata('mongodb://120.25.76.44/mfwydb');
 odata.resources = server.resources;
 //middleware
 
@@ -86,6 +88,7 @@ server.use(require('./resources/family/family'));
 server.use(require('./resources/order/order'));
 server.use(require('./resources/template/template'));
 server.use(require('./resources/system/adv'));
+server.use(require('./resources/system/site'));
 
 server.listen(config.dev_por || config.pro_por, function () {
     require('./bootstrap/init-data').import();

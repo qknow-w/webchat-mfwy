@@ -65,7 +65,13 @@ angular.module("zy.services.security", ['resource.users', 'ipCookie']).factory("
           delete $http.defaults.headers.common['currentAdd'];
           return deferred.resolve("OK");
         }).error(function(err){
-
+          ipCookie.remove('authorization', {
+            path: '/'
+          });
+          ipCookie.remove('currentAdd');
+          delete $http.defaults.headers.common['authorization'];
+          delete $http.defaults.headers.common['currentAdd'];
+          return deferred.resolve("OK");
         });
         return deferred.promise;
       }

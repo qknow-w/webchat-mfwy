@@ -230,6 +230,20 @@
                                 </a>
                                 <b class="arrow"></b>
                             </li>
+                            <li active-link="active" ng-show="currentAdd=='0'">
+                                <a href="/system/site">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    站点管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li active-link="active" ng-show="currentAdd=='0'">
+                                <a href="/system/supperuser">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    用户管理
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -362,7 +376,7 @@
 <script src='/vendor/bootstrap-plugin/bootstrap-hover-dropdown.js'></script>
 <script src='/vendor/bootstrap-plugin/bootstrap-tag.js'></script>
 <script src='/vendor/bootstrap-plugin/typeahead-bs2.js'></script>
-<script src='/vendor/angular/angular.js'></script>
+<script src='/vendor/angular/angular.min.js'></script>
 <script src='/vendor/angular-translate/angular-translate.js'></script>
 <script src='/vendor/angular-animate/angular-animate.js'></script>
 <script src='/vendor/angular-cookie/angular-cookie.js'></script>
@@ -471,6 +485,18 @@
 <script src='/app/adv/upload/upload-edit.js'></script>
 <script src='/common/resources/adv.js'></script>
 
+
+<script src='/common/resources/site.js'></script>
+<script src='/app/system/site/site.js'></script>
+<script src='/app/system/site/list/site-list.js'></script>
+<script src='/app/system/site/edit/site-edit.js'></script>
+
+<script src='/common/resources/superUser.js'></script>
+<script src='/app/system/supperuser/supperuser.js'></script>
+<script src='/app/system/supperuser/list/supperuser-list.js'></script>
+<script src='/app/system/supperuser/edit/supperuser-edit.js'></script>
+
+
 <script src='/app/activity/activity.js'></script>
 <script src='/common/resources/users.js'></script>
 <script src='/common/services.js'></script>
@@ -502,5 +528,4 @@
 <script src='/app/system/user/user-edit-dialog.js'></script>
 <script src='/app/system/user/user.js'></script>
 <!--SCRIPTS END-->
-<script src="/plugin/dropzone.min.js"></script>
 </body>

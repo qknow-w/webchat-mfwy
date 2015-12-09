@@ -25,11 +25,21 @@ angular.module('order-list', ['resource.orders']).config([
         };
         // page
         $scope.setPage = function (pageNo) {
-            return $http.get(config.url.api + "/v1/orders/pagination?skip=" + (pageNo - 1) * 10 + "&top=10&currentAdd=" + ipCookie('currentAdd') + "&search=" + $scope.search).success(function (data) {
-                return $scope.data = data;
-            }).error(function (error) {
+            if(ipCookie('currentAdd')=="0"){
+                return $http.get(config.url.api + "/v1/orders/pagination?skip=" + (pageNo - 1) * 10 +  "&search=" + $scope.search).success(function (data) {
+                    return $scope.data = data;
+                }).error(function (error) {
 
-            });
+                });
+            }else{
+                return $http.get(config.url.api + "/v1/orders/pagination?skip=" + (pageNo - 1) * 10 + "&top=10&currentAdd=" + ipCookie('currentAdd') + "&search=" + $scope.search).success(function (data) {
+                    return $scope.data = data;
+                }).error(function (error) {
+
+                });
+            }
+
+
         };
 
         // 发货

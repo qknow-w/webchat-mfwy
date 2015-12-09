@@ -29,7 +29,8 @@ angular.module("technology-edit", ["resource.cards"]).config([
                 technology: function () {
                     return paper = {
                         name: "",//名称
-                        price: ""//地址
+                        price: "",//价格
+                        images:"" //图片
                     };
                 }
             }
@@ -39,6 +40,18 @@ angular.module("technology-edit", ["resource.cards"]).config([
     .controller("TechnologyEditCtrl", ["$scope", '$route', "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Cards", "technology", "messager",
         function ($scope, $route, $routeParams, $location, $rootScope, $http, FileUploader, Cards, technology, messager) {
 
+
+            //正面上传
+            var uploaderPoster = $scope.uploaderPoster = new FileUploader({
+                url: "" + config.url.api + "/v1/file-upload/?path=card",
+                removeAfterUpload:true
+            });
+
+            uploaderPoster.onCompleteItem = function (fileItem, response, status, headers) {
+                console.log(response);
+                $scope.entity.images=response;
+                // uploaderPoster.clearQueue();
+            };
             $scope.get = function () {
                 $scope.entity = technology;
                 // console.log($scope.entity.images.ad);

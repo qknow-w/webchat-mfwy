@@ -29,7 +29,8 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 paper: function () {
                     return paper = {
                         name: "",//名称
-                        price: ""//地址
+                        price: "",//价格
+                        images:""
                     };
                 }
             }
@@ -39,9 +40,22 @@ angular.module("paper-edit", ["resource.cards"]).config([
     .controller("PaperEditCtrl", ["$scope", '$route', "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Cards", "paper", "messager",
         function ($scope, $route, $routeParams, $location, $rootScope, $http, FileUploader, Cards, paper, messager) {
 
+            //正面上传
+            var uploaderPoster = $scope.uploaderPoster = new FileUploader({
+                url: "" + config.url.api + "/v1/file-upload/?path=card",
+                removeAfterUpload:true
+            });
+
+            uploaderPoster.onCompleteItem = function (fileItem, response, status, headers) {
+                console.log(response);
+                $scope.entity.images=response;
+                // uploaderPoster.clearQueue();
+            };
+
+
+
             $scope.get = function () {
                 $scope.entity = paper;
-                console.log(paper);
                 // console.log($scope.entity.images.ad);
             };
             //modify

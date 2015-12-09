@@ -1,0 +1,37 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li class="active">站点管理</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <div class="text-right">
+        <a href="/system/site/new" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i> 新增
+        </a>
+    </div>
+    <div class="hr hr-10 dotted hr-double"></div>
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 200px">名称</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data.value" style="height: 50px;">
+            <td><span><i class="fa"></i>{{item.name}}</span></td>
+            <td>{{item.AddressInfo.province}}{{item.AddressInfo.city}}{{item.AddressInfo.district}}</td>
+            <td>
+                <a class="btn btn-primary" href="/system/site/{{item.id}}">编辑</a>
+                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div zy-odata-pager="data" class="text-center"></div>
+</div>

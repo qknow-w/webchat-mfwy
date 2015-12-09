@@ -21,6 +21,7 @@
                         <input type="text" class="form-control" ng-model="entity.name" required/>
                     </div>
                     <label class="col-lg-1 control-label">单价</label>
+
                     <div class="col-lg-5">
                         <input type="text" class="form-control" ng-model="entity.price" required/>
                     </div>
@@ -32,6 +33,7 @@
                         <input type="text" class="form-control" ng-model="entity.card.c_type" required/>
                     </div>
                     <label class="col-lg-1 control-label">名片工艺</label>
+
                     <div class="col-lg-5">
                         <input type="text" class="form-control" ng-model="entity.card.gongyi" required/>
                     </div>
@@ -69,7 +71,7 @@
                 </div>
 
 
-                <div ng-show="entity.images[0]" class="form-group" >
+                <div ng-show="entity.images[0]" class="form-group">
                     <label class="col-lg-1 control-label">模板图片</label>
 
                     <div class="col-lg-5" ng-repeat="a in entity.images">
@@ -84,9 +86,9 @@
 
                     <div class="col-lg-10">
 
-                            <button type="button" class="btn btn-primary" ng-click="submit()">
-                                <i class="fa fa-save"></i>
-                                保存
+                        <button type="button" class="btn btn-primary" ng-click="submit()">
+                            <i class="fa fa-save"></i>
+                            保存
 
                         </button>
                     </div>

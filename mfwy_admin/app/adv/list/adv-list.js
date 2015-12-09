@@ -19,15 +19,30 @@ angular.module('adv-list', ['resource.adv']).config([
         };
 
         $scope.setPage = function(pageNo) {
-            return Adv.list({
-                $skip: (pageNo - 1) * 10,
-                $top: 10,
-                $count: true,
-                $filter:"currentAdd eq '"+ipCookie('currentAdd')+"'"
-            }, function(data) {
-                return $scope.data = data;
+            if(ipCookie('currentAdd')=="0"){
+                return Adv.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true
+                }, function(data) {
+                    return $scope.data = data;
 
-            });
+                });
+            }else{
+                return Adv.list({
+                    $skip: (pageNo - 1) * 10,
+                    $top: 10,
+                    $count: true,
+                    $filter:"currentAdd eq '"+ipCookie('currentAdd')+"'"
+                }, function(data) {
+                    return $scope.data = data;
+
+                });
+            }
+
+
+
+
         };
 
         //新增广告 dialog

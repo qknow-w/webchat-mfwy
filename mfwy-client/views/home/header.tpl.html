@@ -8,10 +8,10 @@
             </select>
 
         </div>-->
-        <div class="weui_select_before weui_cell_select">
-        <div class="weui_cell_hd" style="height: 30px;padding-right: 20px;margin: 0;background:url('../../images/down.png')right 12px no-repeat;background-size: 18% 30%">
-            <select name="" class="weui_select" style="height: 20px;padding: 0;margin: 0;color: #fff" ng-model="addressDefault.selectAdd"
-                    ng-options="a.value as a.name for a in currentAddress">
+        <div class="weui_select_before weui_cell_select" style="margin-right:0;">
+        <div class="weui_cell_hd" style="height: 30px;padding-right: 20px;margin: 0;background:url('../../images/down.png')right 14px no-repeat;background-size: 18% 30%">
+            <select name="" class="weui_select" style="border:none;height: 20px;padding: 0;margin: 0;color: #fff" ng-model="addressDefault.selectAdd" ng-change="changeAddAdv()"
+                    ng-options="a.id as a.name for a in currentAddress">
             </select>
         </div>
         <div class="weui_cell_bd weui_cell_primary" style="text-align: right;">

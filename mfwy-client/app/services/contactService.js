@@ -5,10 +5,10 @@
 define(['app'], function (app) {
     app.factory('contactService', ['$q','$http', function ($q,$http) {
 
-        list=function(){
+        list=function(currentAdd){
             var deferred;
             deferred = $q.defer();
-            $http.get(config.url.api+"/v1/connections", void 0).success(function(data) {
+            $http.get(config.url.api+"/v1/connections?$filter=currentAdd eq '"+currentAdd+"'", void 0).success(function(data) {
                 return deferred.resolve(data.value);
             }).error(function(error) {
                 console.log(error);

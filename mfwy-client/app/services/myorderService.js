@@ -80,6 +80,17 @@ define(['app'], function (app) {
             });
             return deferred.promise;
         };
+        //完全删除订单
+        deleteOrder=function(id){
+            var deferred;
+            deferred = $q.defer();
+            $http.delete(config.url.api+"/v1/orders("+id+")").success(function(data) {
+                return deferred.resolve(data);
+            }).error(function(error) {
+                return deferred.reject(void 0);
+            });
+            return deferred.promise;
+        };
 
         //订单详情
         detailedOrder=function(id){
@@ -98,6 +109,7 @@ define(['app'], function (app) {
             takeDelivery:takeDelivery,
             confirm:confirm,
             deleteOrder:deleteOrder,
+            deleteOrderr:deleteOrderr,
             detailedOrder:detailedOrder
         }
     }]);

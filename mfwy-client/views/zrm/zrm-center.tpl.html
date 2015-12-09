@@ -1,8 +1,10 @@
 <div class="zrm-center">
     <div class="weui_cell zrm-search">
         <input type="text" class="input-search" placeholder="搜索你想要的名片"/>
-        <i class="fa fa-search" style="position: absolute;top:1em;right:15px;"></i>
+        <i class="fa" style="position: absolute;top:1em;right:25px;display: inline-block;width:20px;height:20px;
+        background: url('../../images/search-mt-2.png')no-repeat center; background-size: 100%;"></i>
     </div>
+    <div class="line-12" style="background: #e3e3e6"></div>
     <div ng-repeat="contact in contactlist">
     <div class="weui_cell goods-01">
         <div class="wddd-goods01">
@@ -13,17 +15,17 @@
             </ks-swiper-container>
         </div>
     </div>
-    <div class="weui_cell">
-        <div class="weui_cell_hd" style="padding:20px 10px 10px;">
-            <img  src="../../images/cx-logo.png" width="50" alt=""/>
+    <div class="weui_cell" style="padding:0;border-bottom:1px solid #e8e8e8">
+        <div class="weui_cell_hd" style="padding:0 5px 0 15px;">
+            <img  src="../../images/cx-logo.png" width="45" alt=""/>
         </div>
         <div class="weui_cell_bd weui_cell_primary">
-            <p class="title">{{contact.name}}</p>
-            <p class="brief">{{contact.company}}</p>
+            <p class="title" style="line-height: 1.2em;">{{contact.name}}</p>
+            <p class="brief" style="line-height: 1.2em;">{{contact.company}}</p>
 
         </div>
-        <div class="weui_cell_ft">
-            <a href="javascript:" class="save" style="color:#888">保存到通讯录</a>
+        <div class="weui_cell_ft" style="padding-right:15px;">
+            <a href="javascript:" class="save">保存到通讯录</a>
         </div>
         <p class="lxfs" style="padding-left:65px;display: inline-block"><img src="../../images/weixin.png" width="28" alt=""/><img src= "../../images/qq.png" width="28" alt=""/><img src="../../images/phone.png" width="28" alt=""/>
             <span style="vertical-align: top;line-height: 30px;color:#888">{{contact.phone}}</span></p>

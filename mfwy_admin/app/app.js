@@ -17,7 +17,7 @@ angular.module("app", ['ngRoute', 'ngCookies', 'ngSanitize', "activity",'order',
             return ngProgress.color('#5cb85c');
         }
     ]).run([
-        "$rootScope", "security", "$location", "context", function ($rootScope, security, $location, context) {
+        "$rootScope","security", "$location", "context",'ipCookie', function ($rootScope,security, $location, context,ipCookie) {
             var current;
             current = $location.path();
             if (current !== '/login') {
@@ -25,6 +25,10 @@ angular.module("app", ['ngRoute', 'ngCookies', 'ngSanitize', "activity",'order',
             }
             $location.path('/login').replace();
             return security.autoLogin().then(function (data) {
+                $rootScope.currentAdd=ipCookie('currentAdd');
+                console.log($rootScope.currentAdd);
+
+
                 context.account = {
                     name: data.name,
                     email: data.email

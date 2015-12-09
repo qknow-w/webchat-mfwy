@@ -9,7 +9,7 @@ define(['app'], function (app) {
             //alert(config.url.api+"/JSSDK?para="+$window.location.href.split('#')[0]);
             //alert(config.url.api+"/JSSDK?para=http://17quay.cn/openid?="+ipCookie('openid'));
             //config.url.api+"/JSSDK?para="+encodeURIComponent($window.location.href.split('#')[0]
-            $http.get(config.url.api+"/JSSDK?para=http://qknow.com.cn/?openid="+ipCookie('openid'), void 0).success(function(data) {
+            $http.get(config.url.api+"/JSSDK?para=http://121wogo.com/?openid="+ipCookie('openid'), void 0).success(function(data) {
                 return deferred.resolve(data);
             }).error(function(error) {
                 return deferred.reject(void 0);

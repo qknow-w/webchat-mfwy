@@ -139,10 +139,10 @@ router.get("/v1/orders/history/pagination/super",function(req,res,next){
     var skip=req.query.skip;
     var top=req.query.top;
     var search=req.query.search;
-    resources.orders.find().or([{"states":3,"no":new RegExp(search, "i")},
+    resources.orders.find().or([{"states":{"$in":[3,6]},"no":new RegExp(search, "i")},
         {"states":3,"userInfo.name":new RegExp(search, "i")}]).exec(function(err,count){
         if(err)  res.status(500).send(err);
-        resources.orders.find().or([{"states":3,"no":new RegExp(search, "i")},
+        resources.orders.find().or([{"states":{"$in":[3,6]},"no":new RegExp(search, "i")},
             {"states":3,"userInfo.name":new RegExp(search, "i")}]).skip(skip).limit(top).sort({"states" :"1","createInfo" :"-1"}).exec(function(err,result){
             if(err)  res.status(500).send(err);
             res.send({"@odata.count":count.length,"value":result});
@@ -156,11 +156,11 @@ router.get("/v1/orders/history/pagination/children",function(req,res,next){
     var top=req.query.top;
     var currentAdd=req.query.currentAdd;
     var search=req.query.search;
-    resources.orders.find().or([{"currentAdd":currentAdd,"states":3,"no":new RegExp(search, "i")},
-        {"currentAdd":currentAdd,"states":3,"userInfo.name":new RegExp(search, "i")}]).exec(function(err,count){
+    resources.orders.find().or([{"currentAdd":currentAdd,"states":{"$in":[3,6]},"no":new RegExp(search, "i")},
+        {"currentAdd":currentAdd,"states":{"$in":[3,6]},"userInfo.name":new RegExp(search, "i")}]).exec(function(err,count){
         if(err)  res.status(500).send(err);
-        resources.orders.find().or([{"currentAdd":currentAdd,"states":3,"no":new RegExp(search, "i")},
-            {"currentAdd":currentAdd,"states":3,"userInfo.name":new RegExp(search, "i")}]).skip(skip).limit(top).sort({"states" :"1","createInfo" :"-1"}).exec(function(err,result){
+        resources.orders.find().or([{"currentAdd":currentAdd,"states":{"$in":[3,6]},"no":new RegExp(search, "i")},
+            {"currentAdd":currentAdd,"states":{"$in":[3,6]},"userInfo.name":new RegExp(search, "i")}]).skip(skip).limit(top).sort({"states" :"1","createInfo" :"-1"}).exec(function(err,result){
             if(err)  res.status(500).send(err);
             res.send({"@odata.count":count.length,"value":result});
         });

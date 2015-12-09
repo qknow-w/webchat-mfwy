@@ -1,0 +1,66 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li><a href="/gallery">活动</a></li>
+        <li class="active" ng-hide="entity.id">新增</li>
+        <li class="active" ng-show="entity.id">编辑(<span>{{ ::entity.name }}</span>)</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <tabset>
+        <tab heading="填写信息">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">昵称</label>
+
+                    <div class="col-lg-11">
+                        <input type="text" class="form-control" ng-model="entity.name" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">用户名</label>
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.account" required/>
+                    </div>
+                    <label class="col-lg-1 control-label">密码</label>
+
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" ng-model="entity.password" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">所属站点</label>
+
+                    <div class="col-lg-5">
+                        <select required="" class="form-control" ng-model="entity.currentAdd"
+                                ng-options="site.id as site.name for site in siteData">
+                            <option value="">选择所属站点</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label"></label>
+
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-primary" ng-click="submit()">
+                            <i class="fa fa-save"></i>
+                            保存
+                        </button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="button" class="btn btn-success">
+                            <i class="fa fa-save"></i>
+                            返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+

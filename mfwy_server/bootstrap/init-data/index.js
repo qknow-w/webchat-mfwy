@@ -22,7 +22,7 @@ module.exports={
            // initData(resources.orders, "./order/order.json");
             //initData(resources.templates, "./template/template.json");
             //initData(resources.cards, "./card/card.json");
-            initData(resources.users, "./system/user.json");
+           // initData(resources.users, "./system/user.json");
          /* for(var i=0;i<100;i++){
                 initData(resources.orders, "./order/order.json");
             }*/

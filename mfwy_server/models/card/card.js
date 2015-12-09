@@ -3,8 +3,8 @@
  */
 /*名片集合*/
 var card={
-    c_type:[{num:Number,name:String,price:String}],//类型
-    gongyi:[{num:Number,name:String,price:String}],//工艺
+    c_type:[{num:Number,name:String,price:String,images:String}],//类型
+    gongyi:[{num:Number,name:String,price:String,images:String}],//工艺
     price:String, //价格
     currentAdd:String,//当前位置
     createInfo:{createTime: {type: Date, default: Date.now},people:String},

@@ -88,7 +88,7 @@ router.post('/v1/file-upload/designFile', function (req, res, next) {
 router.get("/v1/images", function (req, res, next) {
     var name = req.query.name;
    // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/' + name);
-    res.sendFile('/home/mfwy-server/static/' + name);
+    res.sendFile('/home/ftp/mfwy_server/static/' + name);
 });
 
 
@@ -127,7 +127,7 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
             res.setHeader("Content-Disposition", "attachment;filename=\"" + zipname + "\".zip");
             res.setHeader('Content-type', 'application/zip');
            // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
-            res.sendFile('/home/mfwy-server/static/zip/' + currentDate + "/" + zipname + ".zip");
+            res.sendFile('/home/ftp/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
         });
 
     });
@@ -174,7 +174,7 @@ router.get('/v1/file/multil/zip', function (req, res, next) {
                     res.setHeader("Content-Disposition", "attachment;filename=\"" + zipname + "\".zip");
                     res.setHeader('Content-type', 'application/zip');
                     //res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
-                    res.sendFile('/home/mfwy-server/static/zip/' + currentDate + "/" + zipname + ".zip");
+                    res.sendFile('/home/ftp/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
                 });
             }
         });

@@ -8,5 +8,6 @@ module.exports={
     families:require('./family/family'),
     orders:require('./order/order'),
     templates:require('./template/template'),
-    adv:require('./system/adv')
+    adv:require('./system/adv'),
+    sites:require('./system/site')
 };

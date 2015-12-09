@@ -12,7 +12,8 @@
 
 <div class="wddd-center bd">
     <div ng-repeat="a in myorder">
-        <div class="weui_cells weui_cells_checkbox">
+        <div class="line-12"></div>
+        <div class="weui_cells weui_cells_checkbox label">
             <label class="weui_cell weui_check_label">
                 <!--<div class="weui_cell_hd">
                     <input type="checkbox" class="weui_check" name="goods"/>
@@ -50,35 +51,20 @@
             <div class="weui_cells ddxq-cell " style="padding-bottom:0.5em;border-bottom:1px solid #d7d7d7;">
                 <p class="weui_cell_hd weui_cell_primary">工艺：<span>{{a.card.gongyi}}</span></p>
             </div>
-            <div class="weui_cells">
+            <div class="weui_cells ft-bottom">
                 <div class="weui_cell_bd weui_cell_primary">
                 </div>
-                <div class="weui_cell_ft">
-                    <a href="" class="weui_btn weui_btn_mini weui_btn_default" ng-click="orderDetail(a.id)">查看详情</a>
-                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default" ng-show="a.states==3||a.states==0" ng-click="deleteOrder(a.id)">删除订单</a>
-                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_warn"
+                <div class="weui_cell_ft ">
+                    <a href="" class="weui_btn weui_btn_mini weui_btn_default btn" ng-click="orderDetail(a.id)">查看详情</a>
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn" ng-show="a.states==0" ng-click="deleteOrderr(a.id)">删除订单</a>
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn" ng-show="a.states==3" ng-click="deleteOrder(a.id)">删除订单</a>
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_warn btn"
                        ng-click="confirm(a.id)" ng-show="a.states!==3&&a.states!==0">确认收货</a>
                 </div>
             </div>
 
         </div>
     </div>
-    <div style="width: 100%;height: 0.1em;border-bottom: 0.1em solid #d7d7d7"></div>
 
-    <!-- <div class="weui_cells weui_cells_checkbox">
-         <label class="weui_cell weui_check_label">
-             <div class="weui_cell_hd">
-                 <input type="checkbox" class="weui_check" name="goods"/>
-                 <i class="weui_icon_checked"></i>
-             </div>
-             <div class="weui_cell_bd weui_cell_primary">
-                 <p>全选</p>
-             </div>
-             <div class="weui_cell_ft">
-                 <p style="color:#000;">共<span class="goods-num">2</span>件商品 &nbsp;&nbsp;实付：<span class="color-fe">￥{{myorder1.price+myorder2.price}}</span></p>
-             </div>
-         </label></div>-->
-    <!--<div class="weui_cell">
-        <a ui-sref="order.xqxq" class="weui_btn bg" >继续订购</a>
-    </div>-->
+
 </div>

@@ -6,21 +6,29 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
     app.controller("AppController", ["$rootScope",'$scope', '$http','ipCookie',function ($rootScope,$scope,$http,ipCookie) {
         //baidu map
         //当前位置
-        $rootScope.currentAddress = [
-            {
-                value: "1",
-                name: '甘肃省'
 
-            },
-            {
-                value: "2",
-                name: '山东省'
-
-            }
-        ];
         $rootScope.addressDefault={
-            selectAdd:"1"
+            selectAdd:"ac59cf7a-7a06-416b-a07a-17c9474f56cf"
         };
+        //读取站点
+        $scope.site=function(){
+            $http.get("http://17quay.cn/v1/sites?$select=id,name", void 0).success(function(data) {
+                $rootScope.currentAddress=data.value;
+            }).error(function(error) {
+                $rootScope.currentAddress=[];
+            });
+        };
+
+        $scope.changeAddAdv=function(){
+            $http.get("http://17quay.cn/v1/adv?$filter=currentAdd eq '"+$rootScope.addressDefault.selectAdd+"'", void 0).success(function(data) {
+                $scope.advImages=data.value;
+            }).error(function(error) {
+                $scope.advImages=[];
+            });
+        };
+
+
+
 
         //图片路径
         $scope.imagesPath = "http://17quay.cn/v1/images?name=";
@@ -36,7 +44,7 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
         };
 
 
-
+        $scope.site();
         return  $scope.adv();
 
 

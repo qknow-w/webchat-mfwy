@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/11/3 0003.
  */
 define(['app'], function (app) {
-    app.controller('SettleController', ['$scope', '$timeout','$location', 'ipCookie', 'settleService', function ($scope, $timeout,$location, ipCookie, settleService) {
+    app.controller('SettleController', ['$rootScope','$scope', '$timeout','$location', 'ipCookie', 'settleService', function ($rootScope,$scope, $timeout,$location, ipCookie, settleService) {
         //监听上传回调
         $scope.$on('imagePath', function (event, data) {
             //父级能得到值
@@ -17,7 +17,8 @@ define(['app'], function (app) {
         //名片安家模型
         $scope.settle = {
             "openid": ipCookie('openid'),
-            "images": []
+            "images": [],
+           "currentAdd" :$rootScope.addressDefault.selectAdd
         };
 
         //查看名片

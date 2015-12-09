@@ -20,7 +20,7 @@ define(['app'], function (app) {
             payInfo: {
                 payType: ""
             },
-            currentAdd:"",
+            currentAdd:$rootScope.addressDefault.selectAdd,
             temInfo: {
                 id: "",
                 name:"",
