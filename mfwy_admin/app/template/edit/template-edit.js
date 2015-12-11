@@ -70,6 +70,17 @@ angular.module("template-edit", ["resource.templates"]).config([
                 // uploaderPoster.clearQueue();
             };
 
+            //正面上传
+            var uploader3 = $scope.uploader3 = new FileUploader({
+                url: "" + config.url.api + "/v1/file-upload/?path=template",
+                removeAfterUpload:true
+            });
+
+            uploader3.onCompleteItem = function (fileItem, response, status, headers) {
+                $scope.entity.images[2]=response  ;
+                // uploaderPoster.clearQueue();
+            };
+
 
             $scope.submit = function () {
 

@@ -526,9 +526,17 @@ define(['app'], function (app) {
         $scope.danjia = 0;
         //下拉选择
         $scope.jia = function () {
-            console.log($scope.selectCard.card.c_type);
 
             //选择对应纸张图片
+
+            //显示对应的模板
+            if(dingdan.order_type == 5){
+
+            }else{
+
+            }
+
+
             for (var i = 0, max = $scope.cardType.length; i < max; i++) {
                 if ($scope.selectCard.card.c_type === $scope.cardType[i].id) {
                     console.log($scope.cardType[i].images);
@@ -568,7 +576,7 @@ define(['app'], function (app) {
                     break;
                 }
             }
-            console.log("order_type",dingdan.order_type);
+
 
             //计算总价格
             if (dingdan.order_type == 1) {
@@ -577,11 +585,16 @@ define(['app'], function (app) {
             } else if (dingdan.order_type == 2) {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + 2;
                 dingdan.totalMoney = $scope.danjia;
-            } else {
+            } else if (dingdan.order_type == 3) {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+5;
                 dingdan.totalMoney = $scope.danjia;
+            } else if (dingdan.order_type == 5) {
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+parseInt($rootScope.tpl.price);
+                dingdan.totalMoney = $scope.danjia;
+            }else{
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
+                dingdan.totalMoney = $scope.danjia;
             }
-
             //计算总价格
 
 
@@ -589,7 +602,6 @@ define(['app'], function (app) {
 
         //下一步
         $scope.next = function () {
-
             if (dingdan.images.length == 0) {
                 $scope.toast.message = "请选择上传照片";
                 $scope.toast.warn = true;

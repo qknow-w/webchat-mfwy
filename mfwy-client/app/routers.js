@@ -146,7 +146,7 @@ define([], function () {
                 url: "/tpl",
                 views: {
                     "xqxq-header": "/views/quick/xqxq-header.tpl.html?v=" + urlArgs,
-                    "xqxq-adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "xqxq-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
                     "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
