@@ -29,11 +29,10 @@
 
     body .mainmenu li {
         float: left;
-        margin-left: 3%;
         /* display: block;
          margin: 0 auto;*/
         margin-top: 2.5%;
-        width: 45%;
+        width: 50%;
         overflow: hidden;
     }
 
@@ -82,9 +81,11 @@
     <li><a href="javascript:" ng-click="seeCard()"><b><img src="../../images/tjxx.png"/></b><span>查看名片</span></a></li>
 </ul>
 <div class="weui_cell " style="padding:10px 0;border-bottom: 1px solid #d7d7d7;" ng-controller="WeiXinController">
-    <a href="javascript:;" class="a-btn" ng-click="chooseImage()"><i class="fa fa-camera"></i>&nbsp;&nbsp;选择照片</a>
-    <a href="javascript:;" class="a-btn" ng-click="upload()"><i class="fa fa-upload"></i>&nbsp;&nbsp;上传照片</a>
-
+    <ul class="mainmenu" style="">
+        <li><a href="javascript:"  class="a-btn" style="width: 90%;margin:0 auto;" ng-click="chooseImage()"><i class="fa fa-camera"></i>&nbsp;&nbsp;选择照片</a>
+        </li>
+        <li><a href="javascript:" class="a-btn" style="width: 90%;margin:0 auto;" ng-click="upload()"><i class="fa fa-upload"></i>&nbsp;&nbsp;上传照片</a>
+    </ul>
     <div ng-show="toast.upload">
         <div class="weui_mask_transparent"></div>
         <div class="weui_toast">
@@ -99,7 +100,8 @@
         <label>注：</label>
     </div>
     <div class="weui_cell_bd weui_cell_primary">
-        <p>客户相传文件到平台，我们负责为客户设计好拍照的图片，并进行展示，如客户以后需要印刷，可以直接下载使用并下单印刷。</p>
+        <p>您可以把名片正反拍照上传，设计师会为您设计好拍照的图片，并在找人脉模块展示宣传，如果您以后需要印刷和下载，
+        可以直接写在使用或下单印刷，我们为您包邮送货上门。</p>
     </div>
 </div>
 <div class="weui_dialog_alert" ng-show="toast.card"  >

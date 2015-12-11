@@ -27,7 +27,7 @@ router.post('/v1/file-upload', function (req, res, next) {
         //目标路径
         var myDate = new Date();
         var currentDate = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
-        targetFolder = "./static/" + req.query.path+"/" + currentDate;
+        targetFolder = "./static/" + req.query.path + "/" + currentDate;
         mkdirp(targetFolder);
         //文件名 加密
         filename = crypto.createHash('sha1').update('' + +new Date()).digest('hex');
@@ -41,12 +41,11 @@ router.post('/v1/file-upload', function (req, res, next) {
                 throw err;
             }
             res.set("Connection", 'keep-alive');
-            return res.send(req.query.path +"/" + currentDate+ '/' + filename + fileExtension);
+            return res.send(req.query.path + "/" + currentDate + '/' + filename + fileExtension);
         });
 
     });
 });
-
 
 
 //上传设计文件图片
@@ -60,7 +59,7 @@ router.post('/v1/file-upload/designFile', function (req, res, next) {
         //目标路径
         var myDate = new Date();
         var currentDate = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
-        targetFolder = './static/'+req.query.path+"/" + currentDate;
+        targetFolder = './static/' + req.query.path + "/" + currentDate;
         mkdirp(targetFolder);
         //文件名 加密
         filename = crypto.createHash('sha1').update('' + +new Date()).digest('hex');
@@ -74,21 +73,20 @@ router.post('/v1/file-upload/designFile', function (req, res, next) {
                 throw err;
             }
             res.set("Connection", 'keep-alive');
-            return res.send(req.query.path +"/" + currentDate+ '/' + filename + fileExtension);
+            return res.send(req.query.path + "/" + currentDate + '/' + filename + fileExtension);
         });
 
     });
 });
 
 
-
-
-
 //返回图片
 router.get("/v1/images", function (req, res, next) {
     var name = req.query.name;
-   // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/' + name);
+
     res.sendFile('/home/ftp/mfwy_server/static/' + name);
+
+
 });
 
 
@@ -104,9 +102,9 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
         });
         //添加excel
         var excel = [];
-        excel.push(["订单号", "名片类型", "名片工艺","名片备注", "支付类型", "姓名", "地址", "电话", "地址备注","数量", "总金额"]);
-        excel.push([result.no, result.card.c_type, result.card.gongyi,result.note, result.payInfo.payType, result.userInfo.name,
-            result.userInfo.address, result.userInfo.phone,result.userInfo.note, result.num, result.totalMoney]);
+        excel.push(["订单号", "名片类型", "名片工艺", "名片备注", "支付类型", "姓名", "地址", "电话", "地址备注", "数量", "总金额"]);
+        excel.push([result.no, result.card.c_type, result.card.gongyi, result.note, result.payInfo.payType, result.userInfo.name,
+            result.userInfo.address, result.userInfo.phone, result.userInfo.note, result.num, result.totalMoney]);
         var buffer = xlsx.build([{name: "订单excel", data: excel}]); // returns a buffer
         zip.file(uuid.v1() + ".xlsx", buffer);//
 
@@ -126,7 +124,7 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
             //res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/'+zipname+".zip");
             res.setHeader("Content-Disposition", "attachment;filename=\"" + zipname + "\".zip");
             res.setHeader('Content-type', 'application/zip');
-           // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
+            // res.sendFile('/Project/webchat-mfwy/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
             res.sendFile('/home/ftp/mfwy_server/static/zip/' + currentDate + "/" + zipname + ".zip");
         });
 
@@ -137,8 +135,8 @@ router.get('/v1/file/zip/:id', function (req, res, next) {
 router.get('/v1/file/multil/zip', function (req, res, next) {
     //var multi = ["90240a36-a15c-4c01-a9a2-a63591fbce71", "0734f277-1448-45dc-8ded-65727de70802"];
 
-    var multi=req.query.multi;
-    multi=multi.split(',');
+    var multi = req.query.multi;
+    multi = multi.split(',');
     var zip = new JSZip();
     multi.forEach(function (valuee, indexx) {
         console.log(indexx);
@@ -151,13 +149,13 @@ router.get('/v1/file/multil/zip', function (req, res, next) {
             });
             //添加excel
             var excel = [];
-            excel.push(["订单号", "名片类型", "名片工艺","名片备注", "支付类型", "姓名", "地址", "电话", "地址备注","数量", "总金额"]);
-            excel.push([result.no, result.card.c_type, result.card.gongyi,result.note, result.payInfo.payType, result.userInfo.name,
-                result.userInfo.address, result.userInfo.phone,result.userInfo.note, result.num, result.totalMoney]);
+            excel.push(["订单号", "名片类型", "名片工艺", "名片备注", "支付类型", "姓名", "地址", "电话", "地址备注", "数量", "总金额"]);
+            excel.push([result.no, result.card.c_type, result.card.gongyi, result.note, result.payInfo.payType, result.userInfo.name,
+                result.userInfo.address, result.userInfo.phone, result.userInfo.note, result.num, result.totalMoney]);
             var buffer = xlsx.build([{name: "订单excel", data: excel}]); // returns a buffer
             zip.file(result.no + "/" + uuid.v1() + ".xlsx", buffer);//
 
-            if (indexx == (multi.length - 1)){
+            if (indexx == (multi.length - 1)) {
                 var data = zip.generate({base64: false, compression: 'DEFLATE'});
                 var zipname = uuid.v1();
                 var myDate = new Date();

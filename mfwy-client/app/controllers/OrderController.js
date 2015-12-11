@@ -49,7 +49,10 @@ define(['app'], function (app) {
             }
         };
 
+        //默认选中甘肃省兰州市
         $scope.address = {
+            province:"",
+            city:"",
             place: ""
         };
         $scope.division = {
@@ -448,13 +451,17 @@ define(['app'], function (app) {
                 "省直辖县级行政单位": ["五指山市", "琼海市", "儋州市", "文昌市", "万宁市", "东方市", "定安县", "屯昌县", "澄迈县", "临高县", "白沙黎族自治县", "昌江黎族自治县", "乐东黎族自治县", "陵水黎族自治县", "保亭黎族苗族自治县", "琼中黎族苗族自治县", "西沙群岛", "南沙群岛", "中沙群岛的岛礁及其海域"]
             }
         };
-        var text;
 
         //省份 城市  地区选择
         $scope.or = function () {
+
             var address = $scope.address;
-            text = (address.province + address.city + address.district);
-            dingdan.userInfo.address = text;
+            console.log($scope.address);
+            dingdan.userInfo.address.province=address.province;
+            dingdan.userInfo.address.city=address.city;
+            dingdan.userInfo.address.district=address.district;
+            //text = (address.province + address.city + address.district);
+            //dingdan.userInfo.address = text;
         };
         //下一步提示toast
         $scope.toast = {
@@ -485,7 +492,7 @@ define(['app'], function (app) {
             userInfo: {
                 name: "",
                 id: "",
-                address: text,
+                address: {province:"",city:"",district:"",detail:""},
                 phone: "",
                 QQ: "",
                 company: "",
@@ -512,26 +519,30 @@ define(['app'], function (app) {
             note: ""
         };
 
+
+        //loading 图片
+        $scope.advImagess=["1"];
+        $scope.advImagess.push("2");
         $scope.danjia = 0;
         //下拉选择
         $scope.jia = function () {
             console.log($scope.selectCard.card.c_type);
 
             //选择对应纸张图片
-            for (var i= 0, max = $scope.cardType.length; i < max; i++) {
-                if($scope.selectCard.card.c_type===$scope.cardType[i].id){
+            for (var i = 0, max = $scope.cardType.length; i < max; i++) {
+                if ($scope.selectCard.card.c_type === $scope.cardType[i].id) {
                     console.log($scope.cardType[i].images);
-                    $scope.advImages=[$scope.cardType[i].images];
+                    $scope.advImagess = [$scope.cardType[i].images];
                     //$scope.advImages.push($scope.cardType[i].images);
                     // $scope.$apply();
                     break;
                 }
             }
             //选择对应工艺图片
-            for (var j= 0, maxj = $scope.gongyiType.length; j < maxj; j++) {
-                if($scope.selectCard.card.gongyi===$scope.gongyiType[j].id){
+            for (var j = 0, maxj = $scope.gongyiType.length; j < maxj; j++) {
+                if ($scope.selectCard.card.gongyi === $scope.gongyiType[j].id) {
                     console.log($scope.gongyiType[j].images);
-                    $scope.advImages.push($scope.gongyiType[j].images)
+                   $scope.advImagess.push($scope.gongyiType[j].images);
                     //$scope.advImages.push($scope.cardType[i].images);
                     // $scope.$apply();
                     break;
@@ -557,6 +568,7 @@ define(['app'], function (app) {
                     break;
                 }
             }
+            console.log("order_type",dingdan.order_type);
 
             //计算总价格
             if (dingdan.order_type == 1) {
@@ -566,7 +578,7 @@ define(['app'], function (app) {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + 2;
                 dingdan.totalMoney = $scope.danjia;
             } else {
-                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+5;
                 dingdan.totalMoney = $scope.danjia;
             }
 
@@ -603,7 +615,7 @@ define(['app'], function (app) {
                 $location.path("/app/order/ddxq");
             }
 
-
+            //$location.path("/app/order/ddxq");
             /* if ($rootScope.hasOwnProperty('tpl')) {
              dingdan.temInfo.id = $rootScope.tpl.id;
              dingdan.temInfo.name = $rootScope.tpl.name;
@@ -615,44 +627,66 @@ define(['app'], function (app) {
 
 
         };
+
+
         //微信支付
         $scope.addOrder = function () {
             //是否高端定制
-            console.log($rootScope.hasOwnProperty('custom'));
+            /*console.log($rootScope.hasOwnProperty('custom'));
 
-
+             var data = {"openid": ipCookie("openid"), "no": dingdan.no, money: dingdan.totalMoney};
+             orderService.getWechatConfig(data).then(function (data) {
+             WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+             if (res.err_msg == "get_brand_wcpay_request:ok") {
+             $location.path("/app/order/wddd");
+             // 这里可以跳转到订单完成页面向用户展示
+             } else {
+             alert("支付失败，请重新进入后支付");
+             }
+             });
+             });*/
             //$scope.newId
             if ($rootScope.hasOwnProperty('custom')) {
-                /* console.log($rootScope.custom.no);
-                 console.log($rootScope.custom.money);
+                console.log($rootScope.custom.no);
+                console.log($rootScope.custom.money);
 
-                 /!*var data={"openid":ipCookie("openid"),"no":$rootScope.custom.no,money:$rootScope.custom.money};
-                 orderService.getWechatConfig(data).then(function (data) {
-                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
-                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                 $location.path("/order/wddd");
-                 // 这里可以跳转到订单完成页面向用户展示
-                 } else {
-                 alert("支付失败，请重新进入后支付");
-                 }
-                 });
-                 });*!/*/
+                var data = {
+                    "openid": ipCookie("openid"),
+                    "no": $rootScope.custom.no,
+                    money: $rootScope.custom.money,
+                    "newId": $rootScope.custom.id
+                };
+                orderService.getWechatConfig(data).then(function (data) {
+                    WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                            $location.path("/app/order/wddd");
+                            $scope.$apply();
+                        } else {
 
-                $location.path("/app/order/wddd");
+                            alert("支付失败，请重新进入后支付");
+                        }
+                    });
+                });
+
+
             } else {
-                /* var data={"openid":ipCookie("openid"),"no":dingdan.no,money:dingdan.totalMoney};
-                 orderService.getWechatConfig(data).then(function (data) {
-                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
-                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                 $location.path("/order/wddd");
-                 // 这里可以跳转到订单完成页面向用户展示
-                 } else {
-                 alert("支付失败，请重新进入后支付");
-                 }
-                 });
-                 });*/
+                var data = {
+                    "openid": ipCookie("openid"),
+                    "no": dingdan.no,
+                    money: dingdan.totalMoney,
+                    "newId": $scope.newId
+                };
+                orderService.getWechatConfig(data).then(function (data) {
+                    WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                            $location.path("/app/order/wddd");
+                            $scope.$apply();
+                        } else {
+                            alert("支付失败，请重新进入后支付");
+                        }
+                    });
+                });
 
-                $location.path("/app/order/wddd");
             }
 
 
@@ -663,6 +697,7 @@ define(['app'], function (app) {
             name: false,
             company: false,
             place: false,
+            district:false,
             phone: false,
             QQ: false,
             note: false
@@ -685,6 +720,13 @@ define(['app'], function (app) {
             } else {
                 $scope.form.company = false;
             }
+            if ($scope.address.district== ""||$scope.address.district== undefined) {
+                $scope.form.district = true;
+                alert("请选择地区");
+                return false;
+            } else {
+                $scope.form.district = false;
+            }
             if ($scope.address.place == undefined || $scope.address.place == "") {
                 $scope.form.place = true;
                 return false;
@@ -705,11 +747,10 @@ define(['app'], function (app) {
              });*/
 
             if (dingdan.no == "") {
-                dingdan.userInfo.address += $scope.address.place;
+                dingdan.userInfo.address.detail = $scope.address.place;
                 dingdan.no = Date.parse(new Date());
                 dingdan.openid = ipCookie("openid");
                 orderService.order(dingdan).then(function (data) {
-                    console.log(data);
                     $scope.newId = data.id;//返回生成的id
                     $location.path("/app/order/zfdd");
                 });
@@ -748,6 +789,39 @@ define(['app'], function (app) {
         //图片路径
         $scope.imagesPath = config.url.api + "/v1/images?name=";
 
+
+        //绑定最后一次地址电话
+        orderService.lastOrder(ipCookie("openid")).then(function(result){
+            if (result.length > 0){
+
+                //绑定最后一次
+                $scope.order.userInfo.name=result[0].userInfo.name;
+                $scope.order.userInfo.company=result[0].userInfo.company;
+
+
+
+                //绑定最后一次地址
+                $scope.order.userInfo.address.province=result[0].userInfo.address.province;
+                $scope.order.userInfo.address.city=result[0].userInfo.address.city;
+                $scope.order.userInfo.address.district=result[0].userInfo.address.district;
+                $scope.order.userInfo.address.detail =result[0].userInfo.address.detail;
+                $scope.address.province= result[0].userInfo.address.province;
+                $scope.address.city=result[0].userInfo.address.city;
+                $scope.address.district=result[0].userInfo.address.district;
+                $scope.address.place=result[0].userInfo.address.detail;
+
+                //绑定最后一次电话
+                $scope.order.userInfo.phone=result[0].userInfo.phone;
+
+            }else{
+                $scope.address.province="甘肃省";
+                $scope.address.city="兰州市";
+            }
+            console.log("address",$scope.order);
+            //$scope.$apply();
+        });
+
+
         //初始化数据
         return orderService.list($rootScope.addressDefault.selectAdd).then(function (result) {
             console.log(result);
@@ -782,12 +856,18 @@ define(['app'], function (app) {
                     dingdan.order_type = 5;//模板印刷
                 }
             }
-
+            //是否是高端定制跳转过来的
+            if($rootScope.hasOwnProperty('custom')){
+                dingdan.no=$rootScope.custom.no;
+            }
+            $scope.jia();
 
             /*  $scope.type = result[0].c_type;
              $scope.gongyi = result[0].gongyi;*/
 
         });
+
+
     }
     ]);
 });

@@ -30,7 +30,8 @@ angular.module("technology-edit", ["resource.cards"]).config([
                     return paper = {
                         name: "",//Ãû³Æ
                         price: "",//¼Û¸ñ
-                        images:"" //Í¼Æ¬
+                        images:"", //Í¼Æ¬
+                        num:""
                     };
                 }
             }

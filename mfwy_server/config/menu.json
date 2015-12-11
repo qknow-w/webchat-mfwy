@@ -2,15 +2,36 @@
 {
   "button": [
     {
+      "name": "名片神器",
+      "sub_button":[{
+        "type": "view",
+        "name":"印刷名片",
+        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+      },{
+        "type": "view",
+        "name":"历史订单",
+        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid-selforder&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+      }]
+
+    },
+    {
       "name": "蜜蜂网印",
       "sub_button":[{
         "type": "view",
-        "name":"网印商城",
-        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+        "name":"公司网站",
+        "url": "http://www.mfwy.net"
       },{
         "type": "view",
-        "name":"我的订单",
-        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid-selforder&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+        "name":"名片欣赏",
+        "url": "http://www.mfwy.net/Cms/NewsDetail?NewsId=115"
+      }]
+
+    },{
+      "name": "蜜蜂会",
+      "sub_button":[{
+        "type": "view",
+        "name":"加入我们",
+        "url": "http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=216075076&idx=1&sn=15e833de54c3ff5aabca6a9395e3d897&scene=18#rd"
       }]
 
     }

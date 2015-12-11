@@ -34,7 +34,12 @@ router.all('/wechat', wechat(config, function (req, res, next) {
 
     var message = req.weixin;
 
-    console.log(message);
+   // var text='印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务';
+
+    res.reply("<a href='http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=217083962&idx=1&sn=0f5eb5390e0bb2eaa0f72864fb8f806b#rd'>印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。" +
+        "第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务</a>");
+
+    /*console.log(message);
     switch (message.Event) {
         case "SCAN":
             res.reply("开发中，稍候访问");
@@ -61,7 +66,7 @@ router.all('/wechat', wechat(config, function (req, res, next) {
         default :
             break;
 
-    }
+    }*/
 
 }));
 
@@ -83,11 +88,12 @@ router.get('/oauth-openid', function (req, res, next) {
 
     client.getUserByCode(code, function (err, result) {
         if (err) {
-            res.send(err);
+           // res.send(err);
+            res.send("系统繁忙，请重新进入");
         }
         console.log(result);
         var openid = result.openid;
-        res.writeHeader(301, {'Location': "http://121wogo.com?openid="  + openid });
+        res.writeHeader(301, {'Location': "http://121wogo.com/?openid="  + openid });
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
@@ -111,7 +117,8 @@ router.get('/oauth-openid-selforder', function (req, res, next) {
 
     client.getUserByCode(code, function (err, result) {
         if (err) {
-            res.send(err);
+            //res.send(err);
+            res.send("系统繁忙，请重新进入");
         }
         console.log(result);
         var openid = result.openid;

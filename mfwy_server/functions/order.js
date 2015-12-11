@@ -34,8 +34,8 @@ router.post("/v1/orders/secondPay",function(req,res,next){
         no=Date.parse(new Date());
         result.no=no;
         result.save();
-        request.post({url:"http://localhost:8000/pay/order",
-            form:{"openid":result.openid,"money":result.totalMoney,"no":no}},function(err,httpResponse,body){
+        request.post({url:"http://17quay.cn/pay/order",
+            form:{"openid":result.openid,"money":result.totalMoney,"no":no,"id":result.id}},function(err,httpResponse,body){
             if (err) {
                 res.status(500).send(err);
             }
@@ -205,7 +205,8 @@ router.get("/v1/orders/excel/all",function(req,res,next){
         data.push(["订单号","名片类型","名片工艺","名片备注","支付类型","姓名","地址","电话","地址备注","数量","总金额"]);
         for(var i=0;i<result.length;i++){
             data.push([result[i].no,result[i].card.c_type,result[i].card.gongyi,result[i].note,result[i].payInfo.payType,result[i].userInfo.name,
-                result[i].userInfo.address,result[i].userInfo.phone,result[i].userInfo.note,result[i].num,result[i].totalMoney])
+                result[i].userInfo.address.province+result[i].userInfo.address.city+result[i].userInfo.address.district+result[i].userInfo.address.detail,
+                result[i].userInfo.phone,result[i].userInfo.note,result[i].num,result[i].totalMoney])
         }
         var buffer = xlsx.build([{name: "订单excel", data: data}]); // returns a buffer
        // res.setHeader("Content-Disposition", "attachment;filename=" + new Date().toLocaleString()+".xlsx");
@@ -232,7 +233,8 @@ router.get("/v1/orders/excel/history/all/super",function(req,res,next){
         for(var i=0;i<result.length;i++){
             var city=result[i].currentAdd=="1"?"甘肃省":"山东省";
             data.push([result[i].no,result[i].card.c_type,result[i].card.gongyi,result[i].note,result[i].payInfo.payType,city,result[i].userInfo.name,
-                result[i].userInfo.address,result[i].userInfo.phone,result[i].userInfo.note,result[i].num,result[i].totalMoney])
+                result[i].userInfo.address.province+result[i].userInfo.address.city+result[i].userInfo.address.district+result[i].userInfo.address.detail,
+                result[i].userInfo.phone,result[i].userInfo.note,result[i].num,result[i].totalMoney])
         }
         var buffer = xlsx.build([{name: "订单excel", data: data}]); // returns a buffer
         // res.setHeader("Content-Disposition", "attachment;filename=" + new Date().toLocaleString()+".xlsx");
@@ -262,7 +264,8 @@ router.get("/v1/orders/excel/history/all/children",function(req,res,next){
         data.push(["订单号","名片类型","名片工艺","支付类型","姓名","地址","电话","数量","总金额"]);
         for(var i=0;i<result.length;i++){
             data.push([result[i].no,result[i].card.c_type,result[i].card.gongyi,result[i].payInfo.payType,result[i].userInfo.name,
-                result[i].userInfo.address,result[i].userInfo.phone,result[i].num,result[i].totalMoney])
+                result[i].userInfo.address.province+result[i].userInfo.address.city+result[i].userInfo.address.district+result[i].userInfo.address.detail,
+                result[i].userInfo.phone,result[i].num,result[i].totalMoney])
         }
         var buffer = xlsx.build([{name: "订单excel", data: data}]); // returns a buffer
         // res.setHeader("Content-Disposition", "attachment;filename=" + new Date().toLocaleString()+".xlsx");

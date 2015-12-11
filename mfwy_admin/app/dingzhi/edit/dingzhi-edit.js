@@ -98,6 +98,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                     entity.currentAdd=ipCookie('currentAdd');
                     return Templates.post(entity, function (data) {
                         messager.success("Save successfully.");
+                        return $location.path("/dingzhi/0");
                     });
                 } else {
                     return Templates.put({
@@ -105,7 +106,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                     }, entity, function (data) {
 
                         messager.success("modify successfully.");
-                        //return $location.path("/activity");
+                        return $location.path("/dingzhi/0");
                         /*var promise = $http({
                             method:"post",
                             url:""+config.url.api+"/qrcode",

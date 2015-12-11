@@ -133,7 +133,7 @@ define(['app', 'weixin'], function (app, wx) {
         wx.onMenuShareAppMessage({
             title: "蜜蜂网印", // 分享标题   活动名称
             desc: "蜜蜂网印", // 分享描述   活动主题
-            link: "http://www.mfwy.net/", // 分享链接
+            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
             imgUrl: "http://www.mfwy.net/UploadFolder/2015-04-17/20150417172835800470047-699-344.jpg", // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -162,7 +162,7 @@ define(['app', 'weixin'], function (app, wx) {
         //分享到朋友圈
         wx.onMenuShareTimeline({
             title: "蜜蜂网印", // 分享标题   活动名称
-            link: "http://www.mfwy.net/", // 分享链接
+            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
             imgUrl: "http://www.mfwy.net/UploadFolder/2015-04-17/20150417172835800470047-699-344.jpg", // 分享图标
             success: function () {
                 $scope.$emit('shareSuccess', "success");

@@ -55,7 +55,7 @@ angular.module("site-edit", ["resource.sites"]).config([
 
                 if (!$routeParams.id) {
                     return Sites.post(entity, function (data) {
-                        Cards.post({"c_type":[],"gongyi":[],"currentAdd":ipCookie('currentAdd')},function(){
+                        Cards.post({"c_type":[],"gongyi":[],"currentAdd":data.id},function(){
                             messager.success("save successfully.");
                             return $location.path("/system/site");
                         });

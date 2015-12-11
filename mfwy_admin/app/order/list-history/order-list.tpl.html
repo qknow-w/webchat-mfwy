@@ -48,7 +48,7 @@
         <tr ng-repeat="item in data.value">
             <td><span><i class="fa"></i>{{item.no}}</span></td>
             <td>{{item.userInfo.name}}</td>
-            <td>{{item.userInfo.address}}</td>
+            <td>{{item.userInfo.address.province}}{{item.userInfo.address.city}}{{item.userInfo.address.district}}{{item.userInfo.address.detail}}</td
             <td>{{item.userInfo.phone}}</td>
             <td>{{item.totalMoney}}</td>
             <!-- <td style="text-overflow:ellipsis;overflow:hidden;">{{item.info.brief}}</td>-->

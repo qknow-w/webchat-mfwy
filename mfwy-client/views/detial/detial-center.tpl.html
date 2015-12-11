@@ -36,7 +36,7 @@
     </div>
 
 
-    <div class="weui_cell">
+   <!-- <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address" >
@@ -44,7 +44,46 @@
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
         </div>
+    </div>-->
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">省份:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address.province" >
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
     </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">城市:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address.city" >
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">地区:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address.district" >
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" disabled="disabled" type="text" ng-model="orderDedail.userInfo.address.detail" >
+        </div>
+        <div class="weui_cell_ft">
+            <i class="weui_icon_warn"></i>
+        </div>
+    </div>
+
+
+
     <div class="weui_cell">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">联系电话:</label></div>
         <div class="weui_cell_bd weui_cell_primary">
@@ -71,7 +110,8 @@
         </div>
 
     </div>
-    <button type="submit" class="weui_btn weuibtn" style="margin:0 15px;" onclick="window.history.back()">返回</button>
+    <div class="weui_cell">
+    <button type="submit" class="weui_btn weuibtn"  onclick="window.history.back()">返回</button></div>
 </form>
 
 

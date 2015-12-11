@@ -81,7 +81,7 @@ define(['app'], function (app) {
             return deferred.promise;
         };
         //ÍêÈ«É¾³ı¶©µ¥
-        deleteOrder=function(id){
+        deleteOrderr=function(id){
             var deferred;
             deferred = $q.defer();
             $http.delete(config.url.api+"/v1/orders("+id+")").success(function(data) {

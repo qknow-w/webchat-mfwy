@@ -35,6 +35,7 @@ var weconfig = {
 console.log(menu);
  //´´½¨²Ëµ¥
  api.createMenu(menu, function(err,result){
+     console.log(err);
  console.log(result);
  });*/
 
@@ -51,6 +52,7 @@ console.log(menu);
 var config=require("./config/pro_config");
 
 //connect mongodb
+//var server = odata('mongodb://120.25.76.44/mfwydb');
 var server = odata('mongodb://120.25.76.44/mfwydb');
 odata.resources = server.resources;
 //middleware

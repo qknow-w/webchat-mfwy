@@ -1,7 +1,7 @@
 <div class="weui_cell " style="padding:10px 0 0;" ng-controller="WeiXinController">
     <a href="javascript:;" ng-click="chooseImage()" class="a-btn"><i class="fa fa-camera " ></i>&nbsp;&nbsp;选择照片</a>
     <a href="javascript:;" ng-click="upload()" class="a-btn"><i class="fa fa-upload"></i>&nbsp;&nbsp;上传照片</a>
-    <p class="tips"> 直接印刷：拍摄名片正反，不用定稿，直接印刷！</p>
+    <p class="tips">直接印刷：拍摄名片正反，不用您定稿，直接印刷！</p>
     <div   ng-show="toast.upload">
         <div class="weui_mask_transparent"></div>
         <div class="weui_toast">
@@ -18,7 +18,7 @@
         </div>
         <div class="weui_cell_hd weui_cell_primary radius">
             <select name="" style="padding: 0.6em" class="weui_select type" id="" ng-change="jia()" ng-model="selectCard.card.c_type"
-                    ng-options="a.id as a.name for a in cardType">
+                    ng-options="a.id as a.name for a in cardType|orderBy : 'num'">
 
             </select>
             <!-- <select class="weui_select type" name="" ng-model="order.card.c_type" ng-change="jia()" style="font-size:0.8em;" >
@@ -35,7 +35,7 @@
             <label class="weui_label">工艺:</label></div>
         <div class="weui_cell_hd weui_cell_primary radius">
             <select name="" style="padding: 0.6em" class="weui_select type" ng-change="jia()" ng-model="selectCard.card.gongyi"
-                    ng-options="a.id as a.name for a in gongyiType">
+                    ng-options="a.id as a.name for a in gongyiType|orderBy : 'num'">
             </select>
             <!-- &lt;!&ndash; <select name="" class="weui_select gongyi" ng-change="jia()" ng-model="order.card.gongyi">
                   <option value="">请选择工艺</option>
@@ -59,11 +59,11 @@
     </div>
     <div class="clear"></div>
         <div class="line-12" style="background: #f3f3f3"></div>
-        <div class="weui_cells" style="background:#f3f3f3;margin-right:15px;">
+        <div class="weui_cell" style="padding:0;background:#f3f3f3;margin-right:15px;">
             <div class="weui_cell_hd" style="vertical-align: top;text-align: center">
                 <label class="weui_label">备注:</label></div>
             <div class="weui_cell_bd weui_cell_primary em9" style="border-bottom: none;">
-                <textarea class="weui_textarea" style="text-indent:0.6em;width: 100%;padding:0.6em 0;border:1px solid #000;" rows="3" ng-model="order.note">
+                <textarea class="" style="text-indent:0.6em;width: 100%;padding:0.6em 0;" rows="3" ng-model="order.note">
                 </textarea>
             </div>
         </div>

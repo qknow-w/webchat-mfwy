@@ -30,7 +30,8 @@ angular.module("paper-edit", ["resource.cards"]).config([
                     return paper = {
                         name: "",//Ãû³Æ
                         price: "",//¼Û¸ñ
-                        images:""
+                        images:"",
+                        num:""
                     };
                 }
             }

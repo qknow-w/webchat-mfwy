@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in data.value[0].gongyi">
+        <tr ng-repeat="item in data.value[0].gongyi|orderBy : 'num'">
             <td><span><i class="fa"></i>{{item.name}}</span></td>
             <td>{{item.price}}</td>
             <td>

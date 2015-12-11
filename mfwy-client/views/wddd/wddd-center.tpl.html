@@ -51,10 +51,19 @@
             <div class="weui_cells ddxq-cell " style="padding-bottom:0.5em;border-bottom:1px solid #d7d7d7;">
                 <p class="weui_cell_hd weui_cell_primary">工艺：<span>{{a.card.gongyi}}</span></p>
             </div>
+           <!-- <div class="weui_cells ft-bottom" ng-show="a.states==0">
+                <div class="weui_cell_bd weui_cell_primary">
+                </div>
+                <div class="weui_cell_ft ">
+
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn" ng-show="a.states==0" >货到付款</a>
+                </div>
+            </div>-->
             <div class="weui_cells ft-bottom">
                 <div class="weui_cell_bd weui_cell_primary">
                 </div>
                 <div class="weui_cell_ft ">
+                    <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn"  ng-click="wechatPay(a.id)" ng-show="a.states==0" >微信支付</a>
                     <a href="" class="weui_btn weui_btn_mini weui_btn_default btn" ng-click="orderDetail(a.id)">查看详情</a>
                     <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn" ng-show="a.states==0" ng-click="deleteOrderr(a.id)">删除订单</a>
                     <a href="javascript:" class="weui_btn weui_btn_mini weui_btn_default btn" ng-show="a.states==3" ng-click="deleteOrder(a.id)">删除订单</a>

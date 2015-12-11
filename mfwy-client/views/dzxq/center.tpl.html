@@ -2,7 +2,7 @@
     <div class="weui_cell padding" ng-class="{true:'weui_cell_warn',false:''}[form.name]">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">收货姓名:</label></div>
         <div class="weui_cell_bd weui_cell_primary border radius">
-            <input class="weui_input" type="text" required ng-model="order.userInfo.name" placeholder="请输入收货姓名">
+            <input class="weui_input" type="text" required ng-model="order.userInfo.name" focus-me="{{form.name}}" placeholder="请输入收货姓名">
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -11,7 +11,7 @@
     <div class="weui_cell padding" ng-class="{true:'weui_cell_warn',false:''}[form.company]" >
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">公司名称:</label></div>
         <div class="weui_cell_bd weui_cell_primary border radius">
-            <input class="weui_input" type="text" ng-model="order.userInfo.company" placeholder="请输入公司名称">
+            <input class="weui_input" type="text" ng-model="order.userInfo.company" focus-me="{{form.company}}" placeholder="请输入公司名称">
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -46,7 +46,7 @@
         </div>
 
     </div>
-    <div class="weui_cell padding" >
+    <div class="weui_cell padding" ng-class="{true:'weui_cell_warn',false:''}[form.district]">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">地<span
                 style="display: inline-block;width: 1.9em"></span>区:</label></div>
         <div class="weui_cell_bd weui_cell_primary select radius">
@@ -63,7 +63,7 @@
     <div class="weui_cell padding" ng-class="{true:'weui_cell_warn',false:''}[form.place]" >
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">详细地址:</label></div>
         <div class="weui_cell_bd weui_cell_primary border radius">
-            <input class="weui_input" type="text" ng-model="address.place" placeholder="请输入详细地址">
+            <input class="weui_input" type="text" ng-model="address.place" focus-me="{{form.place}}" placeholder="请输入详细地址">
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -72,7 +72,7 @@
     <div class="weui_cell padding" ng-class="{true:'weui_cell_warn',false:''}[form.phone]">
         <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">联系电话:</label></div>
         <div class="weui_cell_bd weui_cell_primary border radius">
-            <input class="weui_input" type="text" ng-model="order.userInfo.phone" placeholder="请输入联系电话">
+            <input class="weui_input" type="text" ng-model="order.userInfo.phone" focus-me="{{form.phone}}" placeholder="请输入联系电话">
         </div>
         <div class="weui_cell_ft">
             <i class="weui_icon_warn"></i>
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="weui_cell padding">
-        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">应付价格：</label></div>`
+        <div class="weui_cell_hd" style="padding-right: 2em"><label class="weui_label">应付价格：</label></div>
         <div class="weui_cell_bd weui_cell_primary">
             <span class="jine">￥{{order.totalMoney}}</span>
         </div>

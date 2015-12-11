@@ -45,15 +45,20 @@ angular.module('paper-list', ['resource.cards']).config([
                     $count: true,
                     $filter:"currentAdd eq '"+ipCookie('currentAdd')+"'"
                 }, function(data) {
-                    console.log(data);
+                   /* console.log(data);
+                    data.value[0].c_type.sort(getSortFun('asc', 'num'));
+                    console.log(data);*/
                     return $scope.data = data;
                 });
             }
 
-
-
-
         };
+
+        function getSortFun(order, sortBy) {
+            var ordAlpah = (order == 'asc') ? '>' : '<';
+            var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
+            return sortFun;
+        }
 
         return $scope.setPage(1);
 

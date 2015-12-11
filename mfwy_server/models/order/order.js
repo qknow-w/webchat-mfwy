@@ -14,7 +14,7 @@ var order={
     payInfo:{payType:String,payState:Boolean},//支付信息  类型 状态  微信支付  or  货到付款
     temInfo:{id:String,name:String,price:String},//模板信息 名称 id 模板类型  价格
     expressInfo:{no:String,state:Number},// 快递信息  快递号、状态  0 未收货、已收货
-    userInfo:{name:String,company:String,address:String,phone:String,QQ:String,note:String},//用户地址信息  姓名 公司 地址 电话 qq 备注
+    userInfo:{name:String,company:String,address:{province:String,city:String,district:String,detail:String},phone:String,QQ:String,note:String},//用户地址信息  姓名 公司 地址 电话 qq 备注
     note:String,//备注
     boolShared:{type:Boolean,default:false},  //状态
     createInfo:{createTime: {type: Date, default: Date.now},people:String},

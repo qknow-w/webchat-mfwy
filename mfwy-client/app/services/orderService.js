@@ -52,8 +52,19 @@ define(['app'], function (app) {
         secondPay=function(postdata){
             var deferred;
             deferred = $q.defer();
-            $http.post(config.url.api+"/v1/orders/secondPay", postdata).success(function(data) {
+            $http.get(config.url.api+"/v1/orders/secondPay", postdata).success(function(data) {
                 return deferred.resolve(data);
+            }).error(function(error) {
+                return deferred.reject(void 0);
+            });
+            return deferred.promise;
+        };
+        //最后一次订单
+        lastOrder=function(openid){
+            var deferred;
+            deferred = $q.defer();
+            $http.get(config.url.api+"/v1/orders?$top=1&$orderby=createInfo desc&$filter=openid eq '"+openid+"'").success(function(data) {
+                return deferred.resolve(data.value);
             }).error(function(error) {
                 return deferred.reject(void 0);
             });
@@ -64,7 +75,8 @@ define(['app'], function (app) {
             order:order,
             getWechatConfig:wechatConfig,
             deliveryPay:deliveryPay,
-            secondPay:secondPay
+            secondPay:secondPay,
+            lastOrder:lastOrder
 
         }
     }]);

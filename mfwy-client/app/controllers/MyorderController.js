@@ -104,7 +104,6 @@ define(['app'], function (app) {
         //΢微信支付
         $scope.wechatPay=function(id){
 
-            alert(id);
             var data={"id":id};
             orderService.secondPay(data).then(function (data) {
                 WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
@@ -113,6 +112,7 @@ define(['app'], function (app) {
                     } else {
                         $scope.dialog.message="支付失败，请重新支付";
                         $scope.dialog.selfOrder=true;
+                        $scope.$apply();
                     }
                 });
             });
@@ -120,8 +120,8 @@ define(['app'], function (app) {
 
 
         //第二次货到付款
-        $scope.secondCOD = function (no,openid) {
-            orderService.deliveryPay(no,openid).then(function (data) {
+        $scope.secondCOD = function () {
+            orderService.deliveryPay(id).then(function (data) {
                 $scope.dialog.message="货到付款订单成功";
                 $scope.dialog.selfOrder=true;
                 $scope.all();

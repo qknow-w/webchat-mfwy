@@ -7,8 +7,10 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
         //baidu map
         //当前位置
 
+
+
         $rootScope.addressDefault={
-            selectAdd:"ac59cf7a-7a06-416b-a07a-17c9474f56cf"
+            selectAdd:"a235ab81-d42e-4b99-b593-86ef274bf0b9"
         };
         //读取站点
         $scope.site=function(){
@@ -119,6 +121,23 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
 
 
     }]);
+
+    app.directive('focusMe', function($timeout) {
+        return {
+            scope: { trigger: '@focusMe' },
+            link: function(scope, element) {
+                scope.$watch('trigger', function(value) {
+                    if(value === "true") {
+                        $timeout(function() {
+                            element[0].focus();
+                        });
+                    }
+                });
+            }
+        };
+    });
+
+
     return angularAMD.bootstrap(app);
     //return app;
 });

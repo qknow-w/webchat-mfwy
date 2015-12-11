@@ -18,13 +18,15 @@
     <table class="table table-hover table-striped table-bordered">
         <thead>
         <tr>
+            <th style="width: 200px">序号</th>
             <th style="width: 200px">名称</th>
             <th>价格</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in data.value[0].c_type">
+        <tr ng-repeat="item in data.value[0].c_type|orderBy : 'num'">
+            <td>{{item.num}}</td>
             <td><span><i class="fa"></i>{{item.name}}</span></td>
             <td>{{item.price}}</td>
             <td>
@@ -33,5 +35,5 @@
         </tr>
         </tbody>
     </table>
-    <div zy-odata-pager="data" class="text-center"></div>
+   <!-- <div zy-odata-pager="data" class="text-center"></div>-->
 </div>

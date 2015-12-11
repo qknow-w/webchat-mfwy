@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/11/7 0007.
  */
 define(['app'], function (app) {
-    app.controller('CustomController', ['$scope','$rootScope', '$location','customService','orderService','ipCookie', function ($scope,$rootScope, $location,customService,orderService,ipCookie) {
+    app.controller('CustomController', ['$scope', '$rootScope', '$location', 'customService', 'orderService', 'ipCookie', function ($scope, $rootScope, $location, customService, orderService, ipCookie) {
         //监听上传回调
         $scope.$on('imagePath', function (event, data) {
             //父级能得到值
@@ -20,10 +20,10 @@ define(['app'], function (app) {
             payInfo: {
                 payType: ""
             },
-            currentAdd:$rootScope.addressDefault.selectAdd,
+            currentAdd: $rootScope.addressDefault.selectAdd,
             temInfo: {
                 id: "",
-                name:"",
+                name: "",
                 price: ""
             },
             totalMoney: 0,
@@ -34,7 +34,7 @@ define(['app'], function (app) {
             userInfo: {
                 name: "",
                 id: "",
-                address: text,
+                address: {province:"",city:"",district:"",detail:""},
                 phone: "",
                 QQ: "",
                 company: "",
@@ -52,12 +52,18 @@ define(['app'], function (app) {
         //省份 城市  地区选择
         $scope.or = function () {
             var address = $scope.address;
-            text = (address.province + address.city + address.district);
-            dingdan.userInfo.address = text;
-            console.log(text);
+            console.log($scope.address);
+            dingdan.userInfo.address.province=address.province;
+            dingdan.userInfo.address.city=address.city;
+            dingdan.userInfo.address.district=address.district;
+            //text = (address.province + address.city + address.district);
+            //dingdan.userInfo.address = text;
         };
 
+        //默认选中甘肃省兰州市
         $scope.address = {
+            province:"甘肃省",
+            city:"兰州市",
             place: ""
         };
         $scope.division = {
@@ -461,16 +467,16 @@ define(['app'], function (app) {
         $scope.entity = "";
 
         //立即购买
-        $scope.buy=function(id,price,name,c_type,gongyi,images){
+        $scope.buy = function (id, price, name, c_type, gongyi, images) {
 
-            dingdan.order_type=6;
-            dingdan.temInfo.id=id;
-            dingdan.temInfo.name=name;
-            dingdan.temInfo.price=price;
-            dingdan.card.c_type=c_type;
-            dingdan.card.gongyi=gongyi;
-            $scope.customImages=images;
-            dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
+            dingdan.order_type = 6;
+            dingdan.temInfo.id = id;
+            dingdan.temInfo.name = name;
+            dingdan.temInfo.price = price;
+            dingdan.card.c_type = c_type;
+            dingdan.card.gongyi = gongyi;
+            $scope.customImages = images;
+            dingdan.totalMoney = parseInt(dingdan.temInfo.price) * parseInt(dingdan.num);
             //跳转
             $location.path('/app/custom/dzxq');
         };
@@ -480,22 +486,24 @@ define(['app'], function (app) {
             warn: false,
             message: ""
         };
-       $scope.maxus=function(){
-           dingdan.num=parseInt(dingdan.num)+1;
-           $scope.selectNum();
-       };
-        $scope.minus=function(){
-            if(parseInt(dingdan.num)>1){
-            dingdan.num=parseInt(dingdan.num)-1;
-            };
+        //点击数量加1
+        $scope.maxus = function () {
+            dingdan.num = parseInt(dingdan.num) + 1;
+            $scope.selectNum();
+        };
+        //禁止负数
+        $scope.minus = function () {
+            if (parseInt(dingdan.num) > 1) {
+                dingdan.num = parseInt(dingdan.num) - 1;
+            }
             $scope.selectNum();
         };
         //选择数量 重新计算价格
-        $scope.selectNum=function(){
-            if(dingdan.num<1){
-                dingdan.num=1;
+        $scope.selectNum = function () {
+            if (dingdan.num < 1) {
+                dingdan.num = 1;
             }
-            dingdan.totalMoney=parseInt(dingdan.temInfo.price)*parseInt(dingdan.num);
+            dingdan.totalMoney = parseInt(dingdan.temInfo.price) * parseInt(dingdan.num);
         };
 
 
@@ -504,6 +512,7 @@ define(['app'], function (app) {
             name: false,
             company: false,
             place: false,
+            district:false,
             phone: false,
             QQ: false,
             note: false
@@ -512,30 +521,37 @@ define(['app'], function (app) {
         //添加订单
         $scope.tijiao = function () {
             //表单验证
-             if(dingdan.userInfo.name==""){
-             $scope.form.name=true;
-             return false;
-             }else{
-             $scope.form.name=false;
-             }
-             if(dingdan.userInfo.company==""){
-             $scope.form.company=true;
-             return false;
-             }else{
-             $scope.form.company=false;
-             }
-             if($scope.address.place==undefined){
-             $scope.form.place=true;
-             return false;
-             }else{
-             $scope.form.place=false;
-             }
-             if(dingdan.userInfo.phone==""){
-             $scope.form.phone=true;
-             return false;
-             }else{
-             $scope.form.phone=false;
-             }
+            if (dingdan.userInfo.name == "") {
+                $scope.form.name = true;
+                return false;
+            } else {
+                $scope.form.name = false;
+            }
+            if (dingdan.userInfo.company == "") {
+                $scope.form.company = true;
+                return false;
+            } else {
+                $scope.form.company = false;
+            }
+            if ($scope.address.district== ""||$scope.address.district== undefined) {
+                $scope.form.district = true;
+                alert("请选择地区");
+                return false;
+            } else {
+                $scope.form.district = false;
+            }
+            if ($scope.address.place == undefined||$scope.address.place =="") {
+                $scope.form.place = true;
+                return false;
+            } else {
+                $scope.form.place = false;
+            }
+            if (dingdan.userInfo.phone == "") {
+                $scope.form.phone = true;
+                return false;
+            } else {
+                $scope.form.phone = false;
+            }
 
             /* dingdan.userInfo.address += $scope.address.place;
              dingdan.no = Date.parse(new Date());
@@ -545,19 +561,59 @@ define(['app'], function (app) {
              });*/
 
 
-            dingdan.userInfo.address += $scope.address.place;
-            dingdan.no = Date.parse(new Date());
-            dingdan.openid = ipCookie("openid");
-            orderService.order(dingdan).then(function (data) {
-                $rootScope.custom={
-                   id:data.id
-                };
-                $location.path("/app/order/zfdd");
-            });
+            if(dingdan.no==""){
+                dingdan.userInfo.address.detail = $scope.address.place;
+                dingdan.no = Date.parse(new Date());
+                console.log("no",dingdan.no);
+                dingdan.openid = ipCookie("openid");
+                orderService.order(dingdan).then(function (data) {
+                    $rootScope.custom = {
+                        id: data.id,
+                        money: dingdan.totalMoney,
+                        no: dingdan.no
+                    };
+                    $location.path("/app/order/zfdd");
+                });
+            }else{
+                alert("请不要重复提交订单.")
+            }
+
         };
 
         //图片路径
         $scope.imagesPath = config.url.api + "/v1/images?name=";
+
+
+        //绑定最后一次地址电话
+        orderService.lastOrder(ipCookie("openid")).then(function(result){
+            console.log("last",result);
+            console.log("last",result[0].userInfo.address.detail);
+            if (result.length > 0){
+
+                //绑定最后一次
+                $scope.order.userInfo.name=result[0].userInfo.name;
+                $scope.order.userInfo.company=result[0].userInfo.company;
+
+                //绑定最后一次地址
+                $scope.order.userInfo.address.province=result[0].userInfo.address.province;
+                $scope.order.userInfo.address.city=result[0].userInfo.address.city;
+                $scope.order.userInfo.address.district=result[0].userInfo.address.district;
+                $scope.order.userInfo.address.detail =result[0].userInfo.address.detail;
+                $scope.address.province= result[0].userInfo.address.province;
+                $scope.address.city=result[0].userInfo.address.city;
+                $scope.address.district=result[0].userInfo.address.district;
+                $scope.address.place=result[0].userInfo.address.detail;
+
+                //绑定最后一次电话
+                $scope.order.userInfo.phone=result[0].userInfo.phone;
+
+            }else{
+                $scope.address.province="甘肃省";
+                $scope.address.city="兰州市";
+            }
+            console.log("address",$scope.order);
+            //$scope.$apply();
+        });
 
         //读取数据
         return customService.custom($rootScope.addressDefault.selectAdd).then(function (data) {
