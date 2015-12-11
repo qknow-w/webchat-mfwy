@@ -8,8 +8,6 @@ define(['app'], function (app) {
             //父级能得到值
             dingdan.images = data;
         });
-
-        var text;
         //订单模板
         dingdan = $scope.order = {
             num: 2,
@@ -52,7 +50,6 @@ define(['app'], function (app) {
         //省份 城市  地区选择
         $scope.or = function () {
             var address = $scope.address;
-            console.log($scope.address);
             dingdan.userInfo.address.province=address.province;
             dingdan.userInfo.address.city=address.city;
             dingdan.userInfo.address.district=address.district;
@@ -464,8 +461,6 @@ define(['app'], function (app) {
         };
 
 
-        $scope.entity = "";
-
         //立即购买
         $scope.buy = function (id, price, name, c_type, gongyi, images) {
 
@@ -586,10 +581,7 @@ define(['app'], function (app) {
 
         //绑定最后一次地址电话
         orderService.lastOrder(ipCookie("openid")).then(function(result){
-            console.log("last",result);
-            console.log("last",result[0].userInfo.address.detail);
             if (result.length > 0){
-
                 //绑定最后一次
                 $scope.order.userInfo.name=result[0].userInfo.name;
                 $scope.order.userInfo.company=result[0].userInfo.company;
@@ -603,7 +595,6 @@ define(['app'], function (app) {
                 $scope.address.city=result[0].userInfo.address.city;
                 $scope.address.district=result[0].userInfo.address.district;
                 $scope.address.place=result[0].userInfo.address.detail;
-
                 //绑定最后一次电话
                 $scope.order.userInfo.phone=result[0].userInfo.phone;
 
@@ -611,14 +602,28 @@ define(['app'], function (app) {
                 $scope.address.province="甘肃省";
                 $scope.address.city="兰州市";
             }
-            console.log("address",$scope.order);
-            //$scope.$apply();
         });
 
+
+        var _page = 0;
+        $scope.entity = [];
+        $scope.LoadDetails = function() {
+            _page++;
+            customService.custom($rootScope.addressDefault.selectAdd,_page).then(function (data) {
+                console.log(data);
+                $scope.entity =$scope.entity.concat(data);
+            });
+
+
+
+        };
         //读取数据
-        return customService.custom($rootScope.addressDefault.selectAdd).then(function (data) {
+        return $scope.LoadDetails();
+
+
+       /* return customService.custom($rootScope.addressDefault.selectAdd).then(function (data) {
             $scope.entity = data;
-        })
+        })*/
     }
     ]);
 });

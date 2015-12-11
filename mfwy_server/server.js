@@ -91,6 +91,8 @@ server.use(require('./resources/order/order'));
 server.use(require('./resources/template/template'));
 server.use(require('./resources/system/adv'));
 server.use(require('./resources/system/site'));
+server.use(require('./resources/system/IPLog'));
+
 
 server.listen(config.dev_por || config.pro_por, function () {
     require('./bootstrap/init-data').import();

@@ -7,8 +7,8 @@ var wechat = require('wechat'),
     func = require('node-odata').Function,
     resources = require('node-odata').resources,
     request = require("request"),
-    fs=require('fs'),
-    crypto=require('crypto'),
+    fs = require('fs'),
+    crypto = require('crypto'),
     router = func();
 
 //读取配置
@@ -34,42 +34,41 @@ router.all('/wechat', wechat(config, function (req, res, next) {
 
     var message = req.weixin;
 
-   // var text='印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务';
+    // var text='印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务';
 
     res.reply("<a href='http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=217083962&idx=1&sn=0f5eb5390e0bb2eaa0f72864fb8f806b#rd'>印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。" +
         "第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务</a>");
 
     /*console.log(message);
-    switch (message.Event) {
-        case "SCAN":
-            res.reply("开发中，稍候访问");
-            break;
-        case "subscribe":
+     switch (message.Event) {
+     case "SCAN":
+     res.reply("开发中，稍候访问");
+     break;
+     case "subscribe":
 
-        res.reply("开发中，稍候访问");
+     res.reply("开发中，稍候访问");
 
-            break;
-        default :
-            break;
+     break;
+     default :
+     break;
 
-    }
-    switch (message.MsgType) {
-        case "text":
-            res.reply("开发中，稍候访问");
-            break;
-        case "image":
-            res.reply("你好，欢迎你的到来");
-            break;
-        case "voice":
-            res.reply("声音");
-            break;
-        default :
-            break;
+     }
+     switch (message.MsgType) {
+     case "text":
+     res.reply("开发中，稍候访问");
+     break;
+     case "image":
+     res.reply("你好，欢迎你的到来");
+     break;
+     case "voice":
+     res.reply("声音");
+     break;
+     default :
+     break;
 
-    }*/
+     }*/
 
 }));
-
 
 
 var url = client.getAuthorizeURL('http://17quay.cn/oauth-openid', '1', 'snsapi_base');
@@ -88,12 +87,24 @@ router.get('/oauth-openid', function (req, res, next) {
 
     client.getUserByCode(code, function (err, result) {
         if (err) {
-           // res.send(err);
+            // res.send(err);
             res.send("系统繁忙，请重新进入");
         }
+        resources.logs.create({
+            "ip": req.headers['x-forwarded-for'] ||
+            req.connection.remoteAddress ||
+            req.socket.remoteAddress ||
+            req.connection.socket.remoteAddress
+
+        }, function (err, doc) {
+            console.log(err);
+            console.log(doc);
+        });
+
+
         console.log(result);
         var openid = result.openid;
-        res.writeHeader(301, {'Location': "http://121wogo.com/?openid="  + openid });
+        res.writeHeader(301, {'Location': "http://121wogo.com/?openid=" + openid});
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
@@ -122,7 +133,7 @@ router.get('/oauth-openid-selforder', function (req, res, next) {
         }
         console.log(result);
         var openid = result.openid;
-        res.writeHeader(301, {'Location': "http://121wogo.com/app/order/wddd?openid="  + openid });
+        res.writeHeader(301, {'Location': "http://121wogo.com/app/order/wddd?openid=" + openid});
 
         //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
@@ -135,19 +146,18 @@ router.get('/oauth-openid-selforder', function (req, res, next) {
 });
 
 
-
 router.get("/JSSDK", function (req, res, next) {
     var para_url = req.query.para;
     var param = {
         debug: false,
-        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline','chooseImage','uploadImage'],
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'chooseImage', 'uploadImage'],
         url: para_url
     };
     api.getJsConfig(param, function (err, result) {
         if (err) {
             res.send(err);
         }
-        console.log("jssdk",result);
+        console.log("jssdk", result);
         //console.log(err);
         //console.log(result);
         return res.send(result);
@@ -198,8 +208,8 @@ router.get("/getMedia", function (req, res, next) {
     var media_id = req.query.media_id;
     var api = new WechatAPI(appid, appsecret);
     //'q5BotgQBpTjzFfuBuSAxY5tm1ez6wDMXSbxLhBjmHArc19cKhPWYmOB5WkPRZpL-'
-    api.getMedia(media_id, function(err,result,ress){
-        filename =crypto.createHash('sha1').update('' + +new Date()).digest('hex')+"."+ress.headers['content-type'].split('/')[1];
+    api.getMedia(media_id, function (err, result, ress) {
+        filename = crypto.createHash('sha1').update('' + +new Date()).digest('hex') + "." + ress.headers['content-type'].split('/')[1];
 
         var myDate = new Date();
         var currentDate = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
@@ -209,9 +219,11 @@ router.get("/getMedia", function (req, res, next) {
         } else {
             fs.mkdirSync(goalDirPath);
         }
-        fs.writeFile("./static/material/"+currentDate+"/"+filename,result,function(err){
-            if(err){res.status(500).send('fail')}
-            res.send("material/"+currentDate+"/"+filename);
+        fs.writeFile("./static/material/" + currentDate + "/" + filename, result, function (err) {
+            if (err) {
+                res.status(500).send('fail')
+            }
+            res.send("material/" + currentDate + "/" + filename);
         });
 
     });

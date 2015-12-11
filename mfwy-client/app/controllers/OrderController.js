@@ -51,8 +51,8 @@ define(['app'], function (app) {
 
         //默认选中甘肃省兰州市
         $scope.address = {
-            province:"",
-            city:"",
+            province: "",
+            city: "",
             place: ""
         };
         $scope.division = {
@@ -457,9 +457,9 @@ define(['app'], function (app) {
 
             var address = $scope.address;
             console.log($scope.address);
-            dingdan.userInfo.address.province=address.province;
-            dingdan.userInfo.address.city=address.city;
-            dingdan.userInfo.address.district=address.district;
+            dingdan.userInfo.address.province = address.province;
+            dingdan.userInfo.address.city = address.city;
+            dingdan.userInfo.address.district = address.district;
             //text = (address.province + address.city + address.district);
             //dingdan.userInfo.address = text;
         };
@@ -492,7 +492,7 @@ define(['app'], function (app) {
             userInfo: {
                 name: "",
                 id: "",
-                address: {province:"",city:"",district:"",detail:""},
+                address: {province: "", city: "", district: "", detail: ""},
                 phone: "",
                 QQ: "",
                 company: "",
@@ -521,26 +521,34 @@ define(['app'], function (app) {
 
 
         //loading 图片
-        $scope.advImagess=["1"];
-        $scope.advImagess.push("2");
+        if ($rootScope.hasOwnProperty('tpl')) {
+            console.log("tpl.images", $rootScope.tpl.images.length);
+            $scope.advImagess = [];
+
+            Array.prototype.push.apply($scope.advImagess, $rootScope.tpl.images);
+            // $scope.advImagess=$rootScope.tpl.images;
+            $scope.advImagess.push("1");
+            $scope.advImagess.push("2");
+        } else {
+            $scope.advImagess = ["1"];
+            $scope.advImagess.push("2");
+        }
+
         $scope.danjia = 0;
         //下拉选择
         $scope.jia = function () {
 
             //选择对应纸张图片
-
-            //显示对应的模板
-            if(dingdan.order_type == 5){
-
-            }else{
-
-            }
-
-
             for (var i = 0, max = $scope.cardType.length; i < max; i++) {
                 if ($scope.selectCard.card.c_type === $scope.cardType[i].id) {
                     console.log($scope.cardType[i].images);
-                    $scope.advImagess = [$scope.cardType[i].images];
+                    if ($rootScope.hasOwnProperty('tpl')) {
+                        $scope.advImagess[$rootScope.tpl.images.length] = $scope.cardType[i].images;
+                        console.log("test", $rootScope.tpl.images.length)
+                    } else {
+                        $scope.advImagess = [$scope.cardType[i].images];
+                    }
+
                     //$scope.advImages.push($scope.cardType[i].images);
                     // $scope.$apply();
                     break;
@@ -550,12 +558,27 @@ define(['app'], function (app) {
             for (var j = 0, maxj = $scope.gongyiType.length; j < maxj; j++) {
                 if ($scope.selectCard.card.gongyi === $scope.gongyiType[j].id) {
                     console.log($scope.gongyiType[j].images);
-                   $scope.advImagess.push($scope.gongyiType[j].images);
+
+                    if ($rootScope.hasOwnProperty('tpl')) {
+                        $scope.advImagess[$rootScope.tpl.images.length + 1] = $scope.gongyiType[j].images;
+                    } else {
+                        $scope.advImagess.push($scope.gongyiType[j].images);
+                    }
                     //$scope.advImages.push($scope.cardType[i].images);
                     // $scope.$apply();
                     break;
                 }
             }
+
+
+            /*if($rootScope.hasOwnProperty('tpl.images')){
+             console.log($rootScope.tpl.images);
+             Array.prototype.push.apply($scope.advImagess, $rootScope.tpl.images);
+             console.log($scope.advImagess);
+             }*/
+
+            //加上对应显示对应的模板
+
             // $scope.gongyiType
 
 
@@ -577,6 +600,17 @@ define(['app'], function (app) {
                 }
             }
 
+            console.log("c_type",$scope.selectCard.card.c_type);
+
+            //铜板纸张打折
+            if($scope.selectCard.card.c_type=='5667f589f4724d8a4d8cc719'){
+                if(num=="5"){
+                    cardTypePrice=parseInt(cardTypePrice)*0.7;
+                }else if(num=="10"){
+                    cardTypePrice=parseInt(cardTypePrice)*0.45;
+                }
+            }
+
 
             //计算总价格
             if (dingdan.order_type == 1) {
@@ -586,12 +620,12 @@ define(['app'], function (app) {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + 2;
                 dingdan.totalMoney = $scope.danjia;
             } else if (dingdan.order_type == 3) {
-                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+5;
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + 5;
                 dingdan.totalMoney = $scope.danjia;
             } else if (dingdan.order_type == 5) {
-                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num)+parseInt($rootScope.tpl.price);
+                $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num) + parseInt($rootScope.tpl.price);
                 dingdan.totalMoney = $scope.danjia;
-            }else{
+            } else {
                 $scope.danjia = (parseInt(cardTypePrice) + parseInt(cardGondYiPrice)) * parseInt(num);
                 dingdan.totalMoney = $scope.danjia;
             }
@@ -635,7 +669,7 @@ define(['app'], function (app) {
              }*/
 
 
-            $location.path("/app/order/ddxq"); //测试*!/
+            // $location.path("/app/order/ddxq"); //测试*!/
 
 
         };
@@ -709,7 +743,7 @@ define(['app'], function (app) {
             name: false,
             company: false,
             place: false,
-            district:false,
+            district: false,
             phone: false,
             QQ: false,
             note: false
@@ -732,7 +766,7 @@ define(['app'], function (app) {
             } else {
                 $scope.form.company = false;
             }
-            if ($scope.address.district== ""||$scope.address.district== undefined) {
+            if ($scope.address.district == "" || $scope.address.district == undefined) {
                 $scope.form.district = true;
                 alert("请选择地区");
                 return false;
@@ -803,33 +837,30 @@ define(['app'], function (app) {
 
 
         //绑定最后一次地址电话
-        orderService.lastOrder(ipCookie("openid")).then(function(result){
-            if (result.length > 0){
+        orderService.lastOrder(ipCookie("openid")).then(function (result) {
+            if (result.length > 0) {
 
                 //绑定最后一次
-                $scope.order.userInfo.name=result[0].userInfo.name;
-                $scope.order.userInfo.company=result[0].userInfo.company;
-
-
-
+                $scope.order.userInfo.name = result[0].userInfo.name;
+                $scope.order.userInfo.company = result[0].userInfo.company;
                 //绑定最后一次地址
-                $scope.order.userInfo.address.province=result[0].userInfo.address.province;
-                $scope.order.userInfo.address.city=result[0].userInfo.address.city;
-                $scope.order.userInfo.address.district=result[0].userInfo.address.district;
-                $scope.order.userInfo.address.detail =result[0].userInfo.address.detail;
-                $scope.address.province= result[0].userInfo.address.province;
-                $scope.address.city=result[0].userInfo.address.city;
-                $scope.address.district=result[0].userInfo.address.district;
-                $scope.address.place=result[0].userInfo.address.detail;
+                $scope.order.userInfo.address.province = result[0].userInfo.address.province;
+                $scope.order.userInfo.address.city = result[0].userInfo.address.city;
+                $scope.order.userInfo.address.district = result[0].userInfo.address.district;
+                $scope.order.userInfo.address.detail = result[0].userInfo.address.detail;
+                $scope.address.province = result[0].userInfo.address.province;
+                $scope.address.city = result[0].userInfo.address.city;
+                $scope.address.district = result[0].userInfo.address.district;
+                $scope.address.place = result[0].userInfo.address.detail;
 
                 //绑定最后一次电话
-                $scope.order.userInfo.phone=result[0].userInfo.phone;
+                $scope.order.userInfo.phone = result[0].userInfo.phone;
 
-            }else{
-                $scope.address.province="甘肃省";
-                $scope.address.city="兰州市";
+            } else {
+                $scope.address.province = "甘肃省";
+                $scope.address.city = "兰州市";
             }
-            console.log("address",$scope.order);
+            console.log("address", $scope.order);
             //$scope.$apply();
         });
 
@@ -854,12 +885,15 @@ define(['app'], function (app) {
                  console.log(strs[3]);*/
                 if (strs[3] == "xqxq") {
                     dingdan.order_type = 1;//直接印刷
+
                 }
                 else if (strs[3] == "draft") {
                     dingdan.order_type = 2;//看搞印刷
+
                 }
                 else if (strs[3] == "redesign") {
                     dingdan.order_type = 3;//重新设计
+
                 }
                 else if (strs[3] == "quick") {
                     dingdan.order_type = 4;//快印名片
@@ -869,8 +903,8 @@ define(['app'], function (app) {
                 }
             }
             //是否是高端定制跳转过来的
-            if($rootScope.hasOwnProperty('custom')){
-                dingdan.no=$rootScope.custom.no;
+            if ($rootScope.hasOwnProperty('custom')) {
+                dingdan.no = $rootScope.custom.no;
             }
             $scope.jia();
 

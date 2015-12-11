@@ -37,8 +37,10 @@ router.post("/v1/orders/secondPay",function(req,res,next){
         request.post({url:"http://17quay.cn/pay/order",
             form:{"openid":result.openid,"money":result.totalMoney,"no":no,"id":result.id}},function(err,httpResponse,body){
             if (err) {
+                console.log(err);
                 res.status(500).send(err);
             }
+            console.log(body);
             res.send(body);
         })
 

@@ -1,1 +1,1 @@
-angular.module('system', ['system-user', 'system-history', 'system-401', 'system-404','supperuser','site']);
+angular.module('system', ['system-user', 'system-history', 'system-401', 'system-404','supperuser','site','log']);

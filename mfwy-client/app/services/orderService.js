@@ -52,7 +52,7 @@ define(['app'], function (app) {
         secondPay=function(postdata){
             var deferred;
             deferred = $q.defer();
-            $http.get(config.url.api+"/v1/orders/secondPay", postdata).success(function(data) {
+            $http.post(config.url.api+"/v1/orders/secondPay", postdata).success(function(data) {
                 return deferred.resolve(data);
             }).error(function(error) {
                 return deferred.reject(void 0);

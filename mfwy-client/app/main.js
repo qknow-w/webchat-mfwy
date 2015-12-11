@@ -23,7 +23,8 @@ require.config({
         'angular': '/vendo/angular.min',
         'uiRoute': '/vendo/angular-ui-router.min',
         'ngSwiper': "/vendo/angular-swiper",
-        'ngCookie': '/vendo/angular-cookie.min'
+        'ngCookie': '/vendo/angular-cookie.min',
+        'ngScroll': '/vendo/ng-infinite-scroll.min'
         /* 'domReady': '/bower_components/requirejs-domready/domReady'*/
 
 
@@ -36,7 +37,8 @@ require.config({
         'uiRoute': ['angular']
         ,
         'ngCookie': ['angular'],
-        'angularAMD': ['angular']
+        'angularAMD': ['angular'],
+        'ngScroll':['angular']
         //'bt': ['angular', 'uiRoute', 'jquery', 'config', 'swiper', 'ngSwiper', 'ngCookie']
 
     },

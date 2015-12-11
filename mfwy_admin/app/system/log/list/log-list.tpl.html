@@ -1,0 +1,35 @@
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home home-icon"></i>
+            <a href="/">主页</a>
+        </li>
+        <li class="active">访问统计</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <div class="text-right">
+        总访问量：{{data['@odata.count']}}
+    </div>
+    <div class="hr hr-10 dotted hr-double"></div>
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 200px">ip</th>
+            <th>时间</th>
+           <!-- <th>操作</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data.value" style="height: 50px;">
+            <td><span><i class="fa"></i>{{item.ip}}</span></td>
+            <td>{{item.createInfo.createTime| date:'yyyy-MM-dd HH:mm:ss'  }}</td>
+           <!-- <td>
+                <a class="btn btn-primary" href="/system/site/{{item.id}}">编辑</a>
+                <a class="btn btn-pink" ng-click="delete(item.id)">删除</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+    <div zy-odata-pager="data" class="text-center"></div>
+</div>

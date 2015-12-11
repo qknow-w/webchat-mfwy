@@ -9,5 +9,6 @@ module.exports={
     orders:require('./order/order'),
     templates:require('./template/template'),
     adv:require('./system/adv'),
-    sites:require('./system/site')
+    sites:require('./system/site'),
+    ip:require('./system/IPLog')
 };

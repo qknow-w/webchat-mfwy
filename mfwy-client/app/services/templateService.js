@@ -2,23 +2,31 @@
  * Created by Administrator on 2015/11/8 0008.
  */
 define(['app'], function (app) {
-    app.factory('templateService', ['$q','$http', function ($q,$http) {
+    app.factory('templateService', ['$q', '$http', function ($q, $http) {
 
-        tpl=function(addNo){
+        tpl = function (addNo,pageNo) {
             var deferred;
             deferred = $q.defer();
-            $http.get(config.url.api+"/v1/templates?$filter=type eq 0 and currentAdd eq '"+addNo+"'", void 0).success(function(data) {
+            console.log(config.url.api + "/v1/templates?$filter=type eq 0 and currentAdd eq '" + addNo + "'&$skip="+
+                (pageNo - 1) * 10+"&$top=10");
+            $http.get(config.url.api + "/v1/templates?$filter=type eq 0 and currentAdd eq '" + addNo + "'&$skip="+
+                (pageNo - 1) * 10+"&$top=10", void 0).success(function (data) {
 
-               return deferred.resolve(data.value);
+                return deferred.resolve(data.value);
 
-            }).error(function(error) {
+            }).error(function (error) {
                 console.log(error);
                 return deferred.reject(void 0);
             });
             return deferred.promise;
         };
+
+
+
+
+
         return {
-            tpl:tpl
+            tpl: tpl
         }
     }]);
 });

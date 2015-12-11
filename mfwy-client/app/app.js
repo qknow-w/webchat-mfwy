@@ -1,7 +1,7 @@
-define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRoute', 'jquery', 'config', 'swiper', 'ngSwiper', 'ngCookie'], function (config, dependencyResolverFor, angularAMD) {
+define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRoute', 'jquery', 'config', 'swiper', 'ngSwiper', 'ngCookie','ngScroll'], function (config, dependencyResolverFor, angularAMD) {
 
 
-    var app = angular.module('app', ['ui.router', 'ksSwiper', 'ipCookie']);
+    var app = angular.module('app', ['ui.router', 'ksSwiper', 'ipCookie','infinite-scroll']);
 
     app.controller("AppController", ["$rootScope",'$scope', '$http','ipCookie',function ($rootScope,$scope,$http,ipCookie) {
         //baidu map
@@ -10,7 +10,7 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
 
 
         $rootScope.addressDefault={
-            selectAdd:"a235ab81-d42e-4b99-b593-86ef274bf0b9"
+            selectAdd:"a235ab81-d42e-4b99-b593-86ef274bf0b9" //兰州
         };
         //读取站点
         $scope.site=function(){

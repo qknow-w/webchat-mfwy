@@ -4,10 +4,11 @@
 define(['app'], function (app) {
     app.factory('customService', ['$q','$http', function ($q,$http) {
 
-        custom=function(addNo){
+        custom=function(addNo,pageNo){
             var deferred;
             deferred = $q.defer();
-            $http.get(config.url.api+"/v1/templates?$filter=type eq 1 and currentAdd eq '"+addNo+"'", void 0).success(function(data) {
+            $http.get(config.url.api+"/v1/templates?$filter=type eq 1 and currentAdd eq '"+addNo+"'&$skip="+
+                (pageNo - 1) * 10+"&$top=10", void 0).success(function(data) {
 
                 return deferred.resolve(data.value);
 

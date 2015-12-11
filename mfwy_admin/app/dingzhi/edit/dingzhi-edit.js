@@ -49,7 +49,8 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
             };
             //ÕýÃæ
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
-                url: "" + config.url.api + "/v1/file-upload/?path=template"
+                url: "" + config.url.api + "/v1/file-upload/?path=template",
+                removeAfterUpload:true
             });
 
 

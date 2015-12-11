@@ -1,25 +1,43 @@
-<div ng-repeat="tpl in entity">
-    <div class="weui_cell goods-01">
-        <div class="wddd-goods01">
-            <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
-                <ks-swiper-slide ng-repeat="s in tpl.images">
-                    <a href="" style="display:block;width: 100%;margin:0 auto;height: 200px"><img
-                            ng-src="http://17quay.cn/v1/images?name={{s}}" width="100%" height="100%"></a>
-                </ks-swiper-slide>
-            </ks-swiper-container>
+<div infinite-scroll="LoadDetails()">
+    <div ng-repeat="tpl in entity">
+        <div class="weui_cell goods-01">
+            <div class="wddd-goods01">
+                <ks-swiper-container autoplay="3000" swiper="swiper" on-ready="onReadySwiper(swiper)">
+                    <ks-swiper-slide ng-repeat="s in tpl.images">
+                        <a href="" style="display:block;width: 100%;margin:0 auto;height: 200px"><img
+                                ng-src="http://17quay.cn/v1/images?name={{s}}" width="100%" height="100%"></a>
+                    </ks-swiper-slide>
+                </ks-swiper-container>
+            </div>
         </div>
-    </div>
-    <div class="weui_cell no-border"
-         style="padding-left:0.8em;padding-right:0.8em;border-bottom:1px solid #ccc;margin-top:-0.3em;">
-        <div class="weui_cell_bd weui_cell_primary" style="">
-            <p style="font-size: 0.9em;color:#898989">{{tpl.name}}</p>
-            <p style="font-size: 0.7em;padding-bottom:0.5em;color:#898989">价格：<span
-                    style="color:#fe4100">{{tpl.price}}元</span>/版</p>
-        </div>
-        <div class="weui_cell_ft">
-            <a ng-click="tplskip(tpl.id,tpl.price,tpl.name)"
-               class="btn-sure1" style="padding:3px 15px;">使用此模板下单</a>
+        <div class="weui_cell no-border"
+             style="padding-left:0.8em;padding-right:0.8em;border-bottom:1px solid #ccc;margin-top:-0.3em;">
+            <div class="weui_cell_bd weui_cell_primary" style="">
+                <p style="font-size: 0.9em;color:#898989">{{tpl.name}}</p>
+
+                <p style="font-size: 0.7em;padding-bottom:0.5em;color:#898989">价格：<span
+                        style="color:#fe4100">{{tpl.price}}元</span>/版</p>
+            </div>
+            <div class="weui_cell_ft">
+                <a ng-click="tplskip(tpl.id,tpl.price,tpl.name,tpl.images)"
+                   class="btn-sure1" style="padding:3px 15px;">使用此模板下单</a>
+            </div>
         </div>
     </div>
 </div>
+
+
+<!--<div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+    <div ng-repeat='item in reddit.items'>
+        <span class='score'>{{item.score}}</span>
+      <span class='title'>
+        <a ng-href='{{item.url}}' target='_blank'>{{item.title}}</a>
+      </span>
+        <small>by {{item.author}} -
+            <a ng-href='http://reddit.com{{item.permalink}}' target='_blank'>{{item.num_comments}} comments</a>
+        </small>
+        <div style='clear: both;'></div>
+    </div>
+    <div ng-show='reddit.busy'>Loading data...</div>
+</div>-->
 
