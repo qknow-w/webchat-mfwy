@@ -31,15 +31,17 @@ angular.module("paper-edit", ["resource.cards"]).config([
                         name: "",//名称
                         price: "",//价格
                         images:"",
-                        num:""
+                        num:"",
+                        display:[false,false,false,false,false],
+                        gongyi:[]
                     };
                 }
             }
         })
     }
 ])
-    .controller("PaperEditCtrl", ["$scope", '$route', "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Cards", "paper", "messager",
-        function ($scope, $route, $routeParams, $location, $rootScope, $http, FileUploader, Cards, paper, messager) {
+    .controller("PaperEditCtrl", ["$scope", '$route', "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Cards", "paper", "messager",'ipCookie',
+        function ($scope, $route, $routeParams, $location, $rootScope, $http, FileUploader, Cards, paper, messager,ipCookie) {
 
             //正面上传
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
@@ -53,10 +55,29 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 // uploaderPoster.clearQueue();
             };
 
+            //得到所有工艺
+            $scope.getAllGongYi=function(){
+                $http.get(config.url.api + "/v1/cards/?$filter=currentAdd eq '"+ipCookie('currentAdd')+"'").success(function (data) {
+                    /*createOrder(data.value[0].c_type, data.value[0].gongyi);*/
+
+                    $scope.getAllGongYi=data.value[0].gongyi;
+                    console.log(data.value[0].gongyi);
+                }).error(function (error) {
+                    console.log(error);
+
+                });
+            };
+
+
+
+
 
 
             $scope.get = function () {
                 $scope.entity = paper;
+
+
+
                 // console.log($scope.entity.images.ad);
             };
             //modify
@@ -82,8 +103,30 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 }
 
             };
+            //显示模板
+            $scope.fn=function(){
+                console.log($scope.entity.display);
+            };
 
+            //选择工艺
+            $scope.toggleSelection =function(id){
+                console.log(id);
+                var idx = $scope.entity.gongyi.indexOf(id);
 
+                // is currently selected
+                if (idx > -1) {
+                    $scope.entity.gongyi.splice(idx, 1);
+                }
+
+                // is newly selected
+                else {
+                    $scope.entity.gongyi.push(id);
+                }
+
+                console.log($scope.entity.gongyi);
+            };
+
+            $scope.getAllGongYi();
             return $scope.get();
 
 

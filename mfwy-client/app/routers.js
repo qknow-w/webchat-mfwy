@@ -47,7 +47,7 @@ define([], function () {
                 ]
             },
             "template.xqxq": {
-                url: "/xqxq",
+                url: "/xqxq",//直接印刷
                 views: {
                     "tpl-header": "/views/xqxq/xqxq-header.tpl.html?v=" + urlArgs,
                     "tpl-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
@@ -135,7 +135,7 @@ define([], function () {
                 views: {
                     "xqxq-header": "/views/quick/xqxq-header.tpl.html?v=" + urlArgs,
                     "xqxq-adv": "/views/xqxq/xqxq-adv.tpl.html?v=" + urlArgs,
-                    "xqxq-center": "/views/quick/xqxq-center.tpl.html?v=" + urlArgs
+                    "xqxq-center": "/views/tplxx/xqxq-center.tpl.html?v=" + urlArgs
                 },
                 dependencies: [
                     "/"+app+"/controllers/WeiXinController.js?v=" + urlArgs,

@@ -82,7 +82,9 @@
                     <label class="col-lg-1 control-label">地址</label>
 
                     <div class="col-lg-5">
-                        <input type="text" class="form-control" ng-model="entity.userInfo.address" required/>
+                        <!--<input type="text" class="form-control" ng-model="entity.userInfo.address" required/>-->
+                        {{entity.userInfo.address.province}}{{entity.userInfo.address.city}}{{entity.userInfo.address.district}}{{entity.userInfo.address.detail}}
+
                     </div>
                     <label class="col-lg-1 control-label">电话</label>
 

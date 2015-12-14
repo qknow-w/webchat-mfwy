@@ -1,0 +1,11 @@
+<div ng-controller="OrderController">
+    <div   ng-show="toast.warn">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_msg weui_icon_warn" ></i>
+            <p class="weui_toast_content" ng-bind="toast.message"></p>
+        </div>
+    </div>
+    <div ui-view="xqxq-adv"></div>
+    <div ui-view="xqxq-center"></div>
+</div>

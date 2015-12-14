@@ -31,6 +31,63 @@
                         <input type="text" class="form-control" ng-model="entity.num" required/>
                     </div>
 
+                    <label class="col-lg-1 control-label">显示</label>
+
+                    <div class="col-lg-5">
+                        <div class="radio" style="float: left">
+                            <label>
+                                <input type="checkbox" name="optionsRadios"  ng-model="entity.display[0]"  ng-true-value="true" ng-false-value="false" ng-change="fn()"  >
+                                直接印刷
+                            </label>
+
+                        </div>
+                        <div class="radio" style="float: left;margin-left: 10px">
+
+                            <label>
+                                <input type="checkbox" name="optionsRadios1" ng-model="entity.display[1]"  ng-true-value="true" ng-false-value="false" ng-change="fn()"  >
+                                看稿印刷
+                            </label>
+                        </div>
+                        <div class="radio" style="float: left;margin-left: 10px">
+                            <label>
+                                <input type="checkbox" name="optionsRadios3" ng-model="entity.display[2]"  ng-true-value="true" ng-false-value="false" ng-change="fn()" >
+                                重新设计
+                            </label>
+                        </div>
+                        <div class="radio" style="float: left;margin-left: 10px">
+                            <label>
+                                <input type="checkbox" name="optionsRadios4" ng-model="entity.display[3]"  ng-true-value="true" ng-false-value="false" ng-change="fn()"  >
+                                快印名片
+                            </label>
+                        </div>
+                        <div class="radio" style="float: left;margin-left: 10px">
+                            <label>
+                                <input type="checkbox" name="optionsRadios5" ng-model="entity.display[4]"  ng-true-value="true" ng-false-value="false" ng-change="fn()"  >
+                                名片模板
+                            </label>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">工艺</label>
+
+                    <div class="col-lg-11">
+                        <div class="radio" ng-repeat="a in getAllGongYi" style="float: left;margin-left: 10px">
+                            <label>
+                                <input type="checkbox"  ng-checked="entity.gongyi.indexOf(a.id) > -1" value="{{a.id}}"  ng-click="toggleSelection(a.id)"   >
+                                {{a.name}}
+                            </label>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
                 <div class="form-group" ng-hide="entity.id">

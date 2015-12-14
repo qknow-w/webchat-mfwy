@@ -9,7 +9,7 @@
         "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
       },{
         "type": "view",
-        "name":"历史订单",
+        "name":"我的名片",
         "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid-selforder&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
       }]
 

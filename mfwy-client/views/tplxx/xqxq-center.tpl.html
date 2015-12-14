@@ -1,7 +1,7 @@
 <div class="weui_cell " style="padding:10px 0 0;" ng-controller="WeiXinController">
-    <a href="javascript:;" ng-click="chooseImage()" class="a-btn"><i class="fa fa-camera"></i>&nbsp;&nbsp;选择照片</a>
+    <a href="javascript:;" ng-click="chooseImage()" class="a-btn"><i class="fa fa-camera" ></i>&nbsp;&nbsp;选择照片</a>
     <a href="javascript:;" ng-click="upload()" class="a-btn"><i class="fa fa-upload"></i>&nbsp;&nbsp;上传照片</a>
-    <p class="tips"> 拍摄名片正反，看稿印刷，需要和客户确认！</p>
+    <p class="tips"> 快印名片，20分钟出货，立等可取！</p>
     <div   ng-show="toast.upload">
         <div class="weui_mask_transparent"></div>
         <div class="weui_toast">
@@ -18,7 +18,7 @@
             <label class="weui_label" style="text-align: center">纸张:</label>
         </div>
         <div class="weui_cell_hd weui_cell_primary radius" style="background: #fff;">
-            <select name="" style="padding:0.6em;" class="weui_select type" id="" ng-change="jia()" ng-model="selectCard.card.c_type"
+            <select name="" class="weui_select type" style="padding: 0.5em" id="" ng-change="jia()" ng-model="selectCard.card.c_type"
                     ng-options="a.id as a.name for a in cardType">
 
             </select>
@@ -36,7 +36,7 @@
         <div class="weui_cell_bd" style="text-align: center">
             <label class="weui_label">工艺:</label></div>
         <div class="weui_cell_hd weui_cell_primary radius" style="background: #fff;">
-            <select name="" style="padding:0.6em;" class="weui_select type" ng-change="jia1()" ng-model="selectCard.card.gongyi"
+            <select name="" class="weui_select type" style="padding: 0.6em" ng-change="jia1()" ng-model="selectCard.card.gongyi"
                     ng-options="a.id as a.name for a in gongyiType">
             </select>
             <!-- &lt;!&ndash; <select name="" class="weui_select gongyi" ng-change="jia()" ng-model="order.card.gongyi">
@@ -51,27 +51,28 @@
         <div class="weui_cell_bd" style="text-align: center">
             <label class="weui_label">数量:</label>
         </div>
-        <div class="weui_cell_hd weui_cell_primary radius" style="background: #fff;">
-            <select name="" style="padding:0.6em;" class="weui_select type" ng-change="jia()" ng-model="order.num"
+        <div class="weui_cell_hd weui_cell_primary radius"  style="background: #fff;">
+            <select name="" class="weui_select type" style="padding: 0.6em;" ng-change="jia()" ng-model="order.num"
                     ng-options="a.value as a.name for a in shuling">
 
             </select>
         </div>
     </div>
-    <div class="clear"> </div>
-    <div class="line-12" style="background: #f3f3f3"></div>
-        <div class="weui_cell" style="padding:0;background: #f3f3f3;margin-right:15px;">
+    <div class="clear"></div>
+        <div class="line-12" style="background: #f3f3f3"></div>
+        <div class="weui_cell" style="padding:0;background:#f3f3f3;margin-right:15px;">
             <div class="weui_cell_bd" style="vertical-align: top;text-align: center">
                 <label class="weui_label">备注:</label></div>
             <div class="weui_cell_hd weui_cell_primary " style="border-bottom: none;">
-                <textarea style="width: 100%;padding: 0.6em 0;text-indent: 0.6em" rows="3" ng-model="order.note"></textarea>
+                <textarea style="width: 100%;padding: 0.6em 0;text-indent: 0.6em;" rows="3" ng-model="order.note"></textarea>
             </div>
         </div>
-
+</div>
+<div class="line-12" style="background: #f3f3f3"></div>
     <div class="weui_cell">
         <div class="hd">
             <p style="text-align: center">合计金额：<span class="jine jine-l">￥{{danjia}}</span></p>
         </div>
-        <a class="weui_btn weuibtn" ng-click="next()">下一步</a>
+        <a class="weui_btn weuibtn" ng-click="next()" >下一步</a>
     </div>
 </div>

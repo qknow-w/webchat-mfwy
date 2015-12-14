@@ -55,10 +55,19 @@ angular.module("site-edit", ["resource.sites"]).config([
 
                 if (!$routeParams.id) {
                     return Sites.post(entity, function (data) {
-                        Cards.post({"c_type":[],"gongyi":[],"currentAdd":data.id},function(){
+                       /* Cards.post({"c_type":[],"gongyi":[],"currentAdd":data.id},function(){
+
+                        });*/
+                        $http.post(config.url.api + "/v1/users/new/init" , {"addid":data.id}).success(function (data) {
+                            /*createOrder(data.value[0].c_type, data.value[0].gongyi);*/
                             messager.success("save successfully.");
                             return $location.path("/system/site");
+                        }).error(function (error) {
+                            return messager.success("modify fail");
                         });
+
+
+
                     });
                 } else {
                     return Sites.put({
