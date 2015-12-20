@@ -21,12 +21,28 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
             });
         };
 
+        //读取客服电话
+        $scope.GetcustPhone=function(){
+            $http.get("http://17quay.cn/v1/setting?$filter=currentAdd eq '"+$rootScope.addressDefault.selectAdd+"'", void 0).success(function(data) {
+               if(data.value.length>0){
+                   $scope.custPhone=data.value[0].customerServicePhone;
+               }else {
+                   $scope.custPhone="";
+               }
+
+            }).error(function(error) {
+                $scope.custPhone=[];
+            });
+        };
+        //选择城市
         $scope.changeAddAdv=function(){
             $http.get("http://17quay.cn/v1/adv?$filter=currentAdd eq '"+$rootScope.addressDefault.selectAdd+"'", void 0).success(function(data) {
                 $scope.advImages=data.value;
             }).error(function(error) {
                 $scope.advImages=[];
             });
+
+            $scope.GetcustPhone();
         };
 
 
@@ -45,7 +61,7 @@ define('app', ['routers', 'services/dependencyResolverFor', 'angularAMD', 'uiRou
             });
         };
 
-
+        $scope.GetcustPhone();
         $scope.site();
         return  $scope.adv();
 

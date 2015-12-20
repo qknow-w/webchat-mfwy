@@ -28,12 +28,13 @@ angular.module("paper-edit", ["resource.cards"]).config([
             resolve: {
                 paper: function () {
                     return paper = {
-                        name: "",//Ãû³Æ
-                        price: "",//¼Û¸ñ
+                        name: "",//ï¿½ï¿½ï¿½ï¿½
+                        price: "",//ï¿½Û¸ï¿½
                         images:"",
                         num:"",
                         display:[false,false,false,false,false],
-                        gongyi:[]
+                        gongyi:[],
+                        defaultt:[""]
                     };
                 }
             }
@@ -43,7 +44,7 @@ angular.module("paper-edit", ["resource.cards"]).config([
     .controller("PaperEditCtrl", ["$scope", '$route', "$routeParams", "$location", "$rootScope", "$http", "FileUploader", "Cards", "paper", "messager",'ipCookie',
         function ($scope, $route, $routeParams, $location, $rootScope, $http, FileUploader, Cards, paper, messager,ipCookie) {
 
-            //ÕýÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=card",
                 removeAfterUpload:true
@@ -55,7 +56,7 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 // uploaderPoster.clearQueue();
             };
 
-            //µÃµ½ËùÓÐ¹¤ÒÕ
+            //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½
             $scope.getAllGongYi=function(){
                 $http.get(config.url.api + "/v1/cards/?$filter=currentAdd eq '"+ipCookie('currentAdd')+"'").success(function (data) {
                     /*createOrder(data.value[0].c_type, data.value[0].gongyi);*/
@@ -103,12 +104,12 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 }
 
             };
-            //ÏÔÊ¾Ä£°å
+            //ï¿½ï¿½Ê¾Ä£ï¿½ï¿½
             $scope.fn=function(){
                 console.log($scope.entity.display);
             };
 
-            //Ñ¡Ôñ¹¤ÒÕ
+            //Ñ¡ï¿½ï¿½ï¿½ï¿½
             $scope.toggleSelection =function(id){
                 console.log(id);
                 var idx = $scope.entity.gongyi.indexOf(id);
@@ -124,6 +125,21 @@ angular.module("paper-edit", ["resource.cards"]).config([
                 }
 
                 console.log($scope.entity.gongyi);
+            };
+
+            $scope.toggleSelectionRadio =function(id){
+                console.log(id);
+                var idx = $scope.entity.defaultt.indexOf(id);
+
+                // is currently selected
+                if (idx > -1) {
+                    $scope.entity.defaultt.splice(idx, 1);
+                }
+
+                // is newly selected
+                else {
+                    $scope.entity.defaultt[0]=id;
+                }
             };
 
             $scope.getAllGongYi();

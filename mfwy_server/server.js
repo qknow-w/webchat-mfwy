@@ -9,14 +9,14 @@ var odata = require('node-odata'),
     cors = require('cors');
 
 
-//²Ëµ¥ÅäÖÃÎÄ¼þ
+//ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 var menu = require('./config/menu.json');
-//Î¢ÐÅÅäÖÃ
+//Î¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 var wechat_config = require('./config/wechat_config.json');
 
 //wxc8179212071d81d4
 //8fd49e799483ba033bf596befe971b0b
-//Î¢ÐÅÅäÖÃÎÄ¼þ
+//Î¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 
 var token = wechat_config.token;
 var appid = wechat_config.appid;
@@ -29,14 +29,15 @@ var weconfig = {
 };
 
 
-/*//ÊµÀý»¯ WechatAPI
+/*//Êµï¿½ï¿½ï¿½ï¿½ WechatAPI
  var api = new WechatAPI(appid, appsecret);
 console.log(menu);
- //´´½¨²Ëµ¥
+ //ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
  api.createMenu(menu, function(err,result){
      console.log(err);
  console.log(result);
- });*/
+ });
+*/
 
 
 
@@ -92,6 +93,7 @@ server.use(require('./resources/template/template'));
 server.use(require('./resources/system/adv'));
 server.use(require('./resources/system/site'));
 server.use(require('./resources/system/IPLog'));
+server.use(require('./resources/system/setting'));
 
 
 server.listen(config.dev_por || config.pro_por, function () {

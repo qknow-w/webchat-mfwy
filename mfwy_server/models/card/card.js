@@ -3,7 +3,7 @@
  */
 /*名片集合*/
 var card={
-    c_type:[{num:Number,name:String,price:String,images:String,display:[Boolean],gongyi:[String]}],//类型
+    c_type:[{num:Number,name:String,price:String,images:String,display:[Boolean],gongyi:[String],defaultt:[String]}],//类型
     gongyi:[{num:Number,name:String,price:String,images:String,display:[Boolean]}],//工艺
     price:String, //价格
     currentAdd:String,//当前位置

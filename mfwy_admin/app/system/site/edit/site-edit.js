@@ -65,9 +65,6 @@ angular.module("site-edit", ["resource.sites"]).config([
                         }).error(function (error) {
                             return messager.success("modify fail");
                         });
-
-
-
                     });
                 } else {
                     return Sites.put({

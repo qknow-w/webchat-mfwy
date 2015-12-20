@@ -76,7 +76,6 @@
 
                 <div class="form-group">
                     <label class="col-lg-1 control-label">工艺</label>
-
                     <div class="col-lg-11">
                         <div class="radio" ng-repeat="a in getAllGongYi" style="float: left;margin-left: 10px">
                             <label>
@@ -85,9 +84,17 @@
                             </label>
                         </div>
                     </div>
-
-
-
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">默认工艺</label>
+                    <div class="col-lg-11">
+                        <div class="radio" ng-repeat="a in getAllGongYi" style="float: left;margin-left: 10px">
+                            <label>
+                                <input type="checkbox"  ng-checked="entity.defaultt.indexOf(a.id) > -1" value="{{a.id}}"  ng-click="toggleSelectionRadio(a.id)"   >
+                                {{a.name}}
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group" ng-hide="entity.id">

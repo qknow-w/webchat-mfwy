@@ -26,7 +26,7 @@ angular.module('order-list', ['resource.orders']).config([
         // page
         $scope.setPage = function (pageNo) {
             if(ipCookie('currentAdd')=="0"){
-                return $http.get(config.url.api + "/v1/orders/pagination?skip=" + (pageNo - 1) * 10 +  "&search=" + $scope.search).success(function (data) {
+                return $http.get(config.url.api + "/v1/orders/pagination?skip=" + (pageNo - 1) * 10+ "&top=10&currentAdd=" + "" +  "&search=" + $scope.search).success(function (data) {
                     return $scope.data = data;
                 }).error(function (error) {
 
