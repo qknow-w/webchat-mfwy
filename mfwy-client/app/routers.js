@@ -18,6 +18,22 @@ define([], function () {
                 },
                 dependencies: [
                     /*'controllers/HomeController'*/
+                    "/"+app+"/controllers/WeiXinController.js?" + urlArgs,
+                    "/"+app+"/services/weixinService.js?" + urlArgs
+                ]
+            },
+            'subscribe': {
+                url: "/subscribe",
+                views: {
+                    "header": "/views/subscribe/header.tpl.html?v=" + urlArgs,
+                    "adv": "/views/home/adv.tpl.html?v=" + urlArgs,
+                    "center": "/views/subscribe/center.tpl.html?v=" + urlArgs,
+                    "footer": "/views/subscribe/footer.tpl.html?v=" + urlArgs
+                },
+                dependencies: [
+                    /*'controllers/HomeController'*/
+                    "/"+app+"/controllers/WeiXinController.js?" + urlArgs,
+                    "/"+app+"/services/weixinService.js?" + urlArgs
                 ]
             },
             "template": {

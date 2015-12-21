@@ -14,50 +14,14 @@ define(['app', 'weixin'], function (app, wx) {
         };
         //选择照片
         $scope.chooseImage = function () {
-            var ua = $window.navigator.userAgent.toLowerCase();
-            //var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                return weixinService.getConfig().then(function (result) {
-                    wx.config({
-                        debug: false,
-                        appId: result.appId,
-                        timestamp: result.timestamp,
-                        nonceStr: result.nonceStr,
-                        signature: result.signature,
-                        jsApiList: [
-                            //'checkJsApi',
-                            'onMenuShareAppMessage',
-                            'onMenuShareTimeline',
-                            'chooseImage',
-                            'uploadImage'
-                        ]
-                    });
 
-                    //上传
-                    wx.chooseImage({
-                        success: function (res) {
-                            images.localId = res.localIds;
+            //上传
+            wx.chooseImage({
+                success: function (res) {
+                    images.localId = res.localIds;
 
-                        }
-                    });
-
-                    wx.error(function (res) {
-                        //alert("系统繁忙，请关闭后重新进入");
-                        // WeixinJSBridge.call('closeWindow');
-                        //alert(res);
-                        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-                    });
-                });
-            } else {
-
-
-                //return false;
-            }
-
-
-
-
-
+                }
+            });
 
 
         };
@@ -133,7 +97,7 @@ define(['app', 'weixin'], function (app, wx) {
         wx.onMenuShareAppMessage({
             title: "蜜蜂网印", // 分享标题   活动名称
             desc: "蜜蜂网印", // 分享描述   活动主题
-            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
+            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid-shared&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
             imgUrl: "http://www.mfwy.net/UploadFolder/2015-04-17/20150417172835800470047-699-344.jpg", // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -162,7 +126,7 @@ define(['app', 'weixin'], function (app, wx) {
         //分享到朋友圈
         wx.onMenuShareTimeline({
             title: "蜜蜂网印", // 分享标题   活动名称
-            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa0b17cd5066b984a&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
+            link: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx585f9f7907d878e8&redirect_uri=http%3A%2F%2F17quay.cn%2Foauth-openid-shared&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect", // 分享链接
             imgUrl: "http://www.mfwy.net/UploadFolder/2015-04-17/20150417172835800470047-699-344.jpg", // 分享图标
             success: function () {
                 $scope.$emit('shareSuccess', "success");
@@ -187,7 +151,39 @@ define(['app', 'weixin'], function (app, wx) {
             }
         });
 
+        var ua = $window.navigator.userAgent.toLowerCase();
+        //var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return weixinService.getConfig().then(function (result) {
+                wx.config({
+                    debug: false,
+                    appId: result.appId,
+                    timestamp: result.timestamp,
+                    nonceStr: result.nonceStr,
+                    signature: result.signature,
+                    jsApiList: [
+                        //'checkJsApi',
+                        'onMenuShareAppMessage',
+                        'onMenuShareTimeline',
+                        'chooseImage',
+                        'uploadImage'
+                    ]
+                });
 
+
+
+                wx.error(function (res) {
+                    //alert("系统繁忙，请关闭后重新进入");
+                    // WeixinJSBridge.call('closeWindow');
+                    //alert(res);
+                    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                });
+            });
+        } else {
+
+
+            //return false;
+        }
         /*var ua = $window.navigator.userAgent.toLowerCase();
         //var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {

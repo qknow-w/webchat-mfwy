@@ -771,7 +771,7 @@ define(['app'], function (app) {
              }*/
 
 
-            $location.path("/app/order/ddxq"); //测试*!/
+            //$location.path("/app/order/ddxq"); //测试*!/
 
 
         };

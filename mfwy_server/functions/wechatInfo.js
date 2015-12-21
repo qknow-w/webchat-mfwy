@@ -37,7 +37,7 @@ router.all('/wechat', wechat(config, function (req, res, next) {
     // var text='印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务';
 
     res.reply("<a href='http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=217083962&idx=1&sn=0f5eb5390e0bb2eaa0f72864fb8f806b#rd'>印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。" +
-        "第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务</a>");
+        "第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受3元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务</a>");
 
     /*console.log(message);
      switch (message.Event) {
@@ -85,6 +85,7 @@ router.get('/oauth-openid', function (req, res, next) {
 
     //获取openid
 
+
     client.getUserByCode(code, function (err, result) {
         if (err) {
             // res.send(err);
@@ -102,21 +103,65 @@ router.get('/oauth-openid', function (req, res, next) {
         });
 
 
+
         console.log(result);
         var openid = result.openid;
         res.writeHeader(301, {'Location': "http://121wogo.com/?openid=" + openid});
-
-        //res.writeHeader(301, {'Location': "http://qknow.com.cn:8001"});
         return res.end();
-        //console.log(result);
-        //var openid = result.openid;
-        //console.log(result.openid);
-        /**/
+
     });
 
 });
 
+router.get('/oauth-openid-shared', function (req, res, next) {
+    // console.log(req.query.code);
 
+
+    console.log(req.query.code);
+    var code = req.query.code;
+
+    client.getUserByCode(code, function(err,result){
+        if (err) {
+             console.log(err);
+            res.send("系统繁忙，请重新进入");
+        }
+        console.log(result);
+        resources.logs.create({
+            "ip": req.headers['x-forwarded-for'] ||
+            req.connection.remoteAddress ||
+            req.socket.remoteAddress ||
+            req.connection.socket.remoteAddress
+
+        }, function (err, doc) {
+            console.log(err);
+            console.log(doc);
+        });
+
+        api.getUser(result.openid, function(errr,rersultt){
+            if (errr) {
+                // res.send(err);
+                res.send("系统繁忙，请重新进入");
+            }
+            console.log(rersultt);
+            var openid=rersultt.openid;
+            if(rersultt.subscribe==1){
+                res.writeHeader(301, {'Location': "http://121wogo.com/?openid=" + openid});
+                return res.end();
+            }else {
+                console.log('11');
+                res.writeHeader(301, {'Location': "http://121wogo.com/subscribe?openid=" + openid});
+                return res.end();
+            }
+        });
+
+       /* console.log(result);
+        var openid = result.openid;
+        res.writeHeader(301, {'Location': "http://121wogo.com/?openid=" + openid});*/
+
+    });
+
+
+});
 //skip qknow.com.cn  跳转到我的订单
 router.get('/oauth-openid-selforder', function (req, res, next) {
     // console.log(req.query.code);
