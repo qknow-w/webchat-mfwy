@@ -7,10 +7,8 @@ define(['app'], function (app) {
         tpl = function (addNo,pageNo) {
             var deferred;
             deferred = $q.defer();
-            console.log(config.url.api + "/v1/templates?$filter=type eq 0 and currentAdd eq '" + addNo + "'&$skip="+
-                (pageNo - 1) * 10+"&$top=10");
             $http.get(config.url.api + "/v1/templates?$filter=type eq 0 and currentAdd eq '" + addNo + "'&$skip="+
-                (pageNo - 1) * 10+"&$top=10", void 0).success(function (data) {
+                (pageNo - 1) * 10+"&$top=10&$orderby=num desc", void 0).success(function (data) {
 
                 return deferred.resolve(data.value);
 

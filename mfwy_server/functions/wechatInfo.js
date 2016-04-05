@@ -36,7 +36,7 @@ router.all('/wechat', wechat(config, function (req, res, next) {
 
     // var text='印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受1元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务';
 
-    res.reply("<a href='http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=217083962&idx=1&sn=0f5eb5390e0bb2eaa0f72864fb8f806b#rd'>印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。" +
+    res.reply("<a href='http://mp.weixin.qq.com/s?__biz=MzA5NTA0MzgwMw==&mid=402876486&idx=1&sn=c3c31197ee8d10c62668cbd601cdf137&scene=1&srcid=1224g9ili1rnHY2fsuNiagxk&from=singlemessage&isappinstalled=0#wechat_redirect'>印名片，有蜜蜂网印就购了，一键扫码，不管你在何时何地，给您提供名片最优速解决方案！小伙伴们快来围观吧。" +
         "第一次下单打开分享（将此文章分享到朋友圈并转发给三个微信群）以下链接，将截图发送到蜜蜂网印公众号，享受3元印刷名片活动！（我们的服务项目：设计印刷策划、各类纸品印刷定制服务</a>");
 
     /*console.log(message);

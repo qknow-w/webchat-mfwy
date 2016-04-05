@@ -23,7 +23,8 @@ angular.module('dingzhi-list', ['resource.templates']).config([
                     $skip: (pageNo - 1) * 10,
                     $top: 10,
                     $count: true,
-                    $filter:"type eq 1"
+                    $filter:"type eq 1",
+                    $orderby:"num desc"
 
                 }, function(data) {
                     return $scope.data = data;
@@ -34,7 +35,8 @@ angular.module('dingzhi-list', ['resource.templates']).config([
                     $skip: (pageNo - 1) * 10,
                     $top: 10,
                     $count: true,
-                    $filter:"type eq 1 and currentAdd eq '"+ipCookie('currentAdd')+"'"
+                    $filter:"type eq 1 and currentAdd eq '"+ipCookie('currentAdd')+"'",
+                    $orderby:"num desc"
 
                 }, function(data) {
                     return $scope.data = data;

@@ -24,7 +24,8 @@ angular.module('template-list', ['resource.templates']).config([
                     $skip: (pageNo - 1) * 10,
                     $top: 10,
                     $count: true,
-                    $filter:"type eq 0"
+                    $filter:"type eq 0",
+                    $orderby:"num desc"
                 }, function(data) {
                     return $scope.data = data;
 
@@ -34,7 +35,8 @@ angular.module('template-list', ['resource.templates']).config([
                     $skip: (pageNo - 1) * 10,
                     $top: 10,
                     $count: true,
-                    $filter:"type eq 0 and currentAdd eq '"+ipCookie('currentAdd')+"'"
+                    $filter:"type eq 0 and currentAdd eq '"+ipCookie('currentAdd')+"'",
+                    $orderby:"num desc"
                 }, function(data) {
                     return $scope.data = data;
 

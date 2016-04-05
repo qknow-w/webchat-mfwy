@@ -9,8 +9,9 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
             resolve: {
                 dingzhi: function () {
                     return ab = {
-                        name: "",//Ãû³Æ
-                        price: "",//µØÖ·
+                        num:"",
+                        name: "",//ï¿½ï¿½ï¿½ï¿½
+                        price: "",//ï¿½ï¿½Ö·
                         card: {"c_type":"",gongyi:""},//
                         images: []
                     };
@@ -47,7 +48,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
 
                // console.log($scope.entity.images.ad);
             };
-            //ÕýÃæ
+            //ï¿½ï¿½ï¿½ï¿½
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -59,7 +60,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                 // uploaderPoster.clearQueue();
             };
 
-            //·´ÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploaderPosterr = $scope.uploaderPosterr = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -71,7 +72,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                 // uploaderPoster.clearQueue();
             };
 
-            //ÕýÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploader3 = $scope.uploader3 = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -88,7 +89,7 @@ angular.module("dingzhi-edit", ["resource.templates"]).config([
                 $scope.loading = "Saving";
                 if (uploaderPoster.getNotUploadedItems().length) {
 
-                    $scope.loading = "ÇëÏÈÉÏ´«";
+                    $scope.loading = "ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½";
                 } else {
                     return save();
                 }

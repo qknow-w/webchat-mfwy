@@ -9,10 +9,11 @@ angular.module("template-edit", ["resource.templates"]).config([
             resolve: {
                 template: function () {
                     return ac = {
-                        name: "",//Ãû³Æ
-                        price: "",//µØÖ·
-                        card: {"c_type":"",gongyi:""},//Ê±¼ä  Êý×é  ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä
-                        images: []//Í¼Æ¬  ¹ã¸æ¡¢º£±¨
+                        num:"",
+                        name: "",//ï¿½ï¿½ï¿½ï¿½
+                        price: "",//ï¿½ï¿½Ö·
+                        card: {"c_type":"",gongyi:""},//Ê±ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Ê¼Ê±ï¿½ï¿½Í½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+                        images: []//Í¼Æ¬  ï¿½ï¿½æ¡¢ï¿½ï¿½ï¿½ï¿½
                     };
                 }
             }
@@ -47,7 +48,7 @@ angular.module("template-edit", ["resource.templates"]).config([
 
                // console.log($scope.entity.images.ad);
             };
-            //ÕýÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploaderPoster = $scope.uploaderPoster = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -58,7 +59,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                 // uploaderPoster.clearQueue();
             };
 
-            //·´ÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploaderPosterr = $scope.uploaderPosterr = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -70,7 +71,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                 // uploaderPoster.clearQueue();
             };
 
-            //ÕýÃæÉÏ´«
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
             var uploader3 = $scope.uploader3 = new FileUploader({
                 url: "" + config.url.api + "/v1/file-upload/?path=template",
                 removeAfterUpload:true
@@ -88,7 +89,7 @@ angular.module("template-edit", ["resource.templates"]).config([
                 $scope.loading = "Saving";
                 if (uploaderPoster.getNotUploadedItems().length) {
 
-                    $scope.loading = "ÇëÏÈÉÏ´«";
+                    $scope.loading = "ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½";
                 } else {
                     return save();
                 }

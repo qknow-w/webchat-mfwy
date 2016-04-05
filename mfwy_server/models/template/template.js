@@ -3,6 +3,7 @@
  */
 /*模板 定制*/
 var template={
+    num:Number,//序号
     name:String,//名称
     no:Number,//编号
     images:[String],//模板图片
